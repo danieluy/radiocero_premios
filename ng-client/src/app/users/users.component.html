@@ -1,0 +1,69 @@
+<section id="section_users" class="page">
+  <div class="content-card">
+    <nav class="card-nav">
+      <ul>
+        <li>
+          <button (click)="navigateTo('usersList')" class="nav-button">Lista de Usuarios</button>
+        </li>
+        <li>
+          <button (click)="navigateTo('newUser')" class="nav-button">Nuevo Usuario</button>
+        </li>
+      </ul>
+    </nav>
+    <div class="content-forms">
+
+      <div id="card-users-list" class="content-form" [style.display]="visible_tab == 'usersList' ? 'inherit' : 'none'">
+        <h2>Lista de Usuarios</h2>
+
+        <!--Users List-->
+        <ul id="ul-list-users" class="list">
+          <li class="list-item" *ngFor="let user of users_list">
+            <span class="item-avatar">{{user.Name.slice(0,1)}}</span>
+            <div class="item-data">
+              <span class="data-name">{{user.Name}}</span>
+              <span class="data-right">
+                  <span class="data-role">{{user.Role}}</span>
+              <small> creado el </small>
+              <span class="data-set_date">{{user.StrDate}}</span>
+              </span>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+
+
+      <div id="card-new-user" class="content-form" [style.display]="visible_tab == 'newUser' ? 'inherit' : 'none'">
+
+        <h2>Nuevo Usuario</h2>
+
+        <form id="form-new-user" (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+          <label for="name">Nombre de usuario *</label>
+          <input [(ngModel)]="user.name" name="name" id="name" placeholder="Nombre sin espacios"  pattern="\S+" required>
+
+          <label for="password">Contraseña *</label>
+          <input [(ngModel)]="user.password" #password="ngModel" name="password" id="password" type="password" placeholder="Contraseña" required>
+
+          <label for="password2">Repetir contraseña *</label>
+          <input [(ngModel)]="user.password2" name="password2" id="password2" type="password" placeholder="Repetir contraseña" validateEqual="password" required>
+
+          <label for="role">Permisos *</label>
+          <select [(ngModel)]="user.role" id="role" name="role" required>
+            <option value="admin">Administrador</option>
+            <option value="user" selected>Usuario</option>
+          </select>
+
+          <label for="email">Email</label>
+          <input [(ngModel)]="user.email" id="email" name="email" placeholder="Email" pattern="\S+@\S+\.\S+">
+
+          <button (click)="newUser($event); userForm.reset()" type="submit" class="btn-ok" [disabled]="!userForm.form.valid">Crear</button>
+          <button (click)="userForm.reset()" class="btn-cancel" id="btn-cancel-sub-new-user">Cancelar</button>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</section>

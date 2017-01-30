@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <link href="assets/img/icon_24.png" rel="icon" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Radiocero Premios</title>
+</head>
+
+<body>
+  <header>
+    <!-- Nav Bar -->
+    <nav>
+      <div class="main-nav">
+        <a href="http://www.radiocero.com.uy/" target="_blank">
+          <img src="assets/img/icon_48.png" alt="Icono Radiocero" />
+          <span>Radiocero</span>
+        </a>
+      </div>
+      <ul class="nav-options">
+
+        <li class="menu-title">Usuarios</li>
+        <li><a routerLink="/" routerLinkActive="active" class="ancor"><i class="material-icons">&#xE88A;</i> Inicio</a></li>
+        <li><a routerLink="/winners" routerLinkActive="active" class="ancor"><i class="material-icons">&#xE838;</i> Ganadores</a></li>
+        <li><a routerLink="/prizes" routerLinkActive="active" class="ancor"><i class="material-icons">&#xE838;</i> Premios</a></li>
+
+        <li class="menu-title">Administradores</li>
+        <li><a routerLink="/users" routerLinkActive="active" class="ancor"><i class="material-icons">&#xE7FD;</i> Usuarios</a></li>
+
+        <li class="menu-title">Sesión</li>
+        <li><a *ngIf="!user" (click)="displayLoginForm()"><i class="material-icons">&#xE853;</i> Inicial sesión</a></li>
+        <li><a *ngIf="user" (click)="logout()"><i class="material-icons">&#xE8AC;</i> Cerrar sesión</a></li>
+        <!--<li><a routerLink="/login" routerLinkActive="active"><i class="material-icons">&#xE853;</i> Inicial sesión</a></li>
+        <li><a routerLink="/login" (click)="logout()"><i class="material-icons">&#xE8AC;</i> Cerrar sesión</a></li>-->
+
+      </ul>
+    </nav>
+  </header>
+
+
+  <router-outlet></router-outlet>
+
+  <div id="ds-spinner" class="start-spinning">
+    <div class="spinner-wrapper">
+      <!-- <div class="spinner spinner-circle"></div> -->
+      <div class="spinner spinner-radiocero"></div>
+    </div>
+  </div>
+
+  <notification></notification>
+
+  <login *ngIf="!user"></login>
+
+</body>
+
+</html>
