@@ -1,12 +1,21 @@
 # Radiocero Premios Angular2 Client Changelog
 v?.?.?
-  19700101 | TODO | Handed prizes actions (cancel)
-  19700101 | TODO | Winners lists styles
-  19700101 | TODO | When winner exist autofill winner data in the granting form
-  19700101 | TODO | Shut down autofill on the input datalist
-  19700101 | TODO | Shut down autofill on the new user form
-  19700101 | TODO | Improve the use of ng forms all over
-  19700101 | TODO | Add actions to notification component ???
+  00000000 | TODO | Enable periodic prizes creation
+  00000000 | TODO | Handed prizes actions (cancel)
+  00000000 | TODO | Add prizes to all winners list items
+  00000000 | TODO | Winners edition functionality
+  00000000 | TODO | Current winners list action Cancel
+  00000000 | TODO | When winner exist autofill winner data in the granting form
+  00000000 | TODO | Export winners list (.pdf)
+  00000000 | TODO | Vouchers generation
+  00000000 | TODO | Improve the use of ng forms all over
+  00000000 | TODO | Add actions to notification component ???
+v0.4.1
+  20170130 | + | Added current winners list styles
+  20170130 | + | Added winners list items styles
+  20170130 | BUG | Shut down autofill can't be done due to a security "enhancement" of the modern browsers
+  20170130 | BUG | When editing a prize if it is too down below the list the edition form won't appear on screen until scroll up
+  20170130 | BUG | When editing a prize there are fields filled with null or undefined values
 v0.4.0
   20170127 | REFACTORING | NotificationService is now globally provided in app.module.ts
   20170127 | + | Updated all notifications to use the improved notification service

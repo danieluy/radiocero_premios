@@ -40,7 +40,7 @@
         <form (ngSubmit)="onSubmit()" #newPrizeForm="ngForm">
 
           <label>Tipo de premio *</label>
-          <input [(ngModel)]="new_prize.type" name="type" list="types_list" placeholder="Tipo de premio" required>
+          <input [(ngModel)]="new_prize.type" name="type" list="types_list" placeholder="Tipo de premio" autocomplete="off" required>
           <datalist id="types_list">
             <option *ngFor="let type of prizes_type_list" value="{{type}}">
           </datalist>
@@ -49,7 +49,7 @@
           <input [(ngModel)]="new_prize.description" name="description" placeholder="Descripción" required>
 
           <label>Espónsor *</label>
-          <input [(ngModel)]="new_prize.sponsor" name="sponsor" list="sponsors_list" placeholder="Espónsor" required>
+          <input [(ngModel)]="new_prize.sponsor" name="sponsor" list="sponsors_list" placeholder="Espónsor" autocomplete="off" required>
           <datalist id="sponsors_list">
             <option *ngFor="let type of prizes_sponsor_list" value="{{type}}">
           </datalist>

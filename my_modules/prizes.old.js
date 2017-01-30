@@ -12,37 +12,37 @@ const Prize = function (prize_info) {
     throw 'ERROR: Invalid date format for due date. Required format "yyyy/MM/dd"';
 
   // Properties
-  this.id = prize_info.id;
-  this.type = prize_info.type;
-  this.sponsor = prize_info.sponsor;
-  this.description = prize_info.description;
-  this.stock = parseInt(prize_info.stock);
-  this.periodic = prize_info.periodic;
-  this.set_date = prize_info.set_date;
-  this.update_date = prize_info.update_date;
-  this.due_date = prize_info.due_date ? new Date(prize_info.due_date).getTime() : null;
-  this.note = prize_info.note;
-  this.total_handed = prize_info.total_handed || 0;
+  let id = prize_info.id;
+  let type = prize_info.type;
+  let sponsor = prize_info.sponsor;
+  let description = prize_info.description;
+  let stock = parseInt(prize_info.stock);
+  let periodic = prize_info.periodic;
+  let set_date = prize_info.set_date;
+  let update_date = prize_info.update_date;
+  let due_date = prize_info.due_date ? new Date(prize_info.due_date).getTime() : null;
+  let note = prize_info.note;
+  let total_handed = prize_info.total_handed || 0;
 
   // Methods
-  this.save = () => {
-    if (this.id)
+  const save = () => {
+    if (id)
       throw "ERROR: This prize has already been saved, try using the update method";
     return new Promise((resolve, reject) => {
       db.insert('prizes', {
-        'type': this.type,
-        'sponsor': this.sponsor,
-        'description': this.description,
-        'stock': this.stock,
-        'periodic': this.periodic,
+        'type': type,
+        'sponsor': sponsor,
+        'description': description,
+        'stock': stock,
+        'periodic': periodic,
         'set_date': Date.now(),
         'update_date': null,
-        'due_date': this.due_date,
-        'note': this.note,
-        'total_handed': this.total_handed
+        'due_date': due_date,
+        'note': note,
+        'total_handed': total_handed
       })
         .then((WriteResult) => {
-          this.id = WriteResult.ops[0]._id;
+          id = WriteResult.ops[0]._id;
           return resolve(WriteResult);
         })
         .catch((err) => {
@@ -51,20 +51,20 @@ const Prize = function (prize_info) {
     });
   }
 
-  this.update = () => {
-    if (!this.id)
+  const update = () => {
+    if (!id)
       throw "ERROR: A prize can only be edited after it has been saved";
     return new Promise((resolve, reject) => {
-      db.update('prizes', { id: this.id }, {
-        'type': this.type,
-        'sponsor': this.sponsor,
-        'description': this.description,
-        'stock': this.stock,
-        'periodic': this.periodic,
+      db.update('prizes', { id: id }, {
+        'type': type,
+        'sponsor': sponsor,
+        'description': description,
+        'stock': stock,
+        'periodic': periodic,
         'update_date': Date.now(),
-        'due_date': this.due_date,
-        'note': this.note,
-        'total_handed': this.total_handed
+        'due_date': due_date,
+        'note': note,
+        'total_handed': total_handed
       })
         .then((WriteResult) => {
           return resolve(WriteResult);
@@ -75,75 +75,75 @@ const Prize = function (prize_info) {
     });
   }
 
-  this.edit = (values) => {
+  const edit = (values) => {
     if (values.type)
-      this.type = values.type;
+      type = values.type;
     if (values.sponsor)
-      this.sponsor = values.sponsor;
+      sponsor = values.sponsor;
     if (values.description)
-      this.description = values.description;
+      description = values.description;
     if (values.stock)
-      this.stock = values.stock;
+      stock = values.stock;
     if (values.periodic)
-      this.periodic = values.periodic;
+      periodic = values.periodic;
     if (values.due_date)
-      this.due_date = values.due_date;
+      due_date = values.due_date;
     if (values.note)
-      this.note = values.note;
+      note = values.note;
     if (values.total_handed)
-      this.total_handed = values.total_handed;
-    return this.update();
+      total_handed = values.total_handed;
+    return update();
   }
 
-  this.stockUpdate = (value) => {
+  const stockUpdate = (value) => {
     let intVal = parseInt(value);
     if (!value || isNaN(intVal))
       throw "ERROR: The stock's modifier value must be a integer - Prizes.js module stockUpdate()";
-    if (this.stock + intVal < 0)
+    if (stock + intVal < 0)
       throw "ERROR: The stock's modifier value was greater than the current stock - Prizes.js module stockUpdate()";
-    this.stock += intVal;
-    this.total_handed -= intVal;
-    return this.update();
+    stock += intVal;
+    total_handed -= intVal;
+    return update();
   }
 
-  this.stockIncrease = (val) => {
+  const stockIncrease = (val) => {
     if (!val || isNaN(parseInt(val)) || parseInt(val) <= 0)
       throw "ERROR: The stock's modifier value must be a integer > 0 - Prizes.js module stockIncrease()";
-    return this.stockUpdate(Math.abs(val))
+    return stockUpdate(Math.abs(val))
   }
 
-  this.stockDecrease = (val) => {
+  const stockDecrease = (val) => {
     if (!val || isNaN(parseInt(val)) || parseInt(val) <= 0)
       throw "ERROR: The stock's modifier value must be a integer > 0 - Prizes.js module stockDecrease()";
-    return this.stockUpdate(Math.abs(val) * -1)
+    return stockUpdate(Math.abs(val) * -1)
   }
 
-  this.getPublicData = () => {
+  const getPublicData = () => {
     return {
-      id: this.id,
-      type: this.type,
-      sponsor: this.sponsor,
-      description: this.description,
-      stock: this.stock,
-      periodic: this.periodic,
-      set_date: this.set_date,
-      update_date: this.update_date,
-      due_date: this.due_date,
-      note: this.note,
-      total_handed: this.total_handed
+      id: id,
+      type: type,
+      sponsor: sponsor,
+      description: description,
+      stock: stock,
+      periodic: periodic,
+      set_date: set_date,
+      update_date: update_date,
+      due_date: due_date,
+      note: note,
+      total_handed: total_handed
     }
   }
 
   return {
     // Public Methods
-    save: this.save,
-    edit: this.edit,
-    update: this.update,
-    getPublicData: this.getPublicData,
-    stockIncrease: this.stockIncrease,
-    stockDecrease: this.stockDecrease,
-    getId: () => this.id,
-    getStock: () => this.stock
+    save: save,
+    edit: edit,
+    update: update,
+    getPublicData: getPublicData,
+    stockIncrease: stockIncrease,
+    stockDecrease: stockDecrease,
+    getId: () => id,
+    getStock: () => stock
   }
 }
 

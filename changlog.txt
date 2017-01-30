@@ -1,9 +1,20 @@
 # Radiocero Premios Changelog
+v0.?.?
+  00000000 | TODO | Enable periodic prizes creation
+  00000000 | TODO | Filter prizes by due date and stock
+  00000000 | TODO | Test the three month period limiting functionality
+  00000000 | TODO | On prize creation check due_date >= set_date
+v0.6.2
+  20170130 | REFACTORING | Prize class to use this keyword
+  20170130 | + | Added periodic:boolean to Prize class
+  20170130 | + | Added total_handed:number to Prize class
+# deployed
 v0.6.1
   20170129 | + | Updated and improved the README.md
   20170129 | + | Greatly improved the CLI UX
   20170129 | + | Moved to a fresh repository
   20170129 | - | Removed unused dependencies
+# commited & pushed
 v0.6.0
   20170125 | TODO | Test winner.js => hasWonSinceThreeMonths()
   20170125 | TODO | Users server side checks

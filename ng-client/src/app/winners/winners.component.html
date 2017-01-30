@@ -18,13 +18,15 @@
         <ul class="list">
           <li *ngFor="let item of winner_prize_list" class="list-item">
             <div>
-              <span class="data-description">{{item.w.Name}} {{item.w.Lastname}}</span>
-              <span class="data-description"><i>{{item.w.Ci}}</i></span>
-              <span class="data-type">Premio:</span>
+              <!--<span class="data-label">Ganador:</span>-->
+              <span class="data-name">{{item.w.Name}} {{item.w.Lastname}}</span>
+              <span class="data-ci"> {{item.w.Ci}}</span>
+              <span class="data-label">Premio:</span>
               <span class="data-description">{{item.p.Description}}</span>
-              <span class="data-type">{{item.p.Type}} <i> - {{item.p.Sponsor}}</i></span>
+              <span class="data-type"> {{item.p.Type}} <i> - {{item.p.Sponsor}}</i></span>
               <div class="data-dates">
-                <span>Ganó el </span><span class="data-date">{{item.grantedDate}}</span>
+                <span class="data-label">Ganó el:</span>
+                <span class="data-date">{{item.grantedDate}}</span>
               </div>
               <div class="list-actions">
                 <button (click)="handOverPrize(item.w.CiRaw, item.p.Id)" type="button" class="btn-ok btn-hand-over-prize">Entregado</button>
@@ -59,19 +61,19 @@
               </div>
               <div *ngIf="winner_to_display === winner.Id">
                 <label>Nombre</label>
-                <span class="data-name">{{winner.Name}} {{winner.Lastname}}</span>
+                <span class="data-input-name">{{winner.Name}} {{winner.Lastname}}</span>
                 <label>C.I.</label>
-                <span class="data-ci">{{winner.Ci}}</span>
+                <span class="data-input-ci">{{winner.Ci}}</span>
                 <label *ngIf="winner.Mail">Email</label>
-                <span class="data-Mail">{{winner.Mail}}</span>
+                <span class="data-input-mail">{{winner.Mail}}</span>
                 <label *ngIf="winner.Phone">Teléfono</label>
-                <span class="data-Phone">{{winner.Phone}}</span>
+                <span class="data-input-mhone">{{winner.Phone}}</span>
                 <label *ngIf="winner.Facebook">Perfil de Facebook</label>
-                <span class="data-Facebook">{{winner.Facebook}}</span>
+                <span class="data-input-facebook">{{winner.Facebook}}</span>
                 <label *ngIf="winner.StrSetDate">Usuario creado el:</label>
-                <span class="data-Facebook">{{winner.StrSetDate}}</span>
+                <span class="data-input-setDate">{{winner.StrSetDate}}</span>
                 <label *ngIf="winner.StrUpdateDate">Ultima modificación</label>
-                <span class="data-Facebook">{{winner.StrUpdateDate}}</span>
+                <span class="data-input-editDate">{{winner.StrUpdateDate}}</span>
               </div>
             </div>
           </li>
