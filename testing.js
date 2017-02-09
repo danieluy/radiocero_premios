@@ -60,7 +60,8 @@
             type: 'Estadía',
             sponsor: 'Hotel Colonia',
             description: 'Dos noches con desayuno',
-            stock: 20,
+            stock: '20',
+            periodic: 'false',
             due_date: '2016/12/01', // < yyyy/MM/dd >
             note: "Hotel 3 estrellas en el corazón de Colonia del Sacramento"
         });
@@ -75,14 +76,14 @@
 
 
     function increaseStock(value) {
-        Prizes.findById('583d78c534a50e180aa2830e')
+        Prizes.findById('5890858bf213511ce4718029')
         .then((result) => {
-            console.log('Original stock =', result.getStock());
+            console.log('Original stock =', result.stock);
             console.log('Increase value =', value);
             result.stockIncrease(value)
             .then((WriteResult) => {
                 console.log('WriteResult', WriteResult)
-                console.log('Increased stock =', result.getStock());
+                console.log('Increased stock =', result.stock);
             })
             .catch((err) => {
                 console.log(err)
@@ -94,14 +95,14 @@
 
 
     function decreaseStock(value) {
-        Prizes.findById('583d78c534a50e180aa2830e')
+        Prizes.findById('5890858bf213511ce4718029')
         .then((result) => {
-            console.log('Original stock =', result.getStock());
+            console.log('Original stock =', result.stock);
             console.log('Decrease value =', value);
             result.stockDecrease(value)
             .then((WriteResult) => {
                 console.log('WriteResult', WriteResult)
-                console.log('Decreased stock =', result.getStock());
+                console.log('Decreased stock =', result.stock);
             })
             .catch((err) => {
                 console.log(err)
@@ -109,7 +110,7 @@
         })
         .catch((err) => { console.error(err) });
     }
-    // decreaseStock('50')
+    // decreaseStock('5')
 
     //  Winners  ///////////////////////////////////////////////////////////////////
 

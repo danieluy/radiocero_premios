@@ -15,6 +15,8 @@ import { NotificationComponent } from './notification/notification.component';
 import { NotificationService } from './notification/notification.service';
 import { EqualValidatorDirective } from './equal-validator.directive';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CurrentOnly } from './pipes/current-only.pipe';
+import { FilterWinnersSearch } from './pipes/filter-winners-search.pipe';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
     UsersComponent,
     LoginComponent,
     NotificationComponent,
-    EqualValidatorDirective
+    EqualValidatorDirective,
+    CurrentOnly,
+    FilterWinnersSearch
   ],
   imports: [
     BrowserModule,

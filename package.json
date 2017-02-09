@@ -1,6 +1,6 @@
 {
   "name": "radiocero_premios",
-  "version": "0.6.1",
+  "version": "v0.7.0",
   "description": "Aplicación de gestión de premios a la audiencia. Radiocero 104.3",
   "main": "app.js",
   "scripts": {

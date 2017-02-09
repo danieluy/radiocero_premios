@@ -1,12 +1,20 @@
 # Radiocero Premios Changelog
 v0.?.?
-  00000000 | TODO | Enable periodic prizes creation
-  00000000 | TODO | Filter prizes by due date and stock
-  00000000 | TODO | Test the three month period limiting functionality
-  00000000 | TODO | On prize creation check due_date >= set_date
+  00000000 | T | Test winner.js => hasWonSinceThreeMonths()
+  00000000 | T | Filter prizes by due date and stock
+  00000000 | T | On prize creation check due_date >= set_date
+  00000000 | T | Change administrator password, or allow it to be changed from UI
+  00000000 | T | cancelHandOverPrize() on backend
+v0.7.0
+# deployed
+  20170207 | + | Prize.edit() now uses Prize.checkInputData() instead of just checking if the data was provided
+  20170203 | R | Added Prize.checkInputData() to re-use this functionality
+  20170203 | R | Completely redone the prizes instantiation checks
+  20170131 | + | Added verification for periodic parameter on Prize class
+  20170131 | R | Prize class to have its methods declared through its prototype
 v0.6.2
-  20170130 | REFACTORING | Prize class to use this keyword
-  20170130 | + | Added periodic:boolean to Prize class
+  20170130 | R | Prize class to use this keyword
+  20170130 | + | Added periodic: boolean to Prize class
   20170130 | + | Added total_handed:number to Prize class
 # deployed
 v0.6.1
@@ -16,10 +24,6 @@ v0.6.1
   20170129 | - | Removed unused dependencies
 # commited & pushed
 v0.6.0
-  20170125 | TODO | Test winner.js => hasWonSinceThreeMonths()
-  20170125 | TODO | Users server side checks
-  20170125 | TODO | Change administrator password, or allow it to be changed from UI
-  20170125 | TODO | cancelHandOverPrize() on backend
   20170125 | + | Added /prizes/edit api_router route and method
   20170125 | + | Added Prize.edit() method
   20170116 | + | Added method to check if a winner has won in the last three months
@@ -31,10 +35,10 @@ v0.6.0
 # commited & pushed
 v0.5.1
   20161221 | + | Started a new client app based on Angular 2
-  20161221 | BUG FIX | set_date on users was assigned as due_date and consequently it defaulted to the instantiation date
+  20161221 | F | set_date on users was assigned as due_date and consequently it defaulted to the instantiation date
 # commited & pushed
 v0.5.0
-  19700101 | BUG FIX | everything about the prize's stock is broken, assigning prizes is working now, stock management included ;)
+  19700101 | F | everything about the prize's stock is broken, assigning prizes is working now, stock management included ;)
   19700101 | + | Added prize handing over functionality on backend
   19700101 | + | When adding a new prize, the prize's list in now updated
   19700101 | + | Added administrator account creation on first boot
@@ -42,13 +46,13 @@ v0.5.0
 # commited & pushed
 v0.4.4
   19700101 | + | Added ejs partials
-  19700101 | BUG FIX | Solved a bug on index.js that was sending non UTC date to the server
-  19700101 | BUG FIX | Solved a bug on index.js that didn't refresh the content position when the window was resized
+  19700101 | F | Solved a bug on index.js that was sending non UTC date to the server
+  19700101 | F | Solved a bug on index.js that didn't refresh the content position when the window was resized
   19700101 | + | Added the form to grant prizes
   19700101 | + | Added Winners module
   19700101 | + | Added info_hub actions
-  19700101 | BUG FIX | Solved grantPrize() on fontend's winner.js
-  19700101 | BUG FIX | Solved Dates and comments displaying even if they are null
+  19700101 | F | Solved grantPrize() on fontend's winner.js
+  19700101 | F | Solved Dates and comments displaying even if they are null
   19700101 | BUG | everything about the prizes stock is broken!!!!
 # commited & pushed
 v0.4.3

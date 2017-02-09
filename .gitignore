@@ -38,3 +38,6 @@ jspm_packages
 
 # Config file
 config.json
+
+# Database dumps
+db_test

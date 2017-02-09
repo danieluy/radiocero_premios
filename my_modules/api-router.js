@@ -26,14 +26,15 @@ api_router.use(headers.writeCORS);
 
 api_router.get('/prizes', (req, res) => {
   Prizes.findAll()
-    .then((results) => {
-      if (results)
-        res.status(200).json(results.map((result) => result.getPublicData()));
+    .then((prizes) => {
+      if (prizes)
+        res.status(200).json(prizes.map(prize => prize.getPublicData()));
       else
         res.status(200).json([]);
     })
     .catch((err) => {
-      res.status(500).json({ error: "There was a problem fetching the prizes data", details: err.toString() });
+      console.error(err);
+      res.status(500).json({ error: "There was a problem fetching the prizes data", details: err });
     })
 });
 
@@ -43,6 +44,7 @@ api_router.post('/prizes', (req, res) => {
     sponsor: req.body.sponsor,
     description: req.body.description,
     stock: req.body.stock,
+    periodic: req.body.periodic,
     due_date: req.body.due_date,
     note: req.body.note
   }).save()
@@ -67,6 +69,7 @@ api_router.post('/prizes/edit', checkRoleAdmin, (req, res) => {
           sponsor: req.body.sponsor,
           description: req.body.description,
           stock: req.body.stock,
+          periodic: req.body.periodic,
           due_date: req.body.due_date,
           note: req.body.note
         })
@@ -230,7 +233,7 @@ api_router.post('/winners/checkwinner', (req, res) => { //  NEED TO GUARANTEE TH
         res.status(200).json({ allowed: true, message: `This person is allowed to participate` });
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.status(500).json({ error: "There was a problem checking the winner", details: err.toString() });
     })
 })
@@ -244,7 +247,7 @@ api_router.post('/grantprize', (req, res) => {
           Prizes.findById(req.body.prize_id)
             .then((prize) => {
               if (prize) {
-                if (prize.getStock() > 0) {
+                if (prize.stock > 0) {
                   prize.stockDecrease(1)
                     .then((WriteResult) => {
                       if (WriteResult.nModified > 0) {
@@ -261,7 +264,7 @@ api_router.post('/grantprize', (req, res) => {
                     })
                 }
                 else
-                  res.status(500).json({ error: "There is not enough stock", details: "ERROR [ api-router.js ][ post(/grantprize) ][ existing winner ][ prize.getStock() <= 0 ]" });
+                  res.status(500).json({ error: "There is not enough stock", details: "ERROR [ api-router.js ][ post(/grantprize) ][ existing winner ][ prize.stock <= 0 ]" });
               }
               else
                 res.status(500).json({ error: "There prize couldn't be found", details: "ERROR [ api-router.js ][ post(/grantprize) ][ existing winner ][ Prizes.findById(" + req.body.prize_id + ") ]" });
@@ -287,7 +290,7 @@ api_router.post('/grantprize', (req, res) => {
               Prizes.findById(req.body.prize_id)
                 .then((prize) => {
                   if (prize) {
-                    if (prize.getStock() > 0) {
+                    if (prize.stock > 0) {
                       prize.stockDecrease(1)
                         .then((WriteResult) => {
                           if (WriteResult.nModified > 0) {
@@ -307,7 +310,7 @@ api_router.post('/grantprize', (req, res) => {
                         })
                     }
                     else
-                      res.status(500).json({ error: "There is not enough stock", details: "ERROR [ api-router.js ][ post(/winners) ][ !existing winner ][ prize.getStock() <= 0 ]" });
+                      res.status(500).json({ error: "There is not enough stock", details: "ERROR [ api-router.js ][ post(/winners) ][ !existing winner ][ prize.stock <= 0 ]" });
                   }
                   else
                     res.status(500).json({ error: "There prize couldn't be found", details: "ERROR [ api-router.js ][ post(/winners) ][ !existing winner ][ Prizes.findById(" + req.body.prize_id + ") ]" });
@@ -319,7 +322,7 @@ api_router.post('/grantprize', (req, res) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.status(500).json({ error: "There was a problem asigning the prize", details: err.toString() });
     })
 });

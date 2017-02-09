@@ -50,7 +50,7 @@ router.post('/login', (req, res) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.status(503).json({ error: 'There was a problem with the login process, please try again later.', details: err.toString() });
     })
 });

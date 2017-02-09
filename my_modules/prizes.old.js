@@ -169,7 +169,7 @@ const findById = (id) => {
         return resolve(null);
       })
       .catch((err) => {
-        return reject('ERR_DB - Unable to fetch prizes data - Users module - Returned ERROR: ' + err);
+        return reject('ERR_DB - Unable to fetch prizes data - Prizes module - Returned ERROR: ' + err);
       });
   });
 }
@@ -198,7 +198,7 @@ const findAll = () => {
         return resolve([]);
       })
       .catch((err) => {
-        return reject('ERR_DB - Unable to fetch prizes data - Users module - Returned ERROR: ' + err);
+        return reject('ERR_DB - Unable to fetch prizes data - Prizes module - Returned ERROR: ' + err);
       });
   });
 }

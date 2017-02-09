@@ -94,7 +94,7 @@ const findAll = () => {
       return resolve([]);
     })
     .catch((err) => {
-      return reject('ERR_DB - Unable to fetch prizes data - Users module - Returned ERROR: ' + err);
+      return reject('ERR_DB - Unable to fetch prizes data - Users module - findAll() - Returned ERROR: ' + err);
     });
   });
 }
@@ -117,7 +117,7 @@ const findByName = (userName) => {
       return resolve(null);
     })
     .catch((err) => {
-      return reject('ERR_DB - Unable to fetch prizes data - Users module - Returned ERROR: ' + err);
+      return reject('ERR_DB - Unable to fetch prizes data - Users module - findByName() - Returned ERROR: ' + err);
     });
   });
 }

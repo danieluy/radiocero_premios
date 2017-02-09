@@ -34,7 +34,7 @@ var Const = (function () {
 /***/ 146:
 /***/ function(module, exports) {
 
-module.exports = "/*--  Buttons  ---------------------------------------------------------------*/\r\nbutton{\r\n  border-style: none;\r\n  border-radius: 3px;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  padding: 0px 20px;\r\n  text-transform: uppercase;\r\n  box-shadow: none;\r\n  -webkit-transition: box-shadow 150ms ease-in-out;\r\n  transition: box-shadow 150ms ease-in-out;\r\n}\r\nbutton:hover{\r\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);\r\n}\r\nbutton:active{\r\n  box-shadow: none;\r\n}\r\nbutton.btn-ok{\r\n  background-color: #F58500;\r\n  color: #fff;\r\n}\r\nbutton.btn-cancel{\r\n  background-color: #fff;\r\n  color: #F58500;\r\n}\r\n\r\n/*--  Content Forms  ---------------------------------------------------------*/\r\nh2{\r\n  line-height: 80px;\r\n  font-size: 2.5em;\r\n  color: #F58500;\r\n  font-weight: 100;\r\n}\r\nlabel{\r\n  display: block;\r\n  line-height: 30px;\r\n  text-transform: uppercase;\r\n  font-size: .7em;\r\n  font-weight: 700;\r\n  color: #888;\r\n  margin-top: 15px;\r\n}\r\ninput, select, textarea{\r\n  position: relative;\r\n  display: block;\r\n  width: 100%;\r\n  max-width: 100%;\r\n  border: 1px solid #eee;\r\n  border-radius: 3px;\r\n  line-height: 40px;\r\n  padding: 0px 10px;\r\n  height: 40px;\r\n  -webkit-transition: background-color 300ms ease-in-out;\r\n  transition: background-color 300ms ease-in-out;\r\n}\r\ninput.borderless,\r\nselect.borderless,\r\ntextarea.borderless{\r\n  border-style: none;\r\n}\r\n.input-inline{\r\n  display: inline-block;\r\n  width: 49%;\r\n}\r\ntextarea{\r\n  line-height: 20px;\r\n  padding: 10px 10px 0px 10px;\r\n}\r\nselect,\r\ninput[type=\"date\"]{\r\n  color: #A9A9A9;\r\n}\r\ninput:hover, select:hover, textarea:hover{\r\n  background-color: #eee;\r\n}\r\ninput.ng-invalid,\r\nselect.ng-invalid,\r\ntextarea.ng-invalid {\r\n  background-color: #F58500;\r\n  color: #fff;\r\n}\r\ninput.ng-invalid::-webkit-input-placeholder,\r\nselect.ng-invalid::-webkit-input-placeholder,\r\ntextarea.ng-invalid::-webkit-input-placeholder {\r\n  background-color: #F58500;\r\n  color: #fff;\r\n}\r\nbutton[type=\"submit\"]{\r\n  margin-top: 30px;\r\n}\r\n\r\n"
+module.exports = "/*--  Page  -----------------------------------------------------------------*/\r\n.page{\r\n  position: relative;\r\n  margin-left: 200px;\r\n  width: calc(100% - 200px);\r\n  height: 100vh;\r\n}\r\n.content-card{\r\n  width: 50%;\r\n  min-width: 700px;\r\n  margin: 0 auto;\r\n  height: 100vh;\r\n  overflow-y: hidden;\r\n}\r\n.card-nav{\r\n  width: 100%;\r\n  height: 90px;\r\n}\r\n.card-nav li{\r\n  float: left;\r\n  list-style-type: none;\r\n  cursor: pointer;\r\n}\r\n.nav-button{\r\n  background-color: transparent;\r\n  height: 90px;\r\n  font-size: .85em;\r\n  font-weight: 500;\r\n  color: #888;\r\n  border-style: none;\r\n  padding: 0 20px;\r\n  text-transform: uppercase;\r\n  -webkit-transition: all 200ms linear;\r\n  transition: all 200ms linear;\r\n}\r\n.nav-button:hover{\r\n  color: #F58500;\r\n  box-shadow: none;\r\n  background-color: #ddd;\r\n}\r\n.nav-button.active-tab{\r\n  color: #F58500;\r\n}\r\n\r\n/*--  Buttons  ---------------------------------------------------------------*/\r\nbutton{\r\n  border-style: none;\r\n  border-radius: 3px;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  padding: 0px 20px;\r\n  text-transform: uppercase;\r\n  box-shadow: none;\r\n  -webkit-transition: box-shadow 150ms ease-in-out;\r\n  transition: box-shadow 150ms ease-in-out;\r\n}\r\nbutton:hover{\r\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);\r\n}\r\nbutton:active{\r\n  box-shadow: none;\r\n}\r\nbutton.btn-ok{\r\n  background-color: #F58500;\r\n  color: #fff;\r\n}\r\nbutton.btn-cancel{\r\n  background-color: #fff;\r\n  color: #F58500;\r\n}\r\n\r\n/*--  Content Forms  ---------------------------------------------------------*/\r\nh2{\r\n  line-height: 80px;\r\n  font-size: 2.5em;\r\n  color: #F58500;\r\n  font-weight: 100;\r\n}\r\nlabel{\r\n  display: block;\r\n  line-height: 30px;\r\n  text-transform: uppercase;\r\n  font-size: .7em;\r\n  font-weight: 700;\r\n  color: #888;\r\n  margin-top: 15px;\r\n}\r\ninput, select, textarea{\r\n  position: relative;\r\n  display: block;\r\n  width: 100%;\r\n  max-width: 100%;\r\n  border: 1px solid #eee;\r\n  border-radius: 3px;\r\n  line-height: 40px;\r\n  padding: 0px 10px;\r\n  height: 40px;\r\n  -webkit-transition: background-color 300ms ease-in-out;\r\n  transition: background-color 300ms ease-in-out;\r\n}\r\ninput.borderless,\r\nselect.borderless,\r\ntextarea.borderless{\r\n  border-style: none;\r\n}\r\n.input-inline{\r\n  display: inline-block;\r\n  width: 49%;\r\n}\r\ntextarea{\r\n  line-height: 20px;\r\n  padding: 10px 10px 0px 10px;\r\n}\r\nselect,\r\ninput[type=\"date\"]{\r\n  color: #A9A9A9;\r\n}\r\ninput:hover, select:hover, textarea:hover{\r\n  background-color: #eee;\r\n}\r\ninput.ng-invalid,\r\nselect.ng-invalid,\r\ntextarea.ng-invalid {\r\n  border: 1px solid #F58500;\r\n  color: #F58500;\r\n}\r\ninput.ng-invalid::-webkit-input-placeholder,\r\nselect.ng-invalid::-webkit-input-placeholder,\r\ntextarea.ng-invalid::-webkit-input-placeholder {\r\n  /*background-color: #F58500;*/\r\n  color: #F58500;\r\n}\r\nbutton[type=\"submit\"]{\r\n  margin-top: 30px;\r\n}\r\n\r\n"
 
 /***/ },
 
@@ -43,7 +43,7 @@ module.exports = "/*--  Buttons  -----------------------------------------------
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login_service__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login_service__ = __webpack_require__(325);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__notification_notification_service__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_cookie_services_cookies_service__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_cookie_services_cookies_service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_cookie_services_cookies_service__);
@@ -75,16 +75,21 @@ var AppComponent = (function () {
         this.loginService.login$.subscribe(function (user) { _this.user = user; });
         var user = this.cookieService.getObject('user');
         this.user = user ? user : undefined;
+        this.selected_page = window.location.pathname.slice(1);
     };
     AppComponent.prototype.logout = function () {
         this.loginService.logout();
         this.user = undefined;
     };
+    AppComponent.prototype.setActivePage = function (evt, page_name) {
+        evt.preventDefault();
+        this.selected_page = page_name;
+    };
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(664),
-            styles: [__webpack_require__(655), __webpack_require__(661), __webpack_require__(658)],
+            template: __webpack_require__(669),
+            styles: [__webpack_require__(660), __webpack_require__(666), __webpack_require__(663)],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_1__login_login_service__["a" /* LoginService */]
             ]
@@ -99,6 +104,39 @@ var AppComponent = (function () {
 /***/ },
 
 /***/ 324:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Utils; });
+var Utils = (function () {
+    function Utils() {
+    }
+    // Iterable must have a length property, and its elements must have a count: number property
+    // Selection sort
+    Utils.sortCounterDescendent = function (iterable) {
+        for (var i = 0; i < iterable.length - 1; i++) {
+            var max_count = iterable[i + 1].count;
+            var max_pos = i + 1;
+            for (var j = i + 2; j < iterable.length; j++) {
+                if (max_count < iterable[j].count) {
+                    max_count = iterable[j].count;
+                    max_pos = j;
+                }
+            }
+            if (iterable[i].count < max_count) {
+                var aux = iterable[i];
+                iterable[i] = iterable[max_pos];
+                iterable[max_pos] = aux;
+            }
+        }
+    };
+    return Utils;
+}());
+//# sourceMappingURL=C:/Users/ddba/Desktop/Daniel/radiocero_premios/ng-client/src/app.utils.js.map
+
+/***/ },
+
+/***/ 325:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -182,18 +220,19 @@ var LoginService = (function () {
 
 /***/ },
 
-/***/ 325:
+/***/ 326:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Prize; });
 var Prize = (function () {
-    function Prize(id, type, sponsor, description, stock, note, set_date, update_date, due_date) {
+    function Prize(id, type, sponsor, description, stock, periodic, note, set_date, update_date, due_date) {
         this.id = id;
         this.type = type;
         this.sponsor = sponsor;
         this.description = description;
         this.stock = stock;
+        this.periodic = periodic;
         this.note = note;
         this.set_date = set_date;
         this.update_date = update_date;
@@ -267,7 +306,12 @@ var Prize = (function () {
     });
     Object.defineProperty(Prize.prototype, "DateToSetInput", {
         get: function () {
-            return this.stringToInput(this.due_date);
+            if (this.due_date) {
+                var aux = new Date(this.due_date);
+                return aux.getUTCFullYear() + "-" + this.twoDigits(aux.getMonth() + 1) + "-" + this.twoDigits(aux.getDate());
+            }
+            else
+                return '';
         },
         enumerable: true,
         configurable: true
@@ -280,10 +324,6 @@ var Prize = (function () {
         var aux = new Date(date);
         return aux.getDate() + '/' + (aux.getMonth() + 1) + '/' + aux.getUTCFullYear();
     };
-    Prize.prototype.stringToInput = function (date) {
-        var aux = new Date(date);
-        return aux.getUTCFullYear() + "-" + (aux.getMonth() + 1) + "-" + aux.getDate();
-    };
     Prize.prototype.strgDateToInt = function (str_date) {
         if (!str_date)
             return null;
@@ -293,13 +333,16 @@ var Prize = (function () {
             return new Date(str_date).getTime();
         return null;
     };
+    Prize.prototype.twoDigits = function (val) {
+        return val.toString().length === 1 ? "0" + val : val;
+    };
     return Prize;
 }());
 //# sourceMappingURL=C:/Users/ddba/Desktop/Daniel/radiocero_premios/ng-client/src/prize.class.js.map
 
 /***/ },
 
-/***/ 326:
+/***/ 327:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -312,7 +355,7 @@ var Prize = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__const_class__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__prize_class__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__prize_class__ = __webpack_require__(326);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__notification_notification_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PrizesService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -342,22 +385,48 @@ var PrizesService = (function () {
     PrizesService.prototype.fetchPrizes = function () {
         var _this = this;
         this.http.get(__WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].APIURL + "api/prizes", { withCredentials: true })
-            .map(function (res) { return res.json().map(function (p) { return new __WEBPACK_IMPORTED_MODULE_6__prize_class__["a" /* Prize */](p.id, p.type, p.sponsor, p.description, p.stock, p.note, p.set_date, p.update_date, p.due_date); }); })
-            .subscribe(function (prizes) { return _this.prizes_source.next(prizes); }, function (error) { return _this.notificationService.error("Error descargando los premios", "Debes iniciar sesión para ver esta información"); });
+            .map(function (res) { return res.json().map(function (p) { return new __WEBPACK_IMPORTED_MODULE_6__prize_class__["a" /* Prize */](p.id, p.type, p.sponsor, p.description, p.stock, p.periodic, p.note, p.set_date, p.update_date, p.due_date); }); })
+            .subscribe(function (prizes) { return _this.prizes_source.next(prizes); }, function (error) {
+            console.log(error);
+            _this.notificationService.error("Error descargando los premios", error.json().details);
+        });
     };
     PrizesService.prototype.newPrize = function (prize) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].APIURL + "api/prizes", "type=" + prize.Type + "&sponsor=" + prize.Sponsor + "&description=" + prize.Description + "&stock=" + prize.Stock + "&due_date=" + prize.StrDueDateToPost + "&note=" + prize.Note, { headers: __WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].HEADERS.urlencoded(), withCredentials: true })
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].APIURL + "api/prizes", this.newPrizeComposeParameters(prize), { headers: __WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].HEADERS.urlencoded(), withCredentials: true })
             .map(function (res) { return res.json(); });
+    };
+    PrizesService.prototype.newPrizeComposeParameters = function (prize) {
+        var params = "type=" + prize.type + "&sponsor=" + prize.sponsor + "&description=" + prize.description + "&periodic=" + prize.periodic;
+        if (prize.stock)
+            params += "&stock=" + prize.stock;
+        if (prize.due_date)
+            params += "&due_date=" + prize.StrDueDateToPost;
+        if (prize.note)
+            params += "&note=" + prize.Note;
+        return params;
     };
     PrizesService.prototype.editPrize = function (prize) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].APIURL + "api/prizes/edit", "id=" + prize.id + "&type=" + prize.type + "&sponsor=" + prize.sponsor + "&description=" + prize.description + "&stock=" + prize.stock + "&due_date=" + prize.StrDueDateToPost + "&note=" + prize.note, { headers: __WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].HEADERS.urlencoded(), withCredentials: true })
+        console.log('editPrize', prize);
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].APIURL + "api/prizes/edit", this.editPrizeComposeParameters(prize), { headers: __WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].HEADERS.urlencoded(), withCredentials: true })
             .map(function (res) { return res.json(); });
+    };
+    PrizesService.prototype.editPrizeComposeParameters = function (prize) {
+        var params = "id=" + prize.id + "&type=" + prize.type + "&sponsor=" + prize.sponsor + "&description=" + prize.description + "&periodic=" + prize.periodic;
+        if (prize.stock)
+            params += "&stock=" + prize.stock;
+        if (prize.due_date)
+            params += "&due_date=" + prize.StrDueDateToPost;
+        if (prize.note)
+            params += "&note=" + prize.note;
+        ;
+        return params;
     };
     PrizesService.prototype.grantPrize = function (prize, winner) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].APIURL + "api/grantprize", this.grantPrizeFormatParameters(prize, winner), { headers: __WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].HEADERS.urlencoded(), withCredentials: true })
+        console.log(prize, winner);
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].APIURL + "api/grantprize", this.grantPrizeComposeParameters(prize, winner), { headers: __WEBPACK_IMPORTED_MODULE_5__const_class__["a" /* Const */].HEADERS.urlencoded(), withCredentials: true })
             .map(function (res) { return res.json(); });
     };
-    PrizesService.prototype.grantPrizeFormatParameters = function (prize, winner) {
+    PrizesService.prototype.grantPrizeComposeParameters = function (prize, winner) {
         var params = "prize_id=" + prize.Id + "&ci=" + winner.CiRaw + "&name=" + winner.name + "&lastname=" + winner.lastname;
         if (winner.facebook)
             params += "&facebook=" + winner.facebook;
@@ -380,7 +449,7 @@ var PrizesService = (function () {
 
 /***/ },
 
-/***/ 327:
+/***/ 328:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -442,7 +511,7 @@ var User = (function () {
 
 /***/ },
 
-/***/ 328:
+/***/ 329:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -608,7 +677,7 @@ var Winner = (function () {
 
 /***/ },
 
-/***/ 329:
+/***/ 330:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -621,7 +690,7 @@ var Winner = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__const_class__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__winner_class__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__winner_class__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__notification_notification_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return WinnersService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -679,7 +748,7 @@ var WinnersService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__notification_notification_class__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__notification_notification_class__ = __webpack_require__(494);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return NotificationService; });
@@ -725,7 +794,7 @@ var NotificationService = (function () {
 
 /***/ },
 
-/***/ 381:
+/***/ 382:
 /***/ function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -734,21 +803,21 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 381;
+webpackEmptyContext.id = 382;
 
 
 /***/ },
 
-/***/ 382:
+/***/ 383:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(505);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__polyfills_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(461);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(462);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(499);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app___ = __webpack_require__(491);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app___ = __webpack_require__(492);
 
 
 
@@ -762,7 +831,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ },
 
-/***/ 488:
+/***/ 489:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -770,18 +839,20 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(479);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(480);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home_component__ = __webpack_require__(490);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__winners_winners_component__ = __webpack_require__(498);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__prizes_prizes_component__ = __webpack_require__(495);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__users_users_component__ = __webpack_require__(496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_login_component__ = __webpack_require__(492);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__notification_notification_component__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home_component__ = __webpack_require__(491);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__winners_winners_component__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__prizes_prizes_component__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__users_users_component__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_login_component__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__notification_notification_component__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__notification_notification_service__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__equal_validator_directive__ = __webpack_require__(489);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__equal_validator_directive__ = __webpack_require__(490);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angular2_cookie_services_cookies_service__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angular2_cookie_services_cookies_service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_angular2_cookie_services_cookies_service__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pipes_current_only_pipe__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pipes_filter_winners_search_pipe__ = __webpack_require__(497);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -792,6 +863,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -821,7 +894,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_9__users_users_component__["a" /* UsersComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__notification_notification_component__["a" /* NotificationComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__equal_validator_directive__["a" /* EqualValidatorDirective */]
+                __WEBPACK_IMPORTED_MODULE_13__equal_validator_directive__["a" /* EqualValidatorDirective */],
+                __WEBPACK_IMPORTED_MODULE_15__pipes_current_only_pipe__["a" /* CurrentOnly */],
+                __WEBPACK_IMPORTED_MODULE_16__pipes_filter_winners_search_pipe__["a" /* FilterWinnersSearch */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["b" /* BrowserModule */],
@@ -850,7 +925,7 @@ var AppModule = (function () {
 
 /***/ },
 
-/***/ 489:
+/***/ 490:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -903,7 +978,7 @@ var EqualValidatorDirective = (function () {
 
 /***/ },
 
-/***/ 490:
+/***/ 491:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -927,8 +1002,8 @@ var HomeComponent = (function () {
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-home',
-            template: __webpack_require__(665),
-            styles: [__webpack_require__(656)]
+            template: __webpack_require__(670),
+            styles: [__webpack_require__(661)]
         }), 
         __metadata('design:paramtypes', [])
     ], HomeComponent);
@@ -938,12 +1013,12 @@ var HomeComponent = (function () {
 
 /***/ },
 
-/***/ 491:
+/***/ 492:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_component__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(488);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(489);
 /* unused harmony namespace reexport */
 /* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__app_module__["a"]; });
 
@@ -952,12 +1027,12 @@ var HomeComponent = (function () {
 
 /***/ },
 
-/***/ 492:
+/***/ 493:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login_service__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login_service__ = __webpack_require__(325);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -984,8 +1059,8 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'login',
-            template: __webpack_require__(666),
-            styles: [__webpack_require__(146), __webpack_require__(657)]
+            template: __webpack_require__(671),
+            styles: [__webpack_require__(146), __webpack_require__(662)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__login_login_service__["a" /* LoginService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__login_login_service__["a" /* LoginService */]) === 'function' && _a) || Object])
     ], LoginComponent);
@@ -996,7 +1071,7 @@ var LoginComponent = (function () {
 
 /***/ },
 
-/***/ 493:
+/***/ 494:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1023,7 +1098,7 @@ var Notification = (function () {
 
 /***/ },
 
-/***/ 494:
+/***/ 495:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1081,8 +1156,8 @@ var NotificationComponent = (function () {
     NotificationComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'notification',
-            template: __webpack_require__(667),
-            styles: [__webpack_require__(659)]
+            template: __webpack_require__(672),
+            styles: [__webpack_require__(664)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__notification_notification_service__["a" /* NotificationService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__notification_notification_service__["a" /* NotificationService */]) === 'function' && _a) || Object])
     ], NotificationComponent);
@@ -1093,16 +1168,102 @@ var NotificationComponent = (function () {
 
 /***/ },
 
-/***/ 495:
+/***/ 496:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__prizes_prizes_service__ = __webpack_require__(326);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__winners_winners_service__ = __webpack_require__(329);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CurrentOnly; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CurrentOnly = (function () {
+    function CurrentOnly() {
+    }
+    CurrentOnly.prototype.transform = function (prizes, args) {
+        if (prizes)
+            return prizes.filter(function (prize) { return (prize.stock > 0 || prize.periodic === true); });
+        return prizes;
+    };
+    CurrentOnly = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'currentOnly'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CurrentOnly);
+    return CurrentOnly;
+}());
+//# sourceMappingURL=C:/Users/ddba/Desktop/Daniel/radiocero_premios/ng-client/src/current-only.pipe.js.map
+
+/***/ },
+
+/***/ 497:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__winners_winner_prize_result_class__ = __webpack_require__(501);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FilterWinnersSearch; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var FilterWinnersSearch = (function () {
+    function FilterWinnersSearch() {
+    }
+    FilterWinnersSearch.prototype.transform = function (full_list, query) {
+        if (!query)
+            return full_list;
+        else
+            return this.searchWinner(full_list, query);
+    };
+    FilterWinnersSearch.prototype.searchWinner = function (full_list, query) {
+        var query_arr = query.trim().split(' ');
+        var results = new __WEBPACK_IMPORTED_MODULE_1__winners_winner_prize_result_class__["a" /* WinnersPrizeResults */]();
+        for (var i = 0; i < query_arr.length; i++) {
+            for (var j = 0; j < full_list.length; j++) {
+                if (full_list[j].w.matches(query_arr[i]))
+                    results.addResult(full_list[j]);
+            }
+        }
+        return results.SortedResults;
+    };
+    FilterWinnersSearch = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'filterWinnersSearch'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], FilterWinnersSearch);
+    return FilterWinnersSearch;
+}());
+//# sourceMappingURL=C:/Users/ddba/Desktop/Daniel/radiocero_premios/ng-client/src/filter-winners-search.pipe.js.map
+
+/***/ },
+
+/***/ 498:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__prizes_prizes_service__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__winners_winners_service__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__notification_notification_service__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prizes_prize_class__ = __webpack_require__(325);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__winners_winner_class__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prizes_prize_class__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__winners_winner_class__ = __webpack_require__(329);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return PrizesComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1137,17 +1298,27 @@ var PrizesComponent = (function () {
         });
         this.prizesService.fetchPrizes();
         this.winner = new __WEBPACK_IMPORTED_MODULE_5__winners_winner_class__["a" /* Winner */](null, null, null, null, null, null, null, null, null, null, null);
-        this.new_prize = new __WEBPACK_IMPORTED_MODULE_4__prizes_prize_class__["a" /* Prize */](null, null, null, null, null, null, null, null, null);
+        this.new_prize = new __WEBPACK_IMPORTED_MODULE_4__prizes_prize_class__["a" /* Prize */](null, null, null, null, null, null, null, null, null, null);
     };
     PrizesComponent.prototype.navigateTo = function (tab) {
         this.prizesService.fetchPrizes();
         this.visible_tab = tab;
     };
+    PrizesComponent.prototype.displayActions = function (i) {
+        this.display_actions = i === this.display_actions ? undefined : i;
+    };
+    PrizesComponent.prototype.displayActionsFullList = function (i) {
+        this.display_actions_full_list = i === this.display_actions_full_list ? undefined : i;
+    };
     PrizesComponent.prototype.inputDate = function (event) {
         this.new_prize.StrDueDate = event.target.value;
     };
-    PrizesComponent.prototype.newPrize = function () {
+    PrizesComponent.prototype.newPrize = function (event) {
         var _this = this;
+        if (event)
+            event.preventDefault();
+        if (this.new_prize.periodic)
+            this.new_prize.stock = null;
         this.prizesService.newPrize(this.new_prize)
             .subscribe(function (ok) {
             _this.prizesService.fetchPrizes();
@@ -1162,12 +1333,15 @@ var PrizesComponent = (function () {
             event.preventDefault();
         this.prize = null;
     };
-    PrizesComponent.prototype.grantPrize = function () {
+    PrizesComponent.prototype.grantPrize = function (event) {
         var _this = this;
+        if (event)
+            event.preventDefault();
         this.prizesService.grantPrize(this.prize, this.winner)
             .subscribe(function (ok) {
-            _this.notificationService.ok("Exito :)", "El premio se ha otorgado correctamente", 3000);
+            _this.notificationService.ok("Exito!", "El premio se ha otorgado correctamente", 3000);
             _this.destroyGrantPrizeForm();
+            _this.prizesService.fetchPrizes();
         }, function (error) { return _this.notificationService.error("Error otorgando el premio", error.json().details); });
     };
     PrizesComponent.prototype.checkWinnerCi = function (ci) {
@@ -1195,14 +1369,18 @@ var PrizesComponent = (function () {
         this.prize_to_edit = null;
     };
     PrizesComponent.prototype.inputNewDate = function (date) {
-        this.prize_to_edit.StrDueDate = date;
+        this.prize_to_edit.StrDueDate = date === '' ? null : date;
     };
-    PrizesComponent.prototype.editPrize = function () {
+    PrizesComponent.prototype.editPrize = function (event) {
         var _this = this;
+        if (event)
+            event.preventDefault();
+        if (this.prize_to_edit.periodic === true)
+            this.prize_to_edit.stock = null;
         this.prizesService.editPrize(this.prize_to_edit)
             .subscribe(function (ok) {
             _this.prizesService.fetchPrizes();
-            _this.notificationService.ok("Exito :)", "El premio se ha editado correctamente.", 3000);
+            _this.notificationService.ok("Exito!", "El premio se ha editado correctamente.", 3000);
             _this.destroyEditPrizeForm();
         }, function (error) { return _this.notificationService.error("Error editando el premio", error.json().error); });
     };
@@ -1251,8 +1429,8 @@ var PrizesComponent = (function () {
     PrizesComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-prizes',
-            template: __webpack_require__(668),
-            styles: [__webpack_require__(146), __webpack_require__(660)],
+            template: __webpack_require__(673),
+            styles: [__webpack_require__(146), __webpack_require__(665)],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_1__prizes_prizes_service__["a" /* PrizesService */],
                 __WEBPACK_IMPORTED_MODULE_2__winners_winners_service__["a" /* WinnersService */]
@@ -1267,13 +1445,13 @@ var PrizesComponent = (function () {
 
 /***/ },
 
-/***/ 496:
+/***/ 499:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users_users_service__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__users_user_class__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users_users_service__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__users_user_class__ = __webpack_require__(328);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__notification_notification_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UsersComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1321,8 +1499,8 @@ var UsersComponent = (function () {
     UsersComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-users',
-            template: __webpack_require__(669),
-            styles: [__webpack_require__(146), __webpack_require__(662)],
+            template: __webpack_require__(674),
+            styles: [__webpack_require__(146), __webpack_require__(667)],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_1__users_users_service__["a" /* UsersService */]
             ]
@@ -1336,7 +1514,7 @@ var UsersComponent = (function () {
 
 /***/ },
 
-/***/ 497:
+/***/ 500:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1349,7 +1527,7 @@ var UsersComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__const_class__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_class__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_class__ = __webpack_require__(328);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__notification_notification_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UsersService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1397,14 +1575,94 @@ var UsersService = (function () {
 
 /***/ },
 
-/***/ 498:
+/***/ 501:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_utils__ = __webpack_require__(324);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return WinnersPrizeResults; });
+
+var WinnersPrizeResults = (function () {
+    function WinnersPrizeResults() {
+        this.results = new Object();
+    }
+    WinnersPrizeResults.prototype.addResult = function (wp) {
+        this.results.hasOwnProperty(wp.w.CiRaw) ? this.results[wp.w.CiRaw].count++ : this.results[wp.w.CiRaw] = { wp: wp, count: 1 };
+    };
+    Object.defineProperty(WinnersPrizeResults.prototype, "SortedResults", {
+        get: function () {
+            var sorted = [];
+            for (var key in this.results) {
+                sorted.push(this.results[key]);
+            }
+            __WEBPACK_IMPORTED_MODULE_0__app_utils__["a" /* Utils */].sortCounterDescendent(sorted);
+            return sorted.map(function (result) { return result.wp; });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return WinnersPrizeResults;
+}());
+//# sourceMappingURL=C:/Users/ddba/Desktop/Daniel/radiocero_premios/ng-client/src/winner-prize-result.class.js.map
+
+/***/ },
+
+/***/ 502:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_utils__ = __webpack_require__(324);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return WinnersResults; });
+
+var WinnersResults = (function () {
+    function WinnersResults() {
+        this.results = new Object();
+    }
+    WinnersResults.prototype.addResult = function (w) {
+        this.results.hasOwnProperty(w.CiRaw) ? this.results[w.CiRaw].count++ : this.results[w.CiRaw] = { w: w, count: 1 };
+    };
+    Object.defineProperty(WinnersResults.prototype, "SortedResults", {
+        get: function () {
+            var sorted = [];
+            for (var key in this.results)
+                sorted.push(this.results[key]);
+            __WEBPACK_IMPORTED_MODULE_0__app_utils__["a" /* Utils */].sortCounterDescendent(sorted);
+            // // SELECTION SORT
+            // for (let i = 0; i < sorted.length - 1; i++) {
+            //   let max_count: number = sorted[i + 1].count;
+            //   let max_pos: number = i + 1;
+            //   for (let j = i + 2; j < sorted.length; j++) {
+            //     if (max_count < sorted[j].count) {
+            //       max_count = sorted[j].count;
+            //       max_pos = j;
+            //     }
+            //   }
+            //   if (sorted[i].count < max_count) {
+            //     let aux: any = sorted[i];
+            //     sorted[i] = sorted[max_pos];
+            //     sorted[max_pos] = aux;
+            //   }
+            // }
+            return sorted.map(function (result) { return result.w; });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return WinnersResults;
+}());
+//# sourceMappingURL=C:/Users/ddba/Desktop/Daniel/radiocero_premios/ng-client/src/winner-result.class.js.map
+
+/***/ },
+
+/***/ 503:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__winners_winners_service__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__prizes_prizes_service__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__winners_winners_service__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__prizes_prizes_service__ = __webpack_require__(327);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__notification_notification_service__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__winner_result_class__ = __webpack_require__(502);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return WinnersComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1415,6 +1673,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1445,8 +1704,11 @@ var WinnersComponent = (function () {
         this.visible_tab = tab;
         this.winnersService.fetchWinners();
     };
-    WinnersComponent.prototype.displayWinnerInfo = function (winner_id) {
-        this.winner_to_display = winner_id;
+    WinnersComponent.prototype.displayWinnerInfo = function (i) {
+        this.winner_to_display = this.winner_to_display === i ? undefined : i;
+    };
+    WinnersComponent.prototype.displayWinnerItemInfo = function (i) {
+        this.winner_item_to_display = this.winner_item_to_display === i ? undefined : i;
     };
     WinnersComponent.prototype.handOverPrize = function (winner_ci, prize_id) {
         var _this = this;
@@ -1457,7 +1719,7 @@ var WinnersComponent = (function () {
         }, function (error) { return _this.notificationService.error("Error, el premio NO ha sido entregado", error.json().details); });
     };
     WinnersComponent.prototype.cancelHandOverPrize = function () {
-        // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+        // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
         console.log('cancelHandOverPrize() was called');
     };
     WinnersComponent.prototype.searchWinner = function (e) {
@@ -1465,7 +1727,7 @@ var WinnersComponent = (function () {
             this.winners_list_filter = this.winners_list;
         else {
             var query_arr = e.target.value.trim().split(' ');
-            var results = new WinnersResults();
+            var results = new __WEBPACK_IMPORTED_MODULE_4__winner_result_class__["a" /* WinnersResults */]();
             for (var i = 0; i < query_arr.length; i++) {
                 for (var j = 0; j < this.winners_list.length; j++) {
                     if (this.winners_list[j].matches(query_arr[i]))
@@ -1474,6 +1736,12 @@ var WinnersComponent = (function () {
             }
             this.winners_list_filter = results.SortedResults;
         }
+    };
+    WinnersComponent.prototype.searchWinnerItem = function (e) {
+        if (!e.target.value || e.target.value === '')
+            this.query = undefined;
+        else
+            this.query = e.target.value;
     };
     WinnersComponent.prototype.pairWinnerPrize = function (prizes) {
         var _this = this;
@@ -1503,8 +1771,8 @@ var WinnersComponent = (function () {
     WinnersComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-winners',
-            template: __webpack_require__(670),
-            styles: [__webpack_require__(146), __webpack_require__(663)],
+            template: __webpack_require__(675),
+            styles: [__webpack_require__(146), __webpack_require__(668)],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_1__winners_winners_service__["a" /* WinnersService */],
                 __WEBPACK_IMPORTED_MODULE_2__prizes_prizes_service__["a" /* PrizesService */]
@@ -1515,47 +1783,11 @@ var WinnersComponent = (function () {
     return WinnersComponent;
     var _a, _b, _c;
 }());
-var WinnersResults = (function () {
-    function WinnersResults() {
-        this.results = new Object();
-    }
-    WinnersResults.prototype.addResult = function (w) {
-        this.results.hasOwnProperty(w.CiRaw) ? this.results[w.CiRaw].count++ : this.results[w.CiRaw] = { w: w, count: 1 };
-    };
-    Object.defineProperty(WinnersResults.prototype, "SortedResults", {
-        get: function () {
-            var sorted = [];
-            for (var key in this.results) {
-                sorted.push(this.results[key]);
-            }
-            // SELECTION SORT
-            for (var i = 0; i < sorted.length - 1; i++) {
-                var max_count = sorted[i + 1].count;
-                var max_pos = i + 1;
-                for (var j = i + 2; j < sorted.length; j++) {
-                    if (max_count < sorted[j].count) {
-                        max_count = sorted[j].count;
-                        max_pos = j;
-                    }
-                }
-                if (sorted[i].count < max_count) {
-                    var aux = sorted[i];
-                    sorted[i] = sorted[max_pos];
-                    sorted[max_pos] = aux;
-                }
-            }
-            return sorted.map(function (result) { return result.w; });
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return WinnersResults;
-}());
 //# sourceMappingURL=C:/Users/ddba/Desktop/Daniel/radiocero_premios/ng-client/src/winners.component.js.map
 
 /***/ },
 
-/***/ 499:
+/***/ 504:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1571,41 +1803,41 @@ var environment = {
 
 /***/ },
 
-/***/ 500:
+/***/ 505:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol__ = __webpack_require__(520);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_object__ = __webpack_require__(508);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_object__ = __webpack_require__(513);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_core_js_es6_object__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_function__ = __webpack_require__(504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_function__ = __webpack_require__(509);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_function___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_core_js_es6_function__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int__ = __webpack_require__(510);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int__ = __webpack_require__(515);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float__ = __webpack_require__(509);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float__ = __webpack_require__(514);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_number__ = __webpack_require__(507);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_number__ = __webpack_require__(512);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_number___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_core_js_es6_number__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_math__ = __webpack_require__(506);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_math__ = __webpack_require__(511);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_math___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_core_js_es6_math__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_string__ = __webpack_require__(514);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_string__ = __webpack_require__(519);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_core_js_es6_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_date__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_date__ = __webpack_require__(508);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_date___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_core_js_es6_date__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_array__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_array__ = __webpack_require__(507);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_array___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_core_js_es6_array__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp__ = __webpack_require__(512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp__ = __webpack_require__(517);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_map__ = __webpack_require__(505);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_map__ = __webpack_require__(510);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_core_js_es6_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_set__ = __webpack_require__(513);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_set__ = __webpack_require__(518);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_set___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_core_js_es6_set__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__ = __webpack_require__(516);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__ = __webpack_require__(521);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__ = __webpack_require__(688);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__ = __webpack_require__(693);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__);
 
 
@@ -1627,125 +1859,125 @@ var environment = {
 
 /***/ },
 
-/***/ 655:
-/***/ function(module, exports) {
-
-module.exports = "/*--  Header  -----------------------------------------------------------------*/\r\nheader{\r\n  position: fixed;\r\n  top: 0px;\r\n  left: 0px;\r\n  width: 200px;\r\n  height: 100vh;\r\n}\r\nheader nav{\r\n  width: 100%;\r\n  overflow: auto;\r\n}\r\ndiv.main-nav{\r\n  float: left;\r\n  width: 200px;\r\n  height: 90px;\r\n}\r\ndiv.main-nav img{\r\n  float: left;\r\n  margin: 30px 15px;\r\n  width: 30px;\r\n  height: 30px;\r\n}\r\ndiv.main-nav span{\r\n  display: inline-block;\r\n  line-height: 90px;\r\n  font-size: 1.3em;\r\n  font-weight: 700;\r\n  color: #F58500;\r\n}\r\nul.nav-options{\r\n  list-style-type: none;\r\n  width: 100%;\r\n  padding-left: 15px;\r\n}\r\nul.nav-options li a{\r\n  display: block;\r\n  width: calc(200px - 15px);\r\n  height: 60px;\r\n  line-height: 60px;\r\n  font-size: 1.1em;\r\n  text-decoration: none;\r\n  font-weight: 300;\r\n  color: #888888;\r\n  cursor: pointer;\r\n  -webkit-transition: all 300ms linear;\r\n  transition: all 300ms linear;\r\n}\r\nul.nav-options a > i{\r\n  vertical-align: middle;\r\n  color: #888888;\r\n  padding: 5px;\r\n  margin-bottom: 5px;\r\n}\r\nul.nav-options li a:hover{\r\n  background-color: #CCCCCC;\r\n}\r\nul.nav-options li.menu-title{\r\n  font-size: .7em;\r\n  font-weight: 500;\r\n  line-height: 40px;\r\n  color: #888888;\r\n  text-transform: uppercase;\r\n}\r\n/*--  Login modal  -----------------------------------------------------------*/\r\n#login-modal{\r\n  position: absolute;\r\n  width: 300px;\r\n  top: 100px;\r\n  margin-left: calc(50% - 150px);\r\n  z-index: 10;\r\n  padding: 30px;\r\n  opacity: 1;\r\n  -webkit-transition: opacity 300ms ease-in-out;\r\n  transition: opacity 300ms ease-in-out;\r\n}\r\n#login-modal:after{\r\n  position: fixed;\r\n  top: 0px;\r\n  left: 0px;\r\n  content: '';\r\n  width: 100%;\r\n  height: 100vh;\r\n  background-color: #FFFFFF;\r\n  z-index: -1;\r\n  pointer-events: auto;\r\n}\r\n#login-modal img{\r\n  margin-left: calc(50% - 48px);\r\n  margin-bottom: 30px;\r\n}\r\n#login-modal input{\r\n  line-height: 25px;\r\n  width: 100%;\r\n  border-style: none;\r\n  padding: 5px;\r\n  margin-bottom: 10px;\r\n  text-align: center;\r\n}\r\n#login-modal button{\r\n  width: 100%;\r\n}\r\n#login-modal.out{\r\n  opacity: 0;\r\n  pointer-events: none;\r\n}\r\n#login-modal.out:after{\r\n  pointer-events: none;\r\n  background-color: rgba(255, 255, 255, 0);\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*--  Modal Forms  -----------------------------------------------------------*/\r\nform.modal-form{\r\n  position: fixed;\r\n  width: 800px;\r\n  top: 100vh;\r\n  border-radius: 3px;\r\n  padding: 20px;\r\n  background-color: #fff;\r\n  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);\r\n  -webkit-transition: top 300ms ease-in-out;\r\n  transition: top 300ms ease-in-out;\r\n}\r\nform.modal-form.visible{\r\n  top: 10px;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*--  Buttons  ---------------------------------------------------------------*/\r\nbutton{\r\n  border-style: none;\r\n  border-radius: 3px;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  padding: 0px 20px;\r\n  text-transform: uppercase;\r\n  box-shadow: none;\r\n  -webkit-transition: box-shadow 150ms ease-in-out;\r\n  transition: box-shadow 150ms ease-in-out;\r\n}\r\nbutton:hover{\r\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);\r\n}\r\nbutton:active{\r\n  box-shadow: none;\r\n}\r\nbutton.btn-ok{\r\n  background-color: #F58500;\r\n  color: #fff;\r\n}\r\nbutton.btn-cancel{\r\n  background-color: #fff;\r\n  color: #F58500;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*--  Animations  ------------------------------------------------------------*/\r\n.fadeIn{\r\n  -webkit-animation: fadeIn 800ms;\r\n          animation: fadeIn 800ms;\r\n}\r\n@-webkit-keyframes fadeIn {\r\n  0%{\r\n    opacity: 0;\r\n  }\r\n  100%{\r\n    opacity: 1;\r\n  }\r\n}\r\n@keyframes fadeIn {\r\n  0%{\r\n    opacity: 0;\r\n  }\r\n  100%{\r\n    opacity: 1;\r\n  }\r\n}\r\n"
-
-/***/ },
-
-/***/ 656:
-/***/ function(module, exports) {
-
-module.exports = "*{\r\n  color: #888;\r\n}\r\nh2{\r\n  line-height: 80px;\r\n  font-size: 2.5rem;\r\n  color: #F58500;\r\n  font-weight: 100;\r\n}\r\np{\r\n  line-height: 30px;\r\n  font-size: 1.2rem;\r\n  font-weight: 100;\r\n}\r\na{\r\n  font-size: 1em;\r\n  color: #F58500;\r\n  text-decoration: none;\r\n}\r\na:hover{\r\n  text-decoration: underline;\r\n}\r\n.page{\r\n  position: relative;\r\n  margin-left: 200px;\r\n  width: calc(100% - 200px);\r\n  height: 100vh;\r\n}\r\n.content-card{\r\n  width: 50%;\r\n  min-width: 700px;\r\n  margin: 0 auto;\r\n  height: 100vh;\r\n  overflow-y: hidden;\r\n}\r\n.content-forms{\r\n  margin-top: 90px;\r\n  height: calc(100vh - 90px);\r\n  overflow-y: auto;\r\n}\r\n.content-forms::-webkit-scrollbar {\r\n  display: none;\r\n}\r\n.content-form{\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  position: relative;\r\n  border-radius: 3px;\r\n  background-color: #FFFFFF;\r\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);\r\n  margin: 0px 10px 20px 10px;\r\n  padding: 20px;\r\n}\r\n.content-form img{\r\n  width: 192px;\r\n  height: 192px;\r\n}\r\n.content-form div{\r\n  width: 100%;\r\n}\r\n.list-item{\r\n  list-style-type: none;\r\n  padding: 20px 0px;\r\n  border-top: 1px solid #eee;\r\n}\r\n.item-avatar{\r\n  display: inline-block;\r\n  width: 50px;\r\n  height: 50px;\r\n  line-height: 50px;\r\n  border-radius: 50%;\r\n  border: 1px solid #F58500;\r\n  text-align: center;\r\n  background-color: #EEEEEE;\r\n  color: #F58500;\r\n  font-size: 1.5em;\r\n  text-transform: uppercase;\r\n}\r\n.item-data{\r\n  width: calc(100% - 55px);\r\n  display: inline-block;\r\n}\r\n.data-name{\r\n  display: inline-block;\r\n  text-transform: capitalize;\r\n  padding-left: 15px;\r\n  font-size: 1.3em;\r\n}\r\n.data-right{\r\n  float: right;\r\n}\r\n.data-role,\r\n.data-set_date{\r\n  text-transform: uppercase;\r\n  color: #555;\r\n}"
-
-/***/ },
-
-/***/ 657:
-/***/ function(module, exports) {
-
-module.exports = ".login-background{\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100vh;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  background-color: #fff;\r\n}\r\nimg{\r\n  width: 48px\r\n}\r\n  /*#F58500;*/"
-
-/***/ },
-
-/***/ 658:
-/***/ function(module, exports) {
-
-module.exports = "/* fallback */\r\n@font-face {\r\n  font-family: 'Material Icons';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v19/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');\r\n}\r\n\r\n.material-icons {\r\n  font-family: 'Material Icons';\r\n  font-weight: normal;\r\n  font-style: normal;\r\n  font-size: 24px;\r\n  line-height: 1;\r\n  letter-spacing: normal;\r\n  text-transform: none;\r\n  display: inline-block;\r\n  white-space: nowrap;\r\n  word-wrap: normal;\r\n  direction: ltr;\r\n  -webkit-font-feature-settings: 'liga';\r\n  -webkit-font-smoothing: antialiased;\r\n}"
-
-/***/ },
-
-/***/ 659:
-/***/ function(module, exports) {
-
-module.exports = "#notif-wrapper{\r\n  position: fixed;\r\n  left: 0;\r\n  bottom: 0;\r\n  width: 100%;\r\n  pointer-events: none;\r\n  z-index: 100;\r\n}\r\n.notif{\r\n  position: relative;\r\n  width: 25%;\r\n  min-height: 100px;\r\n  margin: 0 10px 10px auto;\r\n  pointer-events: auto;\r\n  border-radius: 3px;\r\n  box-shadow: 0 5px 10px rgba(0, 0, 0, .5);\r\n}\r\n.ok{\r\n  background-color: #88d8b0;\r\n}\r\n.alert{\r\n  background-color: #ffcc5c;\r\n}\r\n.error{\r\n  background-color: #ff6f69;\r\n}\r\n.title{\r\n  display: block;\r\n  font-size: 1rem;\r\n  font-weight: 900;\r\n  width: 100%;\r\n  color: #FFF;\r\n  padding: 20px 10px 0 10px;\r\n  word-break:break-all;\r\n}\r\n.message{\r\n  font-size: 0.8rem;\r\n  font-weight: 300;\r\n  width: 100%;\r\n  color: #FFF;\r\n  padding: 20px 10px;\r\n}\r\n.dismiss-notif{\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  width: 20px;\r\n  height: 20px;\r\n  border-style: none;\r\n  background-color: transparent;\r\n  color: rgba(0, 0, 0, .5);\r\n  font-size: 12px;\r\n  cursor: pointer;\r\n}\r\n.time-out{\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  width: 20px;\r\n  height: 20px;\r\n  text-align: center;\r\n  line-height: 20px;\r\n  border-style: none;\r\n  background-color: transparent;\r\n  color: rgba(0, 0, 0, .5);\r\n  font-size: 12px;\r\n}\r\n.dismiss-notif:hover{\r\n  color: rgba(0, 0, 0, 1);\r\n}"
-
-/***/ },
-
 /***/ 660:
 /***/ function(module, exports) {
 
-module.exports = "/*--  Page  -----------------------------------------------------------------*/\r\n.page{\r\n  position: relative;\r\n  margin-left: 200px;\r\n  width: calc(100% - 200px);\r\n  height: 100vh;\r\n}\r\n.content-card{\r\n  width: 50%;\r\n  min-width: 700px;\r\n  margin: 0 auto;\r\n  height: 100vh;\r\n  overflow-y: hidden;\r\n}\r\n.card-nav{\r\n  width: 100%;\r\n  height: 90px;\r\n}\r\n.card-nav li{\r\n  float: left;\r\n  list-style-type: none;\r\n  cursor: pointer;\r\n}\r\n.nav-button{\r\n  background-color: transparent;\r\n  height: 90px;\r\n  font-size: .85em;\r\n  font-weight: 500;\r\n  color: #888;\r\n  border-style: none;\r\n  padding: 0 20px;\r\n  text-transform: uppercase;\r\n}\r\n.nav-button:hover{\r\n  color: #F58500;\r\n  box-shadow: none;\r\n}\r\n\r\n\r\n\r\n.content-forms{\r\n  position: relative;\r\n  height: calc(100vh - 90px);\r\n  overflow-y: auto;\r\n}\r\n.content-forms::-webkit-scrollbar {\r\n  display: none;\r\n}\r\n.content-form{\r\n  position: relative;\r\n  border-radius: 3px;\r\n  background-color: #FFFFFF;\r\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);\r\n  margin: 0px 10px 20px 10px;\r\n  padding: 20px;\r\n}\r\n.list-item{\r\n  list-style-type: none;\r\n  padding: 20px 0px;\r\n  border-top: 1px solid #eee;\r\n}\r\n.data-stock{\r\n  display: inline-block;\r\n  float: right;\r\n  width: 70px;\r\n  font-size: 3em;\r\n  color: #888;\r\n  font-weight: 100;\r\n  text-align: center;\r\n}\r\n.data-description{\r\n  width: calc(100% - 70px);\r\n  display: block;\r\n  color: #555;\r\n  text-transform: capitalize;\r\n  font-size: 1.3em;\r\n  font-weight: 700;\r\n}\r\n.data-type{\r\n  display: block;\r\n  width: calc(100% - 70px);\r\n  text-transform: capitalize;\r\n  font-size: 1em;\r\n  padding: 10px 0px;\r\n}\r\ndiv.content-form div.data-dates{\r\n  display: block;\r\n  width: calc(100% - 70px);\r\n  text-transform: uppercase;\r\n  color: #555;\r\n  padding: 10px 0px;\r\n}\r\n.data-dates span{\r\n  font-size: .8em;\r\n}\r\n.data-dates .data-date{\r\n  font-size: 1.1em;\r\n  padding: 0px 10px;\r\n}\r\n.list-actions{\r\n  width: 100%;\r\n  height: 0px;\r\n  overflow: hidden;\r\n}\r\n.list-item:hover .list-actions{\r\n  height: 50px;\r\n}\r\n\r\ndiv.wrapper{\r\n    position: absolute;\r\n    top: 10px;\r\n    width: calc(100% - 40px);\r\n    border-radius: 3px;\r\n    background-color: #FFFFFF;\r\n    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);\r\n    margin: 0px 20px 20px 20px;\r\n    padding: 20px;\r\n}\r\nh3{\r\n    color: #555;\r\n    text-transform: capitalize;\r\n    font-size: 1.3em;\r\n    font-weight: 700;\r\n}\r\nh4{\r\n    display: block;\r\n    text-transform: capitalize;\r\n    font-size: 1em;\r\n    color: #333333;\r\n    font-weight: initial;\r\n    padding: 10px 0px;\r\n}"
+module.exports = "/*--  Header  -----------------------------------------------------------------*/\r\nheader{\r\n  position: fixed;\r\n  top: 0px;\r\n  left: 0px;\r\n  width: 200px;\r\n  height: 100vh;\r\n}\r\nheader nav{\r\n  width: 100%;\r\n  overflow: auto;\r\n}\r\ndiv.main-nav{\r\n  float: left;\r\n  width: 200px;\r\n  height: 90px;\r\n}\r\ndiv.main-nav img{\r\n  float: left;\r\n  margin: 30px 15px;\r\n  width: 30px;\r\n  height: 30px;\r\n}\r\ndiv.main-nav span{\r\n  display: inline-block;\r\n  line-height: 90px;\r\n  font-size: 1.3em;\r\n  font-weight: 700;\r\n  color: #F58500;\r\n}\r\nul.nav-options{\r\n  list-style-type: none;\r\n  width: 100%;\r\n  padding-left: 15px;\r\n}\r\nul.nav-options li a{\r\n  display: block;\r\n  width: calc(200px - 15px);\r\n  height: 60px;\r\n  line-height: 60px;\r\n  font-size: 1.1em;\r\n  text-decoration: none;\r\n  font-weight: 300;\r\n  color: #888888;\r\n  cursor: pointer;\r\n  -webkit-transition: all 300ms linear;\r\n  transition: all 300ms linear;\r\n}\r\nul.nav-options a > i{\r\n  vertical-align: middle;\r\n  color: #888888;\r\n  padding: 5px;\r\n  margin-bottom: 5px;\r\n}\r\nul.nav-options li a:hover{\r\n  background-color: #CCCCCC;\r\n}\r\nul.nav-options li.active-page > a,\r\nul.nav-options li.active-page > a > i{\r\n  color: #F58500;\r\n}\r\nul.nav-options li.menu-title{\r\n  font-size: .7em;\r\n  font-weight: 500;\r\n  line-height: 40px;\r\n  color: #888888;\r\n  text-transform: uppercase;\r\n}\r\n/*--  Login modal  -----------------------------------------------------------*/\r\n#login-modal{\r\n  position: absolute;\r\n  width: 300px;\r\n  top: 100px;\r\n  margin-left: calc(50% - 150px);\r\n  z-index: 10;\r\n  padding: 30px;\r\n  opacity: 1;\r\n  -webkit-transition: opacity 300ms ease-in-out;\r\n  transition: opacity 300ms ease-in-out;\r\n}\r\n#login-modal:after{\r\n  position: fixed;\r\n  top: 0px;\r\n  left: 0px;\r\n  content: '';\r\n  width: 100%;\r\n  height: 100vh;\r\n  background-color: #FFFFFF;\r\n  z-index: -1;\r\n  pointer-events: auto;\r\n}\r\n#login-modal img{\r\n  margin-left: calc(50% - 48px);\r\n  margin-bottom: 30px;\r\n}\r\n#login-modal input{\r\n  line-height: 25px;\r\n  width: 100%;\r\n  border-style: none;\r\n  padding: 5px;\r\n  margin-bottom: 10px;\r\n  text-align: center;\r\n}\r\n#login-modal button{\r\n  width: 100%;\r\n}\r\n#login-modal.out{\r\n  opacity: 0;\r\n  pointer-events: none;\r\n}\r\n#login-modal.out:after{\r\n  pointer-events: none;\r\n  background-color: rgba(255, 255, 255, 0);\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*--  Modal Forms  -----------------------------------------------------------*/\r\nform.modal-form{\r\n  position: fixed;\r\n  width: 800px;\r\n  top: 100vh;\r\n  border-radius: 3px;\r\n  padding: 20px;\r\n  background-color: #fff;\r\n  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);\r\n  -webkit-transition: top 300ms ease-in-out;\r\n  transition: top 300ms ease-in-out;\r\n}\r\nform.modal-form.visible{\r\n  top: 10px;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*--  Buttons  ---------------------------------------------------------------*/\r\nbutton{\r\n  border-style: none;\r\n  border-radius: 3px;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  padding: 0px 20px;\r\n  text-transform: uppercase;\r\n  box-shadow: none;\r\n  -webkit-transition: box-shadow 150ms ease-in-out;\r\n  transition: box-shadow 150ms ease-in-out;\r\n}\r\nbutton:hover{\r\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);\r\n}\r\nbutton:active{\r\n  box-shadow: none;\r\n}\r\nbutton.btn-ok{\r\n  background-color: #F58500;\r\n  color: #fff;\r\n}\r\nbutton.btn-cancel{\r\n  background-color: #fff;\r\n  color: #F58500;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*--  Animations  ------------------------------------------------------------*/\r\n.fadeIn{\r\n  -webkit-animation: fadeIn 800ms;\r\n          animation: fadeIn 800ms;\r\n}\r\n@-webkit-keyframes fadeIn {\r\n  0%{\r\n    opacity: 0;\r\n  }\r\n  100%{\r\n    opacity: 1;\r\n  }\r\n}\r\n@keyframes fadeIn {\r\n  0%{\r\n    opacity: 0;\r\n  }\r\n  100%{\r\n    opacity: 1;\r\n  }\r\n}\r\n"
 
 /***/ },
 
 /***/ 661:
 /***/ function(module, exports) {
 
-module.exports = "/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/ty9dfvLAziwdqQ2dHoyjphTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/frNV30OaYdlFRtH2VnZZdhTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/gwVJDERN2Amz39wrSoZ7FxTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/aZMswpodYeVhtRvuABJWvBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/VvXUGKZXbHtX_S_VCTLpGhTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/e7MeVAyvogMqFwwl61PKhBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/2tsd397wLxj96qwHyNIkxPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/0eC6fl06luXEYWpBSJvXCBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/Fl4y0QdOxyyTHEGMXX8kcRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/-L14Jk06m6pUHB-5mXQQnRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/I3S1wsgSg9YCurV6PUkTORJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/NYDWBdD4gIq26G5XYbHsFBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/Pru33qjShpZSmG3z6VYwnRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/ek4gzZ-GeXAPcSbHtCeQI_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/mErvLBYg_cXG3rLvUsKT_fesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/-2n2p-_Y08sg57CNWQfKNvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/NdF9MtnOpLzo-noMoG0miPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/ZLqKeelYbATG60EpZBSDyxJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/oHi30kwQWvpCWqAhzHcCSBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/rGvHdJnr2l75qb0YND9NyBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/mx9Uck6uB63VIKFYnEMXrRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/mbmhprMH69Zi6eEPBYVFhRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/oOeFwZNlrTefzLYmlVV1UBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/RxZJdnzeo3R5zSexge8UUVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/77FXFjRbGzN4aCrSFhlh3hJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/isZ-wbCXNKAbnjo6_TwHThJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/UX6i4JxQDm3fVTc1CPuwqhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/jSN2CGVDbcVyCnfJfjSdfBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/PwZc-YbIL414wB9rB1IAPRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/97uahxiqZRoncBaCEI3aWxJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/s7gftie1JANC-QmDJvMWZhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/3Y_xCyt7TNunMGg0Et2pnhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/WeQRRE07FDkIrr29oHQgHBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/jyIYROCkJM3gZ4KV00YXOBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/phsu-QZXz1JBv0PbFoPmEBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/9_7S_tWeGDh5Pq3u05RVkhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/mnpfi9pxYH-Go5UiibESIltXRa8TVwTICgirnJhmVJw.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/1DbO0RvWEevroPvEzA5briEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/5z9jpDJQqVE5bmkRqplJfiEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/cueeGLWq_s1uoQgOf76TFiEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/yTs8gw1HdasCzJ-B_iUwzSEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/gLfmBATgABwy0zMVv-qqhiEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/dzxs_VxZUhdM2mEBkNa8siEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/12mE4jfMSBTmg-81EiS-Yfk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0atzTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0atzUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at0bcKLIaa1LC45dFaAfauRA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at2o_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at76up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0atyYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at44P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/WxrXJa0C3KdtC7lMafG4dRTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/OpXUqTo0UgQQhGj_SFdLWBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/1hZf02POANh32k2VkgEoUBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/cDKhRaXnQTOVbaoxwdOr9xTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/K23cxWVTrIFD6DJsEVi07RTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/vSzulfKSK0LLjjfeaxcREhTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/vPcynSL0qHq_6dX7lKVByfesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0TTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0TUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0UbcKLIaa1LC45dFaAfauRA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0Wo_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0b6up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0SYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0Y4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcCzTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcCzUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC0bcKLIaa1LC45dFaAfauRA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC2o_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC76up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcCyYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC44P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpTTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpTUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpUbcKLIaa1LC45dFaAfauRA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpWo_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpb6up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpSYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpY4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}"
+module.exports = "*{\r\n  color: #888;\r\n}\r\nh2{\r\n  line-height: 80px;\r\n  font-size: 2.5rem;\r\n  color: #F58500;\r\n  font-weight: 100;\r\n}\r\np{\r\n  line-height: 30px;\r\n  font-size: 1.2rem;\r\n  font-weight: 100;\r\n}\r\na{\r\n  font-size: 1em;\r\n  color: #F58500;\r\n  text-decoration: none;\r\n}\r\na:hover{\r\n  text-decoration: underline;\r\n}\r\n.page{\r\n  position: relative;\r\n  margin-left: 200px;\r\n  width: calc(100% - 200px);\r\n  height: 100vh;\r\n}\r\n.content-card{\r\n  width: 50%;\r\n  min-width: 700px;\r\n  margin: 0 auto;\r\n  height: 100vh;\r\n  overflow-y: hidden;\r\n}\r\n.content-forms{\r\n  margin-top: 90px;\r\n  height: calc(100vh - 90px);\r\n  overflow-y: auto;\r\n}\r\n.content-forms::-webkit-scrollbar {\r\n  display: none;\r\n}\r\n.content-form{\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  position: relative;\r\n  border-radius: 3px;\r\n  background-color: #FFFFFF;\r\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);\r\n  margin: 0px 10px 20px 10px;\r\n  padding: 20px;\r\n}\r\n.content-form img{\r\n  width: 192px;\r\n  height: 192px;\r\n}\r\n.content-form div{\r\n  width: 100%;\r\n}\r\n.list-item{\r\n  list-style-type: none;\r\n  padding: 20px 0px;\r\n  border-top: 1px solid #eee;\r\n}\r\n.item-avatar{\r\n  display: inline-block;\r\n  width: 50px;\r\n  height: 50px;\r\n  line-height: 50px;\r\n  border-radius: 50%;\r\n  border: 1px solid #F58500;\r\n  text-align: center;\r\n  background-color: #EEEEEE;\r\n  color: #F58500;\r\n  font-size: 1.5em;\r\n  text-transform: uppercase;\r\n}\r\n.item-data{\r\n  width: calc(100% - 55px);\r\n  display: inline-block;\r\n}\r\n.data-name{\r\n  display: inline-block;\r\n  text-transform: capitalize;\r\n  padding-left: 15px;\r\n  font-size: 1.3em;\r\n}\r\n.data-right{\r\n  float: right;\r\n}\r\n.data-role,\r\n.data-set_date{\r\n  text-transform: uppercase;\r\n  color: #555;\r\n}"
 
 /***/ },
 
 /***/ 662:
 /***/ function(module, exports) {
 
-module.exports = "/*--  Page  -----------------------------------------------------------------*/\r\n.page{\r\n  position: relative;\r\n  margin-left: 200px;\r\n  width: calc(100% - 200px);\r\n  height: 100vh;\r\n}\r\n.content-card{\r\n  width: 50%;\r\n  min-width: 700px;\r\n  margin: 0 auto;\r\n  height: 100vh;\r\n  overflow-y: hidden;\r\n}\r\n.card-nav{\r\n  width: 100%;\r\n  height: 90px;\r\n}\r\n.card-nav li{\r\n  float: left;\r\n  list-style-type: none;\r\n  cursor: pointer;\r\n}\r\n.nav-button{\r\n  background-color: transparent;\r\n  height: 90px;\r\n  font-size: .85em;\r\n  font-weight: 500;\r\n  color: #888;\r\n  border-style: none;\r\n  padding: 0 20px;\r\n  text-transform: uppercase;\r\n}\r\n.nav-button:hover{\r\n  color: #F58500;\r\n  box-shadow: none;\r\n}\r\n\r\n\r\n\r\n.content-forms{\r\n  height: calc(100vh - 90px);\r\n  overflow-y: auto;\r\n}\r\n.content-forms::-webkit-scrollbar {\r\n  display: none;\r\n}\r\n.content-form{\r\n  position: relative;\r\n  border-radius: 3px;\r\n  background-color: #FFFFFF;\r\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);\r\n  margin: 0px 10px 20px 10px;\r\n  padding: 20px;\r\n}\r\n.list-item{\r\n  list-style-type: none;\r\n  padding: 20px 0px;\r\n  border-top: 1px solid #eee;\r\n}\r\n.item-avatar{\r\n  display: inline-block;\r\n  width: 50px;\r\n  height: 50px;\r\n  line-height: 50px;\r\n  border-radius: 50%;\r\n  border: 1px solid #F58500;\r\n  text-align: center;\r\n  background-color: #EEEEEE;\r\n  color: #F58500;\r\n  font-size: 1.5em;\r\n  text-transform: uppercase;\r\n}\r\n.item-data{\r\n  width: calc(100% - 55px);\r\n  display: inline-block;\r\n}\r\n.data-name{\r\n  display: inline-block;\r\n  text-transform: capitalize;\r\n  padding-left: 15px;\r\n  font-size: 1.3em;\r\n}\r\n.data-right{\r\n  float: right;\r\n}\r\n.data-role,\r\n.data-set_date{\r\n  text-transform: uppercase;\r\n  color: #555;\r\n}"
+module.exports = ".login-background{\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100vh;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  background-color: #fff;\r\n}\r\nimg{\r\n  width: 48px\r\n}\r\n  /*#F58500;*/"
 
 /***/ },
 
 /***/ 663:
 /***/ function(module, exports) {
 
-module.exports = "/*--  Page  -----------------------------------------------------------------*/\r\n.page{\r\n  position: relative;\r\n  margin-left: 200px;\r\n  width: calc(100% - 200px);\r\n  height: 100vh;\r\n}\r\n.content-card{\r\n  width: 50%;\r\n  min-width: 700px;\r\n  margin: 0 auto;\r\n  height: 100vh;\r\n  overflow-y: hidden;\r\n}\r\n.card-nav{\r\n  width: 100%;\r\n  height: 90px;\r\n}\r\n.card-nav li{\r\n  float: left;\r\n  list-style-type: none;\r\n  cursor: pointer;\r\n}\r\n.nav-button{\r\n  background-color: transparent;\r\n  height: 90px;\r\n  font-size: .85em;\r\n  font-weight: 500;\r\n  color: #888;\r\n  border-style: none;\r\n  padding: 0 20px;\r\n  text-transform: uppercase;\r\n}\r\n.nav-button:hover{\r\n  color: #F58500;\r\n  box-shadow: none;\r\n}\r\n\r\n\r\n\r\n.content-forms{\r\n  height: calc(100vh - 90px);\r\n  overflow-y: auto;\r\n}\r\n.content-forms::-webkit-scrollbar {\r\n  display: none;\r\n}\r\n.content-form{\r\n  position: relative;\r\n  border-radius: 3px;\r\n  background-color: #FFFFFF;\r\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);\r\n  margin: 0px 10px 20px 10px;\r\n  padding: 20px;\r\n}\r\n.list-item{\r\n  list-style-type: none;\r\n  padding: 20px 0px;\r\n  border-top: 1px solid #eee;\r\n}\r\n.item-avatar{\r\n  display: inline-block;\r\n  width: 50px;\r\n  height: 50px;\r\n  line-height: 50px;\r\n  border-radius: 50%;\r\n  border: 1px solid #F58500;\r\n  text-align: center;\r\n  background-color: #EEEEEE;\r\n  color: #F58500;\r\n  font-size: 1.5em;\r\n  text-transform: uppercase;\r\n}\r\n.item-data{\r\n  width: calc(100% - 55px);\r\n  display: inline-block;\r\n}\r\n.data-name{\r\n  display: inline-block;\r\n  text-transform: capitalize;\r\n  font-size: 1.4em;\r\n  line-height: 40px;\r\n  font-weight: 700;\r\n  color: #555;\r\n}\r\n.data-ci,\r\n.data-input-name,\r\n.data-input-ci,\r\n.data-input-mail,\r\n.data-input-mhone,\r\n.data-input-facebook,\r\n.data-input-setDate,\r\n.data-input-editDate{\r\n  margin-left: 20px;\r\n  display: inline-block;\r\n  font-size: 1.1em;\r\n}\r\n.data-label{\r\n  display: block;\r\n  line-height: 30px;\r\n  text-transform: uppercase;\r\n  font-size: .7em;\r\n  font-weight: 700;\r\n  color: #888;\r\n}\r\n.data-description{\r\n  display: block;\r\n  text-transform: capitalize;\r\n  font-size: 1.3em;\r\n  line-height: 40px;\r\n  font-weight: 500;\r\n  color: #555;\r\n}\r\n.data-type{\r\n  display: inline-block;\r\n  text-transform: capitalize;\r\n  font-size: 1em;\r\n}\r\n.data-date{\r\n  display: block;\r\n  font-size: 1.1em;\r\n  line-height: 30px;\r\n}\r\n.list-actions{\r\n  display: none;  \r\n  padding-top: 15px;\r\n}\r\n.list-item:hover .list-actions{\r\n  display: block;\r\n}\r\n.data-right{\r\n  float: right;\r\n}\r\n.data-role,\r\n.data-set_date{\r\n  text-transform: uppercase;\r\n  color: #555;\r\n}\r\n\r\n.list-item-clickable{\r\n  cursor: pointer;\r\n}\r\n\r\n.search-bar{\r\n  width: 100%;\r\n  height: 40px;\r\n}\r\n.search-bar svg{\r\n  float: left;\r\n}\r\n.search-bar input{\r\n  width: calc(100% - 40px);\r\n  float: left;\r\n}"
+module.exports = "/* fallback */\r\n@font-face {\r\n  font-family: 'Material Icons';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v19/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');\r\n}\r\n\r\n.material-icons {\r\n  font-family: 'Material Icons';\r\n  font-weight: normal;\r\n  font-style: normal;\r\n  font-size: 24px;\r\n  line-height: 1;\r\n  letter-spacing: normal;\r\n  text-transform: none;\r\n  display: inline-block;\r\n  white-space: nowrap;\r\n  word-wrap: normal;\r\n  direction: ltr;\r\n  -webkit-font-feature-settings: 'liga';\r\n  -webkit-font-smoothing: antialiased;\r\n}"
 
 /***/ },
 
 /***/ 664:
 /***/ function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html lang=\"es\">\r\n\r\n<head>\r\n  <link href=\"assets/img/icon_24.png\" rel=\"icon\" type=\"image/png\">\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\r\n  <title>Radiocero Premios</title>\r\n</head>\r\n\r\n<body>\r\n  <header>\r\n    <!-- Nav Bar -->\r\n    <nav>\r\n      <div class=\"main-nav\">\r\n        <a href=\"http://www.radiocero.com.uy/\" target=\"_blank\">\r\n          <img src=\"assets/img/icon_48.png\" alt=\"Icono Radiocero\" />\r\n          <span>Radiocero</span>\r\n        </a>\r\n      </div>\r\n      <ul class=\"nav-options\">\r\n\r\n        <li class=\"menu-title\">Usuarios</li>\r\n        <li><a routerLink=\"/\" routerLinkActive=\"active\" class=\"ancor\"><i class=\"material-icons\">&#xE88A;</i> Inicio</a></li>\r\n        <li><a routerLink=\"/winners\" routerLinkActive=\"active\" class=\"ancor\"><i class=\"material-icons\">&#xE838;</i> Ganadores</a></li>\r\n        <li><a routerLink=\"/prizes\" routerLinkActive=\"active\" class=\"ancor\"><i class=\"material-icons\">&#xE838;</i> Premios</a></li>\r\n\r\n        <li class=\"menu-title\">Administradores</li>\r\n        <li><a routerLink=\"/users\" routerLinkActive=\"active\" class=\"ancor\"><i class=\"material-icons\">&#xE7FD;</i> Usuarios</a></li>\r\n\r\n        <li class=\"menu-title\">Sesión</li>\r\n        <li><a *ngIf=\"!user\" (click)=\"displayLoginForm()\"><i class=\"material-icons\">&#xE853;</i> Inicial sesión</a></li>\r\n        <li><a *ngIf=\"user\" (click)=\"logout()\"><i class=\"material-icons\">&#xE8AC;</i> Cerrar sesión</a></li>\r\n        <!--<li><a routerLink=\"/login\" routerLinkActive=\"active\"><i class=\"material-icons\">&#xE853;</i> Inicial sesión</a></li>\r\n        <li><a routerLink=\"/login\" (click)=\"logout()\"><i class=\"material-icons\">&#xE8AC;</i> Cerrar sesión</a></li>-->\r\n\r\n      </ul>\r\n    </nav>\r\n  </header>\r\n\r\n\r\n  <router-outlet></router-outlet>\r\n\r\n  <div id=\"ds-spinner\" class=\"start-spinning\">\r\n    <div class=\"spinner-wrapper\">\r\n      <!-- <div class=\"spinner spinner-circle\"></div> -->\r\n      <div class=\"spinner spinner-radiocero\"></div>\r\n    </div>\r\n  </div>\r\n\r\n  <notification></notification>\r\n\r\n  <login *ngIf=\"!user\"></login>\r\n\r\n</body>\r\n\r\n</html>"
+module.exports = "#notif-wrapper{\r\n  position: fixed;\r\n  left: 0;\r\n  bottom: 0;\r\n  width: 100%;\r\n  pointer-events: none;\r\n  z-index: 100;\r\n}\r\n.notif{\r\n  position: relative;\r\n  width: 25%;\r\n  min-height: 100px;\r\n  margin: 0 10px 10px auto;\r\n  pointer-events: auto;\r\n  border-radius: 3px;\r\n  box-shadow: 0 5px 10px rgba(0, 0, 0, .5);\r\n}\r\n.ok{\r\n  background-color: #88d8b0;\r\n}\r\n.alert{\r\n  background-color: #ffcc5c;\r\n}\r\n.error{\r\n  background-color: #ff6f69;\r\n}\r\n.title{\r\n  display: block;\r\n  font-size: 1rem;\r\n  font-weight: 900;\r\n  width: 100%;\r\n  color: #FFF;\r\n  padding: 20px 10px 0 10px;\r\n  word-break:break-all;\r\n}\r\n.message{\r\n  font-size: 0.8rem;\r\n  font-weight: 300;\r\n  width: 100%;\r\n  color: #FFF;\r\n  padding: 20px 10px;\r\n}\r\n.dismiss-notif{\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  width: 20px;\r\n  height: 20px;\r\n  border-style: none;\r\n  background-color: transparent;\r\n  color: rgba(0, 0, 0, .5);\r\n  font-size: 12px;\r\n  cursor: pointer;\r\n}\r\n.time-out{\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  width: 20px;\r\n  height: 20px;\r\n  text-align: center;\r\n  line-height: 20px;\r\n  border-style: none;\r\n  background-color: transparent;\r\n  color: rgba(0, 0, 0, .5);\r\n  font-size: 12px;\r\n}\r\n.dismiss-notif:hover{\r\n  color: rgba(0, 0, 0, 1);\r\n}"
 
 /***/ },
 
 /***/ 665:
 /***/ function(module, exports) {
 
-module.exports = "<section id=\"section_login\" class=\"page\">\r\n  <div class=\"content-card\">\r\n    <div class=\"content-forms\">\r\n\r\n      <div class=\"content-form\">\r\n        <img src=\"assets/img/icon_192.png\" alt=\"Logo de Radiocero 104.3\">\r\n        <h2>Radiocero Premios</h2>\r\n        <div>\r\n          <p>Aplicación realizada para: <a href=\"http://www.radiocero.com.uy/\" target=\"_blank\">Radiocero 104.3 FM</a></p>\r\n          <p>Autor: <a href=\"http://www.danielsosa.uy/dev#contact\" target=\"_blank\">Daniel Sosa</a></p>\r\n          <p>Año: 2016</p>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>"
+module.exports = ".content-forms{\r\n  position: relative;\r\n  height: calc(100vh - 90px);\r\n  overflow-y: auto;\r\n}\r\n.content-forms::-webkit-scrollbar {\r\n  display: none;\r\n}\r\n.content-form{\r\n  position: relative;\r\n  border-radius: 3px;\r\n  background-color: #FFFFFF;\r\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);\r\n  margin: 0px 10px 20px 10px;\r\n  padding: 20px;\r\n}\r\n.list-item{\r\n  list-style-type: none;\r\n  padding: 20px 0px;\r\n  border-top: 1px solid #eee;\r\n  cursor: pointer;\r\n}\r\n.data-stock{\r\n  float: right;\r\n  width: 70px;\r\n  font-size: 2em;\r\n  color: #F58500;\r\n  font-weight: 500;\r\n  text-align: right;\r\n}\r\n.data-periodic{\r\n  float: right;\r\n  width: 70px;\r\n  font-size: 3em;\r\n  color: #F58500;\r\n  text-align: right;\r\n}\r\n.data-description{\r\n  width: calc(100% - 70px);\r\n  display: block;\r\n  color: #555;\r\n  text-transform: capitalize;\r\n  font-size: 1.3em;\r\n  font-weight: 700;\r\n}\r\n.data-type{\r\n  display: block;\r\n  width: calc(100% - 70px);\r\n  text-transform: capitalize;\r\n  font-size: 1em;\r\n  padding: 10px 0px;\r\n}\r\ndiv.content-form div.data-dates{\r\n  display: block;\r\n  width: calc(100% - 70px);\r\n  text-transform: uppercase;\r\n  color: #555;\r\n  padding: 10px 0px;\r\n}\r\n.data-dates span{\r\n  font-size: .8em;\r\n}\r\n.data-dates .data-date{\r\n  font-size: 1.1em;\r\n  padding: 0px 10px;\r\n}\r\ndiv.floating{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100vh;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n    -webkit-box-align: center;\r\n        -ms-flex-align: center;\r\n            align-items: center;\r\n}\r\ndiv.wrapper{\r\n    width: 800px;\r\n    height: 100vh;\r\n    overflow-y: auto;\r\n    margin: 20px;\r\n    padding: 20px;\r\n    background-color: #FFFFFF;\r\n    box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);\r\n}\r\nh3{\r\n    color: #555;\r\n    text-transform: capitalize;\r\n    font-size: 1.3em;\r\n    font-weight: 700;\r\n}\r\nh4{\r\n    display: block;\r\n    text-transform: capitalize;\r\n    font-size: 1em;\r\n    color: #333333;\r\n    font-weight: initial;\r\n    padding: 10px 0px;\r\n}\r\n\r\nlabel.checkbox{\r\n  display: inline-block;\r\n  margin: 0;\r\n  font-size: 1em;\r\n  text-transform: initial;\r\n  font-weight: normal;\r\n}\r\ninput.checkbox{\r\n  display: inline-block;\r\n  width: 20px;\r\n  line-height: 20px;\r\n  vertical-align: middle;\r\n}\r\n\r\n.form-data-preview{\r\n  position: fixed;\r\n  left: 0;\r\n  top: 0;\r\n  pointer-events: none;\r\n  font-size: 12px;\r\n  background-color: #fff;\r\n  border-style: none;\r\n  border-radius: 3px;\r\n  margin: 3px;\r\n  padding:5px;\r\n}\r\n"
 
 /***/ },
 
 /***/ 666:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"login-background\">\r\n\r\n  <img class=\"header\" src=\"assets/img/icon_48.png\" alt=\"Icono Radiocero\" />\r\n  \r\n  <div class=\"login-modal\">\r\n\r\n\r\n    <h2>Iniciar sesión</h2>\r\n\r\n    <form id=\"form-login\" (ngSubmit)=\"onSubmit()\" #loginForm=\"ngForm\">\r\n\r\n      <label for=\"userName\">Nombre de usuario *</label>\r\n      <input [(ngModel)]=\"userName\" name=\"userName\" id=\"userName\" placeholder=\"Nombre de usuario\" required>\r\n\r\n      <label for=\"password\">Contraseña *</label>\r\n      <input [(ngModel)]=\"password\" name=\"password\" id=\"password\" type=\"password\" placeholder=\"Contraseña\" required>\r\n\r\n      <button (click)=\"login()\" type=\"submit\" class=\"btn-ok\" id=\"btn-sub-login\">Iniciar sesión</button>\r\n\r\n    </form>\r\n  </div>\r\n</div>"
+module.exports = "/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/ty9dfvLAziwdqQ2dHoyjphTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/frNV30OaYdlFRtH2VnZZdhTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/gwVJDERN2Amz39wrSoZ7FxTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/aZMswpodYeVhtRvuABJWvBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/VvXUGKZXbHtX_S_VCTLpGhTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/e7MeVAyvogMqFwwl61PKhBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v15/2tsd397wLxj96qwHyNIkxPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/0eC6fl06luXEYWpBSJvXCBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/Fl4y0QdOxyyTHEGMXX8kcRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/-L14Jk06m6pUHB-5mXQQnRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/I3S1wsgSg9YCurV6PUkTORJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/NYDWBdD4gIq26G5XYbHsFBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/Pru33qjShpZSmG3z6VYwnRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 300;\r\n  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/ek4gzZ-GeXAPcSbHtCeQI_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/mErvLBYg_cXG3rLvUsKT_fesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/-2n2p-_Y08sg57CNWQfKNvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/NdF9MtnOpLzo-noMoG0miPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 400;\r\n  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/ZLqKeelYbATG60EpZBSDyxJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/oHi30kwQWvpCWqAhzHcCSBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/rGvHdJnr2l75qb0YND9NyBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/mx9Uck6uB63VIKFYnEMXrRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/mbmhprMH69Zi6eEPBYVFhRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/oOeFwZNlrTefzLYmlVV1UBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v15/RxZJdnzeo3R5zSexge8UUVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/77FXFjRbGzN4aCrSFhlh3hJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/isZ-wbCXNKAbnjo6_TwHThJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/UX6i4JxQDm3fVTc1CPuwqhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/jSN2CGVDbcVyCnfJfjSdfBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/PwZc-YbIL414wB9rB1IAPRJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/97uahxiqZRoncBaCEI3aWxJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/s7gftie1JANC-QmDJvMWZhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/3Y_xCyt7TNunMGg0Et2pnhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/WeQRRE07FDkIrr29oHQgHBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/jyIYROCkJM3gZ4KV00YXOBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/phsu-QZXz1JBv0PbFoPmEBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/9_7S_tWeGDh5Pq3u05RVkhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: normal;\r\n  font-weight: 900;\r\n  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v15/mnpfi9pxYH-Go5UiibESIltXRa8TVwTICgirnJhmVJw.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/1DbO0RvWEevroPvEzA5briEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/5z9jpDJQqVE5bmkRqplJfiEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/cueeGLWq_s1uoQgOf76TFiEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/yTs8gw1HdasCzJ-B_iUwzSEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/gLfmBATgABwy0zMVv-qqhiEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/dzxs_VxZUhdM2mEBkNa8siEAvth_LlrfE80CYdSH47w.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 100;\r\n  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v15/12mE4jfMSBTmg-81EiS-Yfk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0atzTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0atzUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at0bcKLIaa1LC45dFaAfauRA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at2o_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at76up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0atyYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v15/7m8l7TlFO-S3VkhHuR0at44P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/WxrXJa0C3KdtC7lMafG4dRTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/OpXUqTo0UgQQhGj_SFdLWBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/1hZf02POANh32k2VkgEoUBTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/cDKhRaXnQTOVbaoxwdOr9xTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/K23cxWVTrIFD6DJsEVi07RTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/vSzulfKSK0LLjjfeaxcREhTbgVql8nDJpwnrE27mub0.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 400;\r\n  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v15/vPcynSL0qHq_6dX7lKVByfesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0TTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0TUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0UbcKLIaa1LC45dFaAfauRA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0Wo_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0b6up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0SYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 500;\r\n  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v15/OLffGBTaF0XFOW1gnuHF0Y4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcCzTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcCzUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC0bcKLIaa1LC45dFaAfauRA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC2o_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC76up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcCyYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 700;\r\n  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v15/t6Nd4cfPRhZP44Q5QAjcC44P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}\r\n/* cyrillic-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpTTOQ_MqJVwkKsUn0wKzc2I.woff2) format('woff2');\r\n  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;\r\n}\r\n/* cyrillic */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpTUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');\r\n  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\r\n}\r\n/* greek-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpUbcKLIaa1LC45dFaAfauRA.woff2) format('woff2');\r\n  unicode-range: U+1F00-1FFF;\r\n}\r\n/* greek */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpWo_sUJ8uO4YLWRInS22T3Y.woff2) format('woff2');\r\n  unicode-range: U+0370-03FF;\r\n}\r\n/* vietnamese */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpb6up8jxqWt8HVA3mDhkV_0.woff2) format('woff2');\r\n  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;\r\n}\r\n/* latin-ext */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpSYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');\r\n  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\r\n}\r\n/* latin */\r\n@font-face {\r\n  font-family: 'Roboto';\r\n  font-style: italic;\r\n  font-weight: 900;\r\n  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpY4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');\r\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\r\n}"
 
 /***/ },
 
 /***/ 667:
 /***/ function(module, exports) {
 
-module.exports = "<div id=\"notif-wrapper\">\r\n\r\n  <div *ngFor=\"let notif of notif_stack; let i = index\" class=\"notif {{notif.type}}\">\r\n    <button *ngIf(!notif.timeOut) class=\"dismiss-notif\" (click)=\"dismissNotif(i)\">&#x2716;</button>\r\n    <span *ngIf(notif.timeOut) class=\"time-out\">{{notif.timer}}</span>\r\n    <span class=\"title\">\r\n      {{notif.title}}\r\n    </span>\r\n    <p class=\"message\">\r\n      {{notif.message}}\r\n    </p>\r\n  </div>\r\n\r\n</div>"
+module.exports = "/*--  Page  -----------------------------------------------------------------*/\r\n.page{\r\n  position: relative;\r\n  margin-left: 200px;\r\n  width: calc(100% - 200px);\r\n  height: 100vh;\r\n}\r\n.content-card{\r\n  width: 50%;\r\n  min-width: 700px;\r\n  margin: 0 auto;\r\n  height: 100vh;\r\n  overflow-y: hidden;\r\n}\r\n.card-nav{\r\n  width: 100%;\r\n  height: 90px;\r\n}\r\n.card-nav li{\r\n  float: left;\r\n  list-style-type: none;\r\n  cursor: pointer;\r\n}\r\n.nav-button{\r\n  background-color: transparent;\r\n  height: 90px;\r\n  font-size: .85em;\r\n  font-weight: 500;\r\n  color: #888;\r\n  border-style: none;\r\n  padding: 0 20px;\r\n  text-transform: uppercase;\r\n}\r\n.nav-button:hover{\r\n  color: #F58500;\r\n  box-shadow: none;\r\n}\r\n\r\n\r\n\r\n.content-forms{\r\n  height: calc(100vh - 90px);\r\n  overflow-y: auto;\r\n}\r\n.content-forms::-webkit-scrollbar {\r\n  display: none;\r\n}\r\n.content-form{\r\n  position: relative;\r\n  border-radius: 3px;\r\n  background-color: #FFFFFF;\r\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);\r\n  margin: 0px 10px 20px 10px;\r\n  padding: 20px;\r\n}\r\n.list-item{\r\n  list-style-type: none;\r\n  padding: 20px 0px;\r\n  border-top: 1px solid #eee;\r\n}\r\n.item-avatar{\r\n  display: inline-block;\r\n  width: 50px;\r\n  height: 50px;\r\n  line-height: 50px;\r\n  border-radius: 50%;\r\n  border: 1px solid #F58500;\r\n  text-align: center;\r\n  background-color: #EEEEEE;\r\n  color: #F58500;\r\n  font-size: 1.5em;\r\n  text-transform: uppercase;\r\n}\r\n.item-data{\r\n  width: calc(100% - 55px);\r\n  display: inline-block;\r\n}\r\n.data-name{\r\n  display: inline-block;\r\n  text-transform: capitalize;\r\n  padding-left: 15px;\r\n  font-size: 1.3em;\r\n}\r\n.data-right{\r\n  float: right;\r\n}\r\n.data-role,\r\n.data-set_date{\r\n  text-transform: uppercase;\r\n  color: #555;\r\n}"
 
 /***/ },
 
 /***/ 668:
 /***/ function(module, exports) {
 
-module.exports = "<section id=\"section_pizes\" class=\"page\">\r\n  <div class=\"content-card\">\r\n\r\n    <nav class=\"card-nav\">\r\n      <ul>\r\n        <li><button (click)=\"navigateTo('prizesList')\" class=\"nav-button\">Lista de Premios</button></li>\r\n      </ul>\r\n      <ul>\r\n        <li><button (click)=\"navigateTo('newPrize')\" class=\"nav-button\">Nuevo Premio</button></li>\r\n      </ul>\r\n    </nav>\r\n\r\n    <div class=\"content-forms\">\r\n\r\n      <div id=\"card-prizes-list\" class=\"content-form\" [style.display]=\"(visible_tab == 'prizesList') ? 'inherit' : 'none'\">\r\n        <h2>Lista de Premios</h2>\r\n        <ul id=\"ul-list-prizes\" class=\"list\">\r\n          <li class=\"list-item\" *ngFor=\"let prize of prizes_list; let i = index\">\r\n            <div>\r\n              <span class=\"data-stock\">{{prize.Stock}}</span>\r\n              <span class=\"data-description\">{{prize.Description}}</span>\r\n              <span class=\"data-type\">{{prize.Type}}<i class=\"data-sponsor\"> - {{prize.Sponsor}}</i></span>\r\n              <div class=\"data-dates\"><span>Premio creado el</span>\r\n                <span class=\"data-date\">{{prize.StrSetDate}}</span>\r\n                <span> vence el </span>\r\n                <span class=\"data-date\">{{prize.StrDueDate}}</span>\r\n              </div>\r\n              <div class=\"list-actions\">\r\n                <button (click)=\"displayGrantPrizeForm(prize)\" type=\"button\" class=\"btn-ok btn-grant-prize\">Otorgar</button>\r\n                <button (click)=\"displayEditPrizeForm(prize)\" type=\"button\" class=\"btn-cancel btn-edit-prize\">Editar</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n\r\n      <div id=\"card-new-prize\" class=\"content-form\" [style.display]=\"visible_tab == 'newPrize' ? 'inherit' : 'none'\">\r\n        <h2>Nuevo Premio</h2>\r\n\r\n        <form (ngSubmit)=\"onSubmit()\" #newPrizeForm=\"ngForm\">\r\n\r\n          <label>Tipo de premio *</label>\r\n          <input [(ngModel)]=\"new_prize.type\" name=\"type\" list=\"types_list\" placeholder=\"Tipo de premio\" autocomplete=\"off\" required>\r\n          <datalist id=\"types_list\">\r\n            <option *ngFor=\"let type of prizes_type_list\" value=\"{{type}}\">\r\n          </datalist>\r\n\r\n          <label>Descripción *</label>\r\n          <input [(ngModel)]=\"new_prize.description\" name=\"description\" placeholder=\"Descripción\" required>\r\n\r\n          <label>Espónsor *</label>\r\n          <input [(ngModel)]=\"new_prize.sponsor\" name=\"sponsor\" list=\"sponsors_list\" placeholder=\"Espónsor\" autocomplete=\"off\" required>\r\n          <datalist id=\"sponsors_list\">\r\n            <option *ngFor=\"let type of prizes_sponsor_list\" value=\"{{type}}\">\r\n          </datalist>\r\n\r\n          <label>Stock *</label>\r\n          <input type=\"number\" [(ngModel)]=\"new_prize.stock\" name=\"stock\" placeholder=\"Stock inicial\" min=\"0\" required>\r\n\r\n          <label>Vencimiento</label>\r\n          <input type=\"date\" name=\"due_date\" (input)=\"inputDate($event)\">\r\n\r\n          <label>Notas</label>\r\n          <input [(ngModel)]=\"new_prize.note\" name=\"note\" placeholder=\"Comentarios sobre el premio\">\r\n\r\n          <button (click)=\"newPrize(); newPrizeForm.reset()\" type=\"submit\" class=\"btn-ok\" [disabled]=\"!newPrizeForm.form.valid\">Crear</button>\r\n          <button (click)=\"newPrizeForm.reset()\" class=\"btn-cancel\">Cancelar</button>\r\n\r\n        </form>\r\n\r\n      </div>\r\n\r\n      <!--New Prize Form-->\r\n      <div *ngIf=\"prize\" class=\"wrapper\">\r\n        <form (ngSubmit)=\"onSubmit()\" #grantPrizeForm=\"ngForm\">\r\n\r\n          <h2>Otorgar premio</h2>\r\n\r\n          <h3 id=\"prize-to-grant-description\">{{prize.Description}}</h3>\r\n          <h4 id=\"prize-to-grant-type\">{{prize.Type}}</h4>\r\n\r\n          <!--<pre>{{inputValues}}</pre>-->\r\n\r\n          <label>C.I. *</label>\r\n          <input [(ngModel)]=\"winner.ci\" (keyup)=\"checkWinnerCi(ci_input.value)\" #ci_input name=\"ci\" id=\"ci\" placeholder=\"CI sin puntos ni guiones\"\r\n            autocomplete=\"off\" pattern=\"^\\d{7,8}$\" required>\r\n\r\n          <label>Nombre *</label>\r\n          <input [(ngModel)]=\"winner.name\" class=\"input-inline\" name=\"name\" id=\"name\" placeholder=\"Nombre\" required>\r\n          <input [(ngModel)]=\"winner.lastname\" class=\"input-inline\" name=\"lastname\" id=\"lastname\" placeholder=\"Apellido\" required>\r\n\r\n          <label>Sexo</label>\r\n          <select [(ngModel)]=\"winner.gender\" name=\"gender\" id=\"gender\" title=\"Seleccione sexo\">\r\n            <option value=\"F\">Femenino</option>\r\n            <option value=\"M\">Masculino</option>\r\n            <option value=\"O\">Otro</option>\r\n          </select>\r\n\r\n          <label>Perfil de Facebook</label>\r\n          <input [(ngModel)]=\"winner.facebook\" name=\"facebook\" id=\"facebook\" placeholder=\"https://es-la.facebook.com/nombre.usuario\">\r\n\r\n          <label>Teléfono</label>\r\n          <input [(ngModel)]=\"winner.phone\" name=\"phone\" id=\"phone\" placeholder=\"099000111\">\r\n\r\n          <label>Email</label>\r\n          <input [(ngModel)]=\"winner.mail\" name=\"mail\" id=\"mail\" placeholder=\"usuario@dominio.com\">\r\n\r\n          <button (click)=\"grantPrize(); grantPrizeForm.reset()\" type=\"submit\" class=\"btn-ok\" [disabled]=\"!grantPrizeForm.form.valid\">Otorgar</button>\r\n          <button (click)=\"destroyGrantPrizeForm($event)\" class=\"btn-cancel\">Cancelar</button>\r\n\r\n        </form>\r\n      </div>\r\n\r\n      <!--Edit Prize Form-->\r\n      <div *ngIf=\"prize_to_edit\" class=\"wrapper\">\r\n        <form (ngSubmit)=\"onSubmit()\" #editPrizeForm=\"ngForm\">\r\n\r\n          <h2>Editar premio</h2>\r\n\r\n          <!--<pre>{{editPrizeInputValues}}</pre>-->\r\n\r\n          <label>Tipo de premio *</label>\r\n          <input [(ngModel)]=\"prize_to_edit.type\" name=\"type\" list=\"types_list\" placeholder=\"Tipo de premio\" required>\r\n          <datalist id=\"types_list\">\r\n            <option *ngFor=\"let type of prizes_type_list\" value=\"{{type}}\">\r\n          </datalist>\r\n\r\n          <label>Descripción *</label>\r\n          <input [(ngModel)]=\"prize_to_edit.description\" name=\"description\" placeholder=\"Descripción\" required>\r\n\r\n          <label>Espónsor *</label>\r\n          <input [(ngModel)]=\"prize_to_edit.sponsor\" name=\"sponsor\" list=\"sponsors_list\" placeholder=\"Espónsor\" required>\r\n          <datalist id=\"sponsors_list\">\r\n            <option *ngFor=\"let type of prizes_sponsor_list\" value=\"{{type}}\">\r\n          </datalist>\r\n\r\n          <label>Stock *</label>\r\n          <input type=\"number\" [(ngModel)]=\"prize_to_edit.stock\" name=\"stock\" placeholder=\"Stock inicial\" min=\"0\" required>\r\n\r\n          <label>Vencimiento</label>\r\n          <input type=\"date\" value=\"{{prize_to_edit.DateToSetInput}}\" name=\"due_date\" (input)=\"inputNewDate($event.target.value)\">\r\n\r\n          <label>Notas</label>\r\n          <input [(ngModel)]=\"prize_to_edit.note\" name=\"note\" placeholder=\"Comentarios sobre el premio\">\r\n\r\n          <button (click)=\"editPrize(); editPrizeForm.reset()\" type=\"submit\" class=\"btn-ok\" [disabled]=\"!editPrizeForm.form.valid\">Guardar</button>\r\n          <button (click)=\"destroyEditPrizeForm($event)\" class=\"btn-cancel\">Cancelar</button>\r\n\r\n        </form>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>"
+module.exports = ".content-forms{\r\n  height: calc(100vh - 90px);\r\n  overflow-y: auto;\r\n}\r\n.content-forms::-webkit-scrollbar {\r\n  display: none;\r\n}\r\n.content-form{\r\n  position: relative;\r\n  border-radius: 3px;\r\n  background-color: #FFFFFF;\r\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);\r\n  margin: 0px 10px 20px 10px;\r\n  padding: 20px;\r\n}\r\n.list-item{\r\n  list-style-type: none;\r\n  padding: 20px 0px;\r\n  border-top: 1px solid #eee;\r\n}\r\n.item-avatar{\r\n  display: inline-block;\r\n  width: 50px;\r\n  height: 50px;\r\n  line-height: 50px;\r\n  border-radius: 50%;\r\n  border: 1px solid #F58500;\r\n  text-align: center;\r\n  background-color: #EEEEEE;\r\n  color: #F58500;\r\n  font-size: 1.5em;\r\n  text-transform: uppercase;\r\n}\r\n.item-data{\r\n  width: calc(100% - 55px);\r\n  display: inline-block;\r\n}\r\n.data-name{\r\n  display: inline-block;\r\n  text-transform: capitalize;\r\n  font-size: 1.4em;\r\n  line-height: 40px;\r\n  font-weight: 700;\r\n  color: #555;\r\n}\r\n.data-ci,\r\n.data-input-name,\r\n.data-input-ci,\r\n.data-input-mail,\r\n.data-input-mhone,\r\n.data-input-facebook,\r\n.data-input-setDate,\r\n.data-input-editDate{\r\n  margin-left: 20px;\r\n  display: inline-block;\r\n  font-size: 1.1em;\r\n}\r\n.data-label{\r\n  display: block;\r\n  line-height: 30px;\r\n  text-transform: uppercase;\r\n  font-size: .7em;\r\n  font-weight: 700;\r\n  color: #888;\r\n}\r\n.data-description{\r\n  display: block;\r\n  text-transform: capitalize;\r\n  font-size: 1.3em;\r\n  line-height: 40px;\r\n  font-weight: 500;\r\n  color: #555;\r\n}\r\n.data-type{\r\n  display: inline-block;\r\n  text-transform: capitalize;\r\n  font-size: 1em;\r\n}\r\n.data-date{\r\n  display: block;\r\n  font-size: 1.1em;\r\n  line-height: 30px;\r\n}\r\n/*.list-actions{\r\n  display: none;  \r\n  padding-top: 15px;\r\n}\r\n.list-item:hover .list-actions{\r\n  display: block;\r\n}*/\r\n.data-right{\r\n  float: right;\r\n}\r\n.data-role,\r\n.data-set_date{\r\n  text-transform: uppercase;\r\n  color: #555;\r\n}\r\n\r\n.list-item-clickable{\r\n  cursor: pointer;\r\n}\r\n\r\n.search-bar{\r\n  width: 100%;\r\n  height: 40px;\r\n}\r\n.search-bar svg{\r\n  float: left;\r\n}\r\n.search-bar input{\r\n  width: calc(100% - 40px);\r\n  float: left;\r\n}"
 
 /***/ },
 
 /***/ 669:
 /***/ function(module, exports) {
 
-module.exports = "<section id=\"section_users\" class=\"page\">\r\n  <div class=\"content-card\">\r\n    <nav class=\"card-nav\">\r\n      <ul>\r\n        <li>\r\n          <button (click)=\"navigateTo('usersList')\" class=\"nav-button\">Lista de Usuarios</button>\r\n        </li>\r\n        <li>\r\n          <button (click)=\"navigateTo('newUser')\" class=\"nav-button\">Nuevo Usuario</button>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <div class=\"content-forms\">\r\n\r\n      <div id=\"card-users-list\" class=\"content-form\" [style.display]=\"visible_tab == 'usersList' ? 'inherit' : 'none'\">\r\n        <h2>Lista de Usuarios</h2>\r\n\r\n        <!--Users List-->\r\n        <ul id=\"ul-list-users\" class=\"list\">\r\n          <li class=\"list-item\" *ngFor=\"let user of users_list\">\r\n            <span class=\"item-avatar\">{{user.Name.slice(0,1)}}</span>\r\n            <div class=\"item-data\">\r\n              <span class=\"data-name\">{{user.Name}}</span>\r\n              <span class=\"data-right\">\r\n                  <span class=\"data-role\">{{user.Role}}</span>\r\n              <small> creado el </small>\r\n              <span class=\"data-set_date\">{{user.StrDate}}</span>\r\n              </span>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n\r\n\r\n      <div id=\"card-new-user\" class=\"content-form\" [style.display]=\"visible_tab == 'newUser' ? 'inherit' : 'none'\">\r\n\r\n        <h2>Nuevo Usuario</h2>\r\n\r\n        <form id=\"form-new-user\" (ngSubmit)=\"onSubmit()\" #userForm=\"ngForm\">\r\n\r\n          <label for=\"name\">Nombre de usuario *</label>\r\n          <input [(ngModel)]=\"user.name\" name=\"name\" id=\"name\" placeholder=\"Nombre sin espacios\"  pattern=\"\\S+\" autocomplete=\"off\" required>\r\n\r\n          <label for=\"password\">Contraseña *</label>\r\n          <input [(ngModel)]=\"user.password\" #password=\"ngModel\" name=\"password\" id=\"password\" type=\"password\" placeholder=\"Contraseña\" autocomplete=\"off\" required>\r\n\r\n          <label for=\"password2\">Repetir contraseña *</label>\r\n          <input [(ngModel)]=\"user.password2\" name=\"password2\" id=\"password2\" type=\"password\" placeholder=\"Repetir contraseña\" validateEqual=\"password\" autocomplete=\"off\" required>\r\n\r\n          <label for=\"role\">Permisos *</label>\r\n          <select [(ngModel)]=\"user.role\" id=\"role\" name=\"role\" required>\r\n            <option value=\"admin\">Administrador</option>\r\n            <option value=\"user\" selected>Usuario</option>\r\n          </select>\r\n\r\n          <label for=\"email\">Email</label>\r\n          <input [(ngModel)]=\"user.email\" id=\"email\" name=\"email\" placeholder=\"Email\" pattern=\"\\S+@\\S+\\.\\S+\">\r\n\r\n          <button (click)=\"newUser($event); userForm.reset()\" type=\"submit\" class=\"btn-ok\" [disabled]=\"!userForm.form.valid\">Crear</button>\r\n          <button (click)=\"userForm.reset()\" class=\"btn-cancel\" id=\"btn-cancel-sub-new-user\">Cancelar</button>\r\n\r\n        </form>\r\n\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>"
+module.exports = "<!DOCTYPE html>\r\n<html lang=\"es\">\r\n\r\n<head>\r\n  <link href=\"assets/img/icon_24.png\" rel=\"icon\" type=\"image/png\">\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\r\n  <title>Radiocero Premios</title>\r\n</head>\r\n\r\n<body>\r\n  <header>\r\n    <!-- Nav Bar -->\r\n    <nav>\r\n      <div class=\"main-nav\">\r\n        <a href=\"http://www.radiocero.com.uy/\" target=\"_blank\">\r\n          <img src=\"assets/img/icon_48.png\" alt=\"Icono Radiocero\" />\r\n          <span>Radiocero</span>\r\n        </a>\r\n      </div>\r\n      <ul class=\"nav-options\">\r\n\r\n        <li class=\"menu-title\">Usuarios</li>\r\n        <li [class]=\"selected_page === 'home' ? 'active-page' : ''\">\r\n          <a routerLink=\"/\" routerLinkActive=\"active\" (click)=\"setActivePage($event, 'home')\" class=\"ancor\"><i class=\"material-icons\">&#xE88A;</i> Inicio</a>\r\n        </li>\r\n        <li [class]=\"selected_page === 'winners' ? 'active-page' : ''\">\r\n          <a routerLink=\"/winners\" routerLinkActive=\"active\" (click)=\"setActivePage($event, 'winners')\" class=\"ancor\"><i class=\"material-icons\">&#xE87C;</i> Ganadores</a>\r\n        </li>\r\n        <li [class]=\"selected_page === 'prizes' ? 'active-page' : ''\">\r\n          <a routerLink=\"/prizes\" routerLinkActive=\"active\" (click)=\"setActivePage($event, 'prizes')\" class=\"ancor\"><i class=\"material-icons\">&#xE838;</i> Premios</a>\r\n        </li>\r\n\r\n        <li class=\"menu-title\">Administradores</li>\r\n        <li [class]=\"selected_page === 'users' ? 'active-page' : ''\">\r\n          <a routerLink=\"/users\" routerLinkActive=\"active\" (click)=\"setActivePage($event, 'users')\" class=\"ancor\"><i class=\"material-icons\">&#xE7FD;</i> Usuarios</a>\r\n        </li>\r\n\r\n        <li class=\"menu-title\">Sesión</li>\r\n        <li><a *ngIf=\"!user\" (click)=\"displayLoginForm()\"><i class=\"material-icons\">&#xE853;</i> Inicial sesión</a></li>\r\n        <li><a *ngIf=\"user\" (click)=\"logout()\"><i class=\"material-icons\">&#xE8AC;</i> Cerrar sesión</a></li>\r\n        <!--<li><a routerLink=\"/login\" routerLinkActive=\"active\"><i class=\"material-icons\">&#xE853;</i> Inicial sesión</a></li>\r\n        <li><a routerLink=\"/login\" (click)=\"logout()\"><i class=\"material-icons\">&#xE8AC;</i> Cerrar sesión</a></li>-->\r\n\r\n      </ul>\r\n    </nav>\r\n  </header>\r\n\r\n\r\n  <router-outlet></router-outlet>\r\n\r\n  <div id=\"ds-spinner\" class=\"start-spinning\">\r\n    <div class=\"spinner-wrapper\">\r\n      <!-- <div class=\"spinner spinner-circle\"></div> -->\r\n      <div class=\"spinner spinner-radiocero\"></div>\r\n    </div>\r\n  </div>\r\n\r\n  <notification></notification>\r\n\r\n  <login *ngIf=\"!user\"></login>\r\n\r\n</body>\r\n\r\n</html>"
 
 /***/ },
 
 /***/ 670:
 /***/ function(module, exports) {
 
-module.exports = "<section id=\"section_users\" class=\"page\">\r\n  <div class=\"content-card\">\r\n    <nav class=\"card-nav\">\r\n      <ul>\r\n        <li>\r\n          <button (click)=\"navigateTo('currentWinnersList')\" class=\"nav-button\">Ganadores Actuales</button>\r\n        </li>\r\n        <li>\r\n          <button (click)=\"navigateTo('winnersList')\" class=\"nav-button\">Todos los Ganadores</button>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <div class=\"content-forms\">\r\n\r\n      <div id=\"card-users-list\" class=\"content-form\" [style.display]=\"visible_tab == 'currentWinnersList' ? 'inherit' : 'none'\">\r\n        <h2>Premios sin entregar</h2>\r\n\r\n        <ul class=\"list\">\r\n          <li *ngFor=\"let item of winner_prize_list\" class=\"list-item\">\r\n            <div>\r\n              <!--<span class=\"data-label\">Ganador:</span>-->\r\n              <span class=\"data-name\">{{item.w.Name}} {{item.w.Lastname}}</span>\r\n              <span class=\"data-ci\"> {{item.w.Ci}}</span>\r\n              <span class=\"data-label\">Premio:</span>\r\n              <span class=\"data-description\">{{item.p.Description}}</span>\r\n              <span class=\"data-type\"> {{item.p.Type}} <i> - {{item.p.Sponsor}}</i></span>\r\n              <div class=\"data-dates\">\r\n                <span class=\"data-label\">Ganó el:</span>\r\n                <span class=\"data-date\">{{item.grantedDate}}</span>\r\n              </div>\r\n              <div class=\"list-actions\">\r\n                <button (click)=\"handOverPrize(item.w.CiRaw, item.p.Id)\" type=\"button\" class=\"btn-ok btn-hand-over-prize\">Entregado</button>\r\n                <button (click)=\"cancelHandOverPrize()\" type=\"button\" class=\"btn-cancel btn-cancel-hand-over-prize\">Cancelar</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n\r\n\r\n      <div id=\"card-new-user\" class=\"content-form\" [style.display]=\"visible_tab == 'winnersList' ? 'inherit' : 'none'\">\r\n\r\n        <h2>Buscar ganadores</h2>\r\n\r\n        <div class=\"search-bar\">\r\n          <svg fill=\"#F58500\" height=\"40\" viewBox=\"-9 -9 40 40\" width=\"40\" xmlns=\"http://www.w3.org/2000/svg\">\r\n            <path d=\"M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z\"\r\n            />\r\n            <path d=\"M0 0h24v24H0z\" fill=\"none\" />\r\n          </svg>\r\n          <input class=\"borderless\" (keyup)=\"searchWinner($event)\" type=\"text\" placeholder=\"Ingresa tu búsqueda\">\r\n        </div>\r\n\r\n        <ul class=\"list\">\r\n          <li *ngFor=\"let winner of winners_list_filter\" class=\"list-item list-item-clickable\">\r\n            <div (click)=\"displayWinnerInfo(winner.Id)\">\r\n              <div *ngIf=\"winner_to_display !== winner.Id\">\r\n                <span class=\"data-name\">{{winner.Name}} {{winner.Lastname}}</span>\r\n                <span class=\"data-ci\">{{winner.Ci}}</span>\r\n              </div>\r\n              <div *ngIf=\"winner_to_display === winner.Id\">\r\n                <label>Nombre</label>\r\n                <span class=\"data-input-name\">{{winner.Name}} {{winner.Lastname}}</span>\r\n                <label>C.I.</label>\r\n                <span class=\"data-input-ci\">{{winner.Ci}}</span>\r\n                <label *ngIf=\"winner.Mail\">Email</label>\r\n                <span class=\"data-input-mail\">{{winner.Mail}}</span>\r\n                <label *ngIf=\"winner.Phone\">Teléfono</label>\r\n                <span class=\"data-input-mhone\">{{winner.Phone}}</span>\r\n                <label *ngIf=\"winner.Facebook\">Perfil de Facebook</label>\r\n                <span class=\"data-input-facebook\">{{winner.Facebook}}</span>\r\n                <label *ngIf=\"winner.StrSetDate\">Usuario creado el:</label>\r\n                <span class=\"data-input-setDate\">{{winner.StrSetDate}}</span>\r\n                <label *ngIf=\"winner.StrUpdateDate\">Ultima modificación</label>\r\n                <span class=\"data-input-editDate\">{{winner.StrUpdateDate}}</span>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>"
+module.exports = "<section id=\"section_login\" class=\"page\">\r\n  <div class=\"content-card\">\r\n    <div class=\"content-forms\">\r\n\r\n      <div class=\"content-form\">\r\n        <img src=\"assets/img/icon_192.png\" alt=\"Logo de Radiocero 104.3\">\r\n        <h2>Radiocero Premios <i>v0.4.2</i></h2>\r\n        <div>\r\n          <p>Aplicación realizada para: <a href=\"http://www.radiocero.com.uy/\" target=\"_blank\">Radiocero 104.3 FM</a></p>\r\n          <p>Autor: <a href=\"http://www.danielsosa.uy/dev#contact\" target=\"_blank\">Daniel Sosa</a></p>\r\n          <p>Año: 2016</p>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>"
 
 /***/ },
 
-/***/ 689:
+/***/ 671:
+/***/ function(module, exports) {
+
+module.exports = "<div class=\"login-background\">\r\n\r\n  <img class=\"header\" src=\"assets/img/icon_48.png\" alt=\"Icono Radiocero\" />\r\n  \r\n  <div class=\"login-modal\">\r\n\r\n\r\n    <h2>Iniciar sesión</h2>\r\n\r\n    <form id=\"form-login\" (ngSubmit)=\"onSubmit()\" #loginForm=\"ngForm\">\r\n\r\n      <label for=\"userName\">Nombre de usuario *</label>\r\n      <input [(ngModel)]=\"userName\" name=\"userName\" id=\"userName\" placeholder=\"Nombre de usuario\" required>\r\n\r\n      <label for=\"password\">Contraseña *</label>\r\n      <input [(ngModel)]=\"password\" name=\"password\" id=\"password\" type=\"password\" placeholder=\"Contraseña\" required>\r\n\r\n      <button (click)=\"login()\" type=\"submit\" class=\"btn-ok\" id=\"btn-sub-login\">Iniciar sesión</button>\r\n\r\n    </form>\r\n  </div>\r\n</div>"
+
+/***/ },
+
+/***/ 672:
+/***/ function(module, exports) {
+
+module.exports = "<div id=\"notif-wrapper\">\r\n\r\n  <div *ngFor=\"let notif of notif_stack; let i = index\" class=\"notif {{notif.type}}\">\r\n    <button *ngIf(!notif.timeOut) class=\"dismiss-notif\" (click)=\"dismissNotif(i)\">&#x2716;</button>\r\n    <span *ngIf(notif.timeOut) class=\"time-out\">{{notif.timer}}</span>\r\n    <span class=\"title\">\r\n      {{notif.title}}\r\n    </span>\r\n    <p class=\"message\">\r\n      {{notif.message}}\r\n    </p>\r\n  </div>\r\n\r\n</div>"
+
+/***/ },
+
+/***/ 673:
+/***/ function(module, exports) {
+
+module.exports = "<section id=\"section_pizes\" class=\"page\">\r\n  <div class=\"content-card\">\r\n\r\n    <nav class=\"card-nav\">\r\n      <ul>\r\n        <li><button (click)=\"navigateTo('prizesList')\" [class]=\"visible_tab == 'prizesList' ? 'nav-button active-tab' : 'nav-button'\">Premios Vigentes</button></li>\r\n      </ul>\r\n      <ul>\r\n        <li><button (click)=\"navigateTo('prizesListAll')\" [class]=\"visible_tab == 'prizesListAll' ? 'nav-button active-tab' : 'nav-button'\">Todos los Premios</button></li>\r\n      </ul>\r\n      <ul>\r\n        <li><button (click)=\"navigateTo('newPrize')\" [class]=\"visible_tab == 'newPrize' ? 'nav-button active-tab' : 'nav-button'\">Nuevo Premio</button></li>\r\n      </ul>\r\n    </nav>\r\n\r\n    <div class=\"content-forms\">\r\n\r\n      <!--Current Prizes-->\r\n      <div id=\"card-prizes-list\" class=\"content-form\" [style.display]=\"(visible_tab == 'prizesList') ? 'inherit' : 'none'\">\r\n        <h2>Lista de Premios</h2>\r\n        <ul id=\"ul-list-prizes\" class=\"list\">\r\n          <li class=\"list-item\" *ngFor=\"let prize of prizes_list | currentOnly ; let i = index\" [title]=\"display_actions === i ? 'Click para contraer' : 'Click para expandir'\">\r\n            <div (click)=\"displayActions(i)\">\r\n              <span *ngIf=\"!prize.periodic\" class=\"data-stock\">{{prize.Stock}}</span>\r\n              <span *ngIf=\"prize.periodic\" class=\"data-periodic\">&#8734;</span>\r\n              <span class=\"data-description\">{{prize.Description}}</span>\r\n              <span class=\"data-type\">{{prize.Type}}<i class=\"data-sponsor\"> - {{prize.Sponsor}}</i></span>\r\n              <div *ngIf=\"display_actions === i\" class=\"list-actions\">\r\n                <span *ngIf=\"prize.note\" class=\"data-notes\">Notas: {{prize.note}}</span>\r\n                <div class=\"data-dates\"><span>Premio creado el</span>\r\n                  <span class=\"data-date\">{{prize.StrSetDate}}</span>\r\n                  <div *ngIf=\"prize.due_date\" style=\"display:inline-block\">\r\n                    <span> vence el </span>\r\n                    <span class=\"data-date\">{{prize.StrDueDate}}</span>\r\n                  </div>\r\n                </div>\r\n                <button (click)=\"displayGrantPrizeForm(prize)\" type=\"button\" class=\"btn-ok btn-grant-prize\">Otorgar</button>\r\n                <!--<button (click)=\"displayEditPrizeForm(prize)\" type=\"button\" class=\"btn-cancel btn-edit-prize\">Editar</button>-->\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n\r\n      <!--All Prizes-->\r\n      <div id=\"card-prizes-list\" class=\"content-form\" [style.display]=\"(visible_tab == 'prizesListAll') ? 'inherit' : 'none'\">\r\n        <h2>Lista de Premios</h2>\r\n        <ul id=\"ul-list-prizes\" class=\"list\">\r\n          <li class=\"list-item\" *ngFor=\"let prize of prizes_list; let i = index\" [title]=\"display_actions_full_list === i ? 'Click para contraer' : 'Click para expandir'\">\r\n            <div (click)=\"displayActionsFullList(i)\">\r\n              <span *ngIf=\"!prize.periodic\" class=\"data-stock\">{{prize.Stock}}</span>\r\n              <span *ngIf=\"prize.periodic\" class=\"data-periodic\">&#8734;</span>\r\n              <span class=\"data-description\">{{prize.Description}}</span>\r\n              <span class=\"data-type\">{{prize.Type}}<i class=\"data-sponsor\"> - {{prize.Sponsor}}</i></span>\r\n              <div *ngIf=\"display_actions_full_list === i\" class=\"list-actions\">\r\n                <span *ngIf=\"prize.note\" class=\"data-notes\">Notas: {{prize.note}}</span>\r\n                <div class=\"data-dates\"><span>Premio creado el</span>\r\n                  <span class=\"data-date\">{{prize.StrSetDate}}</span>\r\n                  <div *ngIf=\"prize.due_date\" style=\"display:inline-block\">\r\n                    <span> vence el </span>\r\n                    <span class=\"data-date\">{{prize.StrDueDate}}</span>\r\n                  </div>\r\n                </div>\r\n                <button (click)=\"displayEditPrizeForm(prize)\" type=\"button\" class=\"btn-cancel btn-edit-prize\">Editar</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n\r\n      <!--Grant Prize Form-->\r\n      <div class=\"content-form\" [style.display]=\"visible_tab == 'newPrize' ? 'inherit' : 'none'\">\r\n        <h2>Nuevo Premio</h2>\r\n\r\n        <!--<pre class=\"form-data-preview\">{{newPrizeInputs}}</pre>-->\r\n\r\n        <form (ngSubmit)=\"onSubmit()\" #newPrizeForm=\"ngForm\">\r\n\r\n          <label>Tipo de premio *</label>\r\n          <input [(ngModel)]=\"new_prize.type\" name=\"type\" list=\"types_list\" placeholder=\"Tipo de premio\" required>\r\n          <datalist id=\"types_list\">\r\n            <option *ngFor=\"let type of prizes_type_list\" value=\"{{type}}\">\r\n          </datalist>\r\n\r\n          <label>Descripción *</label>\r\n          <input [(ngModel)]=\"new_prize.description\" name=\"description\" placeholder=\"Descripción\" required>\r\n\r\n          <label>Espónsor *</label>\r\n          <input [(ngModel)]=\"new_prize.sponsor\" name=\"sponsor\" list=\"sponsors_list\" placeholder=\"Espónsor\" required>\r\n          <datalist id=\"sponsors_list\">\r\n            <option *ngFor=\"let type of prizes_sponsor_list\" value=\"{{type}}\">\r\n          </datalist>\r\n\r\n          <label>Periódico</label>\r\n          <label class=\"checkbox\" for=\"periodic\">Este premio se entregará periódicamente</label>\r\n          <input class=\"checkbox\" type=\"checkbox\" [(ngModel)]=\"new_prize.periodic\" name=\"periodic\" id=\"periodic\">\r\n\r\n          <label>Stock</label>\r\n          <input type=\"number\" [(ngModel)]=\"new_prize.stock\" name=\"stock\" placeholder=\"Stock inicial\" min=\"0\" [disabled]=\"new_prize.periodic\">\r\n\r\n          <label>Vencimiento</label>\r\n          <input type=\"date\" name=\"due_date\" (input)=\"inputDate($event)\">\r\n\r\n          <label>Notas</label>\r\n          <input [(ngModel)]=\"new_prize.note\" name=\"note\" placeholder=\"Comentarios sobre el premio\">\r\n\r\n          <button (click)=\"newPrize($event); newPrizeForm.reset()\" type=\"submit\" class=\"btn-ok\" [disabled]=\"!newPrizeForm.form.valid\">Crear</button>\r\n          <button (click)=\"newPrizeForm.reset()\" class=\"btn-cancel\">Cancelar</button>\r\n\r\n        </form>\r\n\r\n      </div>\r\n\r\n      <!--Grant Prize Form-->\r\n      <div *ngIf=\"prize\" class=\"floating\">\r\n        <div class=\"wrapper\">\r\n          <form (ngSubmit)=\"onSubmit()\" #grantPrizeForm=\"ngForm\">\r\n\r\n            <h2>Otorgar premio</h2>\r\n\r\n            <h3 id=\"prize-to-grant-description\">{{prize.Description}}</h3>\r\n            <h4 id=\"prize-to-grant-type\">{{prize.Type}}</h4>\r\n\r\n            <!--<pre class=\"form-data-preview\">{{inputValues}}</pre>-->\r\n\r\n            <label>C.I. *</label>\r\n            <input [(ngModel)]=\"winner.ci\" (keyup)=\"checkWinnerCi(ci_input.value)\" #ci_input name=\"ci\" id=\"ci\" placeholder=\"CI sin puntos ni guiones\"\r\n              pattern=\"^\\d{7,8}$\" required>\r\n\r\n              <label>Nombre *</label>\r\n              <input [(ngModel)]=\"winner.name\" class=\"input-inline\" name=\"name\" id=\"name\" placeholder=\"Nombre\" required>\r\n              <input [(ngModel)]=\"winner.lastname\" class=\"input-inline\" name=\"lastname\" id=\"lastname\" placeholder=\"Apellido\" required>\r\n\r\n              <label>Sexo</label>\r\n              <select [(ngModel)]=\"winner.gender\" name=\"gender\" id=\"gender\" title=\"Seleccione sexo\">\r\n                <option value=\"F\">Femenino</option>\r\n                <option value=\"M\">Masculino</option>\r\n                <option value=\"O\">Otro</option>\r\n              </select>\r\n\r\n              <label>Perfil de Facebook</label>\r\n              <input [(ngModel)]=\"winner.facebook\" name=\"facebook\" id=\"facebook\" placeholder=\"https://es-la.facebook.com/nombre.usuario\">\r\n\r\n              <label>Teléfono</label>\r\n              <input [(ngModel)]=\"winner.phone\" name=\"phone\" id=\"phone\" placeholder=\"099000111\">\r\n\r\n              <label>Email</label>\r\n              <input [(ngModel)]=\"winner.mail\" name=\"mail\" id=\"mail\" placeholder=\"usuario@dominio.com\">\r\n\r\n              <button (click)=\"grantPrize($event); grantPrizeForm.reset()\" type=\"submit\" class=\"btn-ok\" [disabled]=\"!grantPrizeForm.form.valid\">Otorgar</button>\r\n              <button (click)=\"destroyGrantPrizeForm($event)\" class=\"btn-cancel\">Cancelar</button>\r\n\r\n          </form>\r\n        </div>\r\n      </div>\r\n\r\n      <!--Edit Prize Form-->\r\n      <div *ngIf=\"prize_to_edit\" class=\"floating\">\r\n        <div class=\"wrapper\">\r\n          <form (ngSubmit)=\"onSubmit()\" #editPrizeForm=\"ngForm\">\r\n\r\n            <h2>Editar premio</h2>\r\n\r\n            <!--<pre class=\"form-data-preview\">{{editPrizeInputValues}}</pre>-->\r\n\r\n            <label>Tipo de premio *</label>\r\n            <input [(ngModel)]=\"prize_to_edit.type\" name=\"type\" list=\"types_list\" placeholder=\"Tipo de premio\" required>\r\n            <datalist id=\"types_list\">\r\n              <option *ngFor=\"let type of prizes_type_list\" value=\"{{type}}\">\r\n            </datalist>\r\n\r\n            <label>Descripción *</label>\r\n            <input [(ngModel)]=\"prize_to_edit.description\" name=\"description\" placeholder=\"Descripción\" required>\r\n\r\n            <label>Espónsor *</label>\r\n            <input [(ngModel)]=\"prize_to_edit.sponsor\" name=\"sponsor\" list=\"sponsors_list\" placeholder=\"Espónsor\" required>\r\n            <datalist id=\"sponsors_list\">\r\n              <option *ngFor=\"let type of prizes_sponsor_list\" value=\"{{type}}\">\r\n            </datalist>\r\n\r\n            <label>Periódico</label>\r\n            <label class=\"checkbox\" for=\"periodic\">Este premio se entregará periódicamente</label>\r\n            <input class=\"checkbox\" type=\"checkbox\" [(ngModel)]=\"prize_to_edit.periodic\" name=\"periodic\" id=\"periodic\" checked=\"prize_to_edit.periodic\">\r\n\r\n            <label>Stock *</label>\r\n            <input type=\"number\" [(ngModel)]=\"prize_to_edit.stock\" name=\"stock\" placeholder=\"Stock inicial\" min=\"0\" [disabled]=\"prize_to_edit.periodic\">\r\n\r\n            <label>Vencimiento</label>\r\n            <input type=\"date\" [value]=\"prize_to_edit.DateToSetInput\" name=\"due_date\" (input)=\"inputNewDate($event.target.value)\">\r\n\r\n            <label>Notas</label>\r\n            <textarea [(ngModel)]=\"prize_to_edit.note\" name=\"note\" placeholder=\"Comentarios sobre el premio\"></textarea>\r\n\r\n            <button (click)=\"editPrize($event); editPrizeForm.reset()\" type=\"submit\" class=\"btn-ok\" [disabled]=\"!editPrizeForm.form.valid\">Guardar</button>\r\n            <button (click)=\"destroyEditPrizeForm($event)\" class=\"btn-cancel\">Cancelar</button>\r\n\r\n          </form>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>"
+
+/***/ },
+
+/***/ 674:
+/***/ function(module, exports) {
+
+module.exports = "<section id=\"section_users\" class=\"page\">\r\n  <div class=\"content-card\">\r\n    <nav class=\"card-nav\">\r\n      <ul>\r\n        <li>\r\n          <button (click)=\"navigateTo('usersList')\" [class]=\"visible_tab == 'usersList' ? 'nav-button active-tab' : 'nav-button'\">Lista de Usuarios</button>\r\n        </li>\r\n        <li>\r\n          <button (click)=\"navigateTo('newUser')\" [class]=\"visible_tab == 'newUser' ? 'nav-button active-tab' : 'nav-button'\">Nuevo Usuario</button>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <div class=\"content-forms\">\r\n\r\n      <div id=\"card-users-list\" class=\"content-form\" [style.display]=\"visible_tab == 'usersList' ? 'inherit' : 'none'\">\r\n        <h2>Lista de Usuarios</h2>\r\n\r\n        <!--Users List-->\r\n        <ul id=\"ul-list-users\" class=\"list\">\r\n          <li class=\"list-item\" *ngFor=\"let user of users_list\">\r\n            <span class=\"item-avatar\">{{user.Name.slice(0,1)}}</span>\r\n            <div class=\"item-data\">\r\n              <span class=\"data-name\">{{user.Name}}</span>\r\n              <span class=\"data-right\">\r\n                  <span class=\"data-role\">{{user.Role}}</span>\r\n              <small> creado el </small>\r\n              <span class=\"data-set_date\">{{user.StrDate}}</span>\r\n              </span>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n\r\n\r\n      <div id=\"card-new-user\" class=\"content-form\" [style.display]=\"visible_tab == 'newUser' ? 'inherit' : 'none'\">\r\n\r\n        <h2>Nuevo Usuario</h2>\r\n\r\n        <form id=\"form-new-user\" (ngSubmit)=\"onSubmit()\" #userForm=\"ngForm\">\r\n\r\n          <label for=\"name\">Nombre de usuario *</label>\r\n          <input [(ngModel)]=\"user.name\" name=\"name\" id=\"name\" placeholder=\"Nombre sin espacios\"  pattern=\"\\S+\" autocomplete=\"off\" required>\r\n\r\n          <label for=\"password\">Contraseña *</label>\r\n          <input [(ngModel)]=\"user.password\" #password=\"ngModel\" name=\"password\" id=\"password\" type=\"password\" placeholder=\"Contraseña\" autocomplete=\"off\" required>\r\n\r\n          <label for=\"password2\">Repetir contraseña *</label>\r\n          <input [(ngModel)]=\"user.password2\" name=\"password2\" id=\"password2\" type=\"password\" placeholder=\"Repetir contraseña\" validateEqual=\"password\" autocomplete=\"off\" required>\r\n\r\n          <label for=\"role\">Permisos *</label>\r\n          <select [(ngModel)]=\"user.role\" id=\"role\" name=\"role\" required>\r\n            <option value=\"admin\">Administrador</option>\r\n            <option value=\"user\" selected>Usuario</option>\r\n          </select>\r\n\r\n          <label for=\"email\">Email</label>\r\n          <input [(ngModel)]=\"user.email\" id=\"email\" name=\"email\" placeholder=\"Email\" pattern=\"\\S+@\\S+\\.\\S+\">\r\n\r\n          <button (click)=\"newUser($event); userForm.reset()\" type=\"submit\" class=\"btn-ok\" [disabled]=\"!userForm.form.valid\">Crear</button>\r\n          <button (click)=\"userForm.reset()\" class=\"btn-cancel\" id=\"btn-cancel-sub-new-user\">Cancelar</button>\r\n\r\n        </form>\r\n\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>"
+
+/***/ },
+
+/***/ 675:
+/***/ function(module, exports) {
+
+module.exports = "<section id=\"section_users\" class=\"page\">\r\n  <div class=\"content-card\">\r\n    <nav class=\"card-nav\">\r\n      <ul>\r\n        <li>\r\n          <button (click)=\"navigateTo('currentWinnersList')\" [class]=\"visible_tab == 'currentWinnersList' ? 'nav-button active-tab' : 'nav-button'\">Ganadores Actuales</button>\r\n        </li>\r\n        <li>\r\n          <button (click)=\"navigateTo('winnersList')\" [class]=\"visible_tab == 'winnersList' ? 'nav-button active-tab' : 'nav-button'\">Todos los Ganadores</button>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <div class=\"content-forms\">\r\n\r\n      <div id=\"card-users-list\" class=\"content-form\" [style.display]=\"visible_tab == 'currentWinnersList' ? 'inherit' : 'none'\">\r\n        <h2>Premios sin entregar</h2>\r\n\r\n        <div class=\"search-bar\">\r\n          <svg fill=\"#F58500\" height=\"40\" viewBox=\"-9 -9 40 40\" width=\"40\" xmlns=\"http://www.w3.org/2000/svg\">\r\n            <path d=\"M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z\"\r\n            />\r\n            <path d=\"M0 0h24v24H0z\" fill=\"none\" />\r\n          </svg>\r\n          <input class=\"borderless\" (keyup)=\"searchWinnerItem($event)\" type=\"text\" placeholder=\"Ingresa tu búsqueda\">\r\n        </div>\r\n\r\n        <ul class=\"list\">\r\n          <li (click)=\"displayWinnerItemInfo(i)\" *ngFor=\"let item of winner_prize_list | filterWinnersSearch:query ; let i = index\" class=\"list-item list-item-clickable\">\r\n            <div>\r\n              <!--<span class=\"data-label\">Ganador:</span>-->\r\n              <span class=\"data-name\">{{item.w.Name}} {{item.w.Lastname}}</span>\r\n              <span class=\"data-ci\"> {{item.w.Ci}}</span>\r\n              <div *ngIf=\"winner_item_to_display === i\" class=\"list-actions\">\r\n                <span class=\"data-label\">Premio:</span>\r\n                <span class=\"data-description\">{{item.p.Description}}</span>\r\n                <span class=\"data-type\"> {{item.p.Type}} <i> - {{item.p.Sponsor}}</i></span>\r\n                <div class=\"data-dates\">\r\n                  <span class=\"data-label\">Ganó el:</span>\r\n                  <span class=\"data-date\">{{item.grantedDate}}</span>\r\n                </div>\r\n                <button (click)=\"handOverPrize(item.w.CiRaw, item.p.Id)\" type=\"button\" class=\"btn-ok btn-hand-over-prize\">Entregado</button>\r\n                <button (click)=\"cancelHandOverPrize()\" type=\"button\" class=\"btn-cancel btn-cancel-hand-over-prize\">Cancelar</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n\r\n\r\n      <div id=\"card-new-user\" class=\"content-form\" [style.display]=\"visible_tab == 'winnersList' ? 'inherit' : 'none'\">\r\n\r\n        <h2>Buscar ganadores</h2>\r\n\r\n        <div class=\"search-bar\">\r\n          <svg fill=\"#F58500\" height=\"40\" viewBox=\"-9 -9 40 40\" width=\"40\" xmlns=\"http://www.w3.org/2000/svg\">\r\n            <path d=\"M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z\"\r\n            />\r\n            <path d=\"M0 0h24v24H0z\" fill=\"none\" />\r\n          </svg>\r\n          <input class=\"borderless\" (keyup)=\"searchWinner($event)\" type=\"text\" placeholder=\"Ingresa tu búsqueda\">\r\n        </div>\r\n\r\n        <ul class=\"list\">\r\n          <li (click)=\"displayWinnerInfo(i)\" *ngFor=\"let winner of winners_list_filter; let i = index\" class=\"list-item list-item-clickable\">\r\n            <div>\r\n              <span class=\"data-name\">{{winner.Name}} {{winner.Lastname}}</span>\r\n              <span class=\"data-ci\">{{winner.Ci}}</span>\r\n              <div *ngIf=\"winner_to_display === i\">\r\n                <label *ngIf=\"winner.Mail\">Email</label>\r\n                <span class=\"data-input-mail\">{{winner.Mail}}</span>\r\n                <label *ngIf=\"winner.Phone\">Teléfono</label>\r\n                <span class=\"data-input-mhone\">{{winner.Phone}}</span>\r\n                <label *ngIf=\"winner.Facebook\">Perfil de Facebook</label>\r\n                <span class=\"data-input-facebook\">{{winner.Facebook}}</span>\r\n                <label *ngIf=\"winner.StrSetDate\">Usuario creado el:</label>\r\n                <span class=\"data-input-setDate\">{{winner.StrSetDate}}</span>\r\n                <label *ngIf=\"winner.StrUpdateDate\">Ultima modificación</label>\r\n                <span class=\"data-input-editDate\">{{winner.StrUpdateDate}}</span>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>"
+
+/***/ },
+
+/***/ 694:
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(382);
+module.exports = __webpack_require__(383);
 
 
 /***/ }
 
-},[689]);
+},[694]);
 //# sourceMappingURL=main.bundle.map

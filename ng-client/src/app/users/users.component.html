@@ -3,10 +3,10 @@
     <nav class="card-nav">
       <ul>
         <li>
-          <button (click)="navigateTo('usersList')" class="nav-button">Lista de Usuarios</button>
+          <button (click)="navigateTo('usersList')" [class]="visible_tab == 'usersList' ? 'nav-button active-tab' : 'nav-button'">Lista de Usuarios</button>
         </li>
         <li>
-          <button (click)="navigateTo('newUser')" class="nav-button">Nuevo Usuario</button>
+          <button (click)="navigateTo('newUser')" [class]="visible_tab == 'newUser' ? 'nav-button active-tab' : 'nav-button'">Nuevo Usuario</button>
         </li>
       </ul>
     </nav>

@@ -1,25 +1,47 @@
 # Radiocero Premios Angular2 Client Changelog
 v?.?.?
-  00000000 | TODO | Enable periodic prizes creation
-  00000000 | TODO | Handed prizes actions (cancel)
-  00000000 | TODO | Add prizes to all winners list items
-  00000000 | TODO | Winners edition functionality
-  00000000 | TODO | Current winners list action Cancel
-  00000000 | TODO | When winner exist autofill winner data in the granting form
-  00000000 | TODO | Export winners list (.pdf)
-  00000000 | TODO | Vouchers generation
-  00000000 | TODO | Improve the use of ng forms all over
-  00000000 | TODO | Add actions to notification component ???
+  00000000 | T | Add prizes to all winners list items
+  00000000 | T | Winners edition functionality
+  00000000 | T | Users editing functionality
+  00000000 | T | Handed prizes actions (cancel)
+  00000000 | T | Current winners list action Cancel
+  00000000 | T | When winner exist autofill winner data in the granting form
+  00000000 | T | Export winners list (.pdf)
+  00000000 | T | Vouchers generation
+  00000000 | T | Add actions to notification component ???
+  00000000 | T | Improve the use of ng forms all over
+v0.4.2
+  20170209 | + | Improved tabs and pages UI. Active page/tab are now highlighted
+  20170209 | + | Added prizes full list
+  20170208 | + | Added search functionality to current winners list
+  20170208 | + | Improvements to UX, the items in the current winners list no longer auto-expands, and now it only shows basic info when not expanded
+  20170207 | + | Prizes editing is now fully working
+  20170207 | + | Improvements to UX, the items in the prizes list no longer auto-expands, and now it only shows basic info when not expanded
+  20170207 | F2 | Improvements to UX, editing and grant forms are now fixed
+  20170207 | F1 | The problem was ckecking for !values on non parsed values
+  20170207 | F6 | Prizes.service.fetchPrizes() has to be called
+  20170202 | F8 | There was a problem with the parameters checking on backend
+  20170202 | B8 | Prize creation not fully working
+  20170202 | F4 | The call to Prize.edit() was not passing the parámeter periodic
+  20170202 | + | Added notes display to prizes list
+  20170202 | + | Improved stock counter on prizes list UI, now it also displays infinity if prize is periodic
+  20170201 | F7 | At instantiation, new Prizes were getting assigned a string instead of a boolean on the attribute <periodic>
+  20170201 | B7 | The prizes are rendered with the periodic checkbox checked
+  20170201 | B6 | At prize granting the list is not updated
+  20170131 | F5 | When the prizes were read from the database and had not info for the <periodic> parameter, the Prize instantiation failed
+  20170131 | B5 | Prizes granting is not working
+  20170131 | B4 | Prizes editing is not working
+  20170131 | + | Adding the periodic prize type
 v0.4.1
   20170130 | + | Added current winners list styles
   20170130 | + | Added winners list items styles
-  20170130 | BUG | Shut down autofill can't be done due to a security "enhancement" of the modern browsers
-  20170130 | BUG | When editing a prize if it is too down below the list the edition form won't appear on screen until scroll up
-  20170130 | BUG | When editing a prize there are fields filled with null or undefined values
+  20170130 | B3 | Shut down autofill can't be done due to a security "enhancement" of modern browsers
+  20170130 | B2 | When editing a prize if it is too down below the list the edition form won't appear on screen until scroll up
+  20170130 | B1 | When editing a prize there are fields filled with null or undefined values
 v0.4.0
-  20170127 | REFACTORING | NotificationService is now globally provided in app.module.ts
+  20170127 | R | NotificationService is now globally provided in app.module.ts
   20170127 | + | Updated all notifications to use the improved notification service
-  20170127 | REFACTORING | Moved Observable's subscriptions from the service to the served component to allow reaction (with the exception of the login, logout and fetch methods)
+  20170127 | R | Moved Observable's subscriptions from the service to the served component to allow reaction (with the exception of the login, logout and fetch methods)
 v0.3.0
   20170126 | + | Greatly improved the login UX
   20170126 | + | Implemented cookie handling with angular2-cookie (npm module)

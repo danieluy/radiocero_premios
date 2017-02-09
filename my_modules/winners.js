@@ -179,7 +179,7 @@ const findByCi = (ci) => {
         return resolve(null);
       })
       .catch((err) => {
-        return reject('ERR_DB - Unable to fetch prizes data - Users module - Returned ERROR: ' + err);
+        return reject('ERR_DB - Unable to fetch prizes data - Winners module - Returned ERROR: ' + err);
       });
   });
 }

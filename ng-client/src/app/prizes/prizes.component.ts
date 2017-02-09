@@ -25,6 +25,8 @@ export class PrizesComponent implements OnInit {
   prizes_list: Prize[];
   prizes_type_list: String[];
   prizes_sponsor_list: String[];
+  display_actions: number;
+  display_actions_full_list: number;
   ngOnInit() {
     this.visible_tab = 'prizesList';
     this.prizesService.prizes$.subscribe(prizes => {
@@ -34,11 +36,17 @@ export class PrizesComponent implements OnInit {
     });
     this.prizesService.fetchPrizes();
     this.winner = new Winner(null, null, null, null, null, null, null, null, null, null, null);
-    this.new_prize = new Prize(null, null, null, null, null, null, null, null, null);
+    this.new_prize = new Prize(null, null, null, null, null, null, null, null, null, null);
   }
   navigateTo(tab: string) {
     this.prizesService.fetchPrizes();
     this.visible_tab = tab;
+  }
+  displayActions(i: number): void {
+    this.display_actions = i === this.display_actions ? undefined : i;
+  }
+  displayActionsFullList(i: number): void {
+    this.display_actions_full_list = i === this.display_actions_full_list ? undefined : i;
   }
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //  New Prize Form  /////////////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +54,11 @@ export class PrizesComponent implements OnInit {
   inputDate(event): void {
     this.new_prize.StrDueDate = event.target.value
   }
-  newPrize() {
+  newPrize(event?: any) {
+    if (event)
+      event.preventDefault();
+    if (this.new_prize.periodic)
+      this.new_prize.stock = null;
     this.prizesService.newPrize(this.new_prize)
       .subscribe(
       ok => {
@@ -56,6 +68,8 @@ export class PrizesComponent implements OnInit {
       error => this.notificationService.error("Error, el premio NO se ha creado", error.json().details)
       );
   }
+  // TODO: Remove this when we're done
+  // get newPrizeInputs(): any { return JSON.stringify(this.new_prize, null, 2) };
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //  Prize Grant Form  ///////////////////////////////////////////////////////////////////////////////////////
   winner: Winner;
@@ -68,12 +82,15 @@ export class PrizesComponent implements OnInit {
       event.preventDefault();
     this.prize = null
   }
-  grantPrize() {
+  grantPrize(event?: any) {
+    if (event)
+      event.preventDefault();
     this.prizesService.grantPrize(this.prize, this.winner)
       .subscribe(
       ok => {
-        this.notificationService.ok("Exito :)", "El premio se ha otorgado correctamente", 3000);
+        this.notificationService.ok("Exito!", "El premio se ha otorgado correctamente", 3000);
         this.destroyGrantPrizeForm();
+        this.prizesService.fetchPrizes();
       },
       error => this.notificationService.error("Error otorgando el premio", error.json().details)
       );
@@ -110,14 +127,18 @@ export class PrizesComponent implements OnInit {
     this.prize_to_edit = null
   }
   inputNewDate(date): void {
-    this.prize_to_edit.StrDueDate = date
+    this.prize_to_edit.StrDueDate = date === '' ? null : date;
   }
-  editPrize() {
+  editPrize(event?: any) {
+    if (event)
+      event.preventDefault();
+    if (this.prize_to_edit.periodic === true)
+      this.prize_to_edit.stock = null;
     this.prizesService.editPrize(this.prize_to_edit)
       .subscribe(
       ok => {
         this.prizesService.fetchPrizes();
-        this.notificationService.ok("Exito :)", "El premio se ha editado correctamente.", 3000);
+        this.notificationService.ok("Exito!", "El premio se ha editado correctamente.", 3000);
         this.destroyEditPrizeForm();
       },
       error => this.notificationService.error("Error editando el premio", error.json().error)

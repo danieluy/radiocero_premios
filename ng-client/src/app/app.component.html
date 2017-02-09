@@ -21,12 +21,20 @@
       <ul class="nav-options">
 
         <li class="menu-title">Usuarios</li>
-        <li><a routerLink="/" routerLinkActive="active" class="ancor"><i class="material-icons">&#xE88A;</i> Inicio</a></li>
-        <li><a routerLink="/winners" routerLinkActive="active" class="ancor"><i class="material-icons">&#xE838;</i> Ganadores</a></li>
-        <li><a routerLink="/prizes" routerLinkActive="active" class="ancor"><i class="material-icons">&#xE838;</i> Premios</a></li>
+        <li [class]="selected_page === 'home' ? 'active-page' : ''">
+          <a routerLink="/" routerLinkActive="active" (click)="setActivePage($event, 'home')" class="ancor"><i class="material-icons">&#xE88A;</i> Inicio</a>
+        </li>
+        <li [class]="selected_page === 'winners' ? 'active-page' : ''">
+          <a routerLink="/winners" routerLinkActive="active" (click)="setActivePage($event, 'winners')" class="ancor"><i class="material-icons">&#xE87C;</i> Ganadores</a>
+        </li>
+        <li [class]="selected_page === 'prizes' ? 'active-page' : ''">
+          <a routerLink="/prizes" routerLinkActive="active" (click)="setActivePage($event, 'prizes')" class="ancor"><i class="material-icons">&#xE838;</i> Premios</a>
+        </li>
 
         <li class="menu-title">Administradores</li>
-        <li><a routerLink="/users" routerLinkActive="active" class="ancor"><i class="material-icons">&#xE7FD;</i> Usuarios</a></li>
+        <li [class]="selected_page === 'users' ? 'active-page' : ''">
+          <a routerLink="/users" routerLinkActive="active" (click)="setActivePage($event, 'users')" class="ancor"><i class="material-icons">&#xE7FD;</i> Usuarios</a>
+        </li>
 
         <li class="menu-title">Sesión</li>
         <li><a *ngIf="!user" (click)="displayLoginForm()"><i class="material-icons">&#xE853;</i> Inicial sesión</a></li>

@@ -54,6 +54,10 @@ ul.nav-options a > i{
 ul.nav-options li a:hover{
   background-color: #CCCCCC;
 }
+ul.nav-options li.active-page > a,
+ul.nav-options li.active-page > a > i{
+  color: #F58500;
+}
 ul.nav-options li.menu-title{
   font-size: .7em;
   font-weight: 500;

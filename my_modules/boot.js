@@ -81,7 +81,7 @@ const checkAdmin = (cb) => {
   Users.findByName('admin')
     .then((user) => {
       if (!user)
-        console.log('Administrator account must be created, please add: --create <password>');
+        console.log('Administrator account must be created, please use: node app --help');
       else
         cb();
     })
