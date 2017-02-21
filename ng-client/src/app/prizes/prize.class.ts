@@ -10,8 +10,9 @@ export class Prize {
   public set_date: number;
   public update_date: number;
   public due_date: number;
+  public total_handed: number;
 
-  constructor(id: string, type: string, sponsor: string, description: string, stock: number, periodic: boolean, note: string, set_date: number, update_date: number, due_date: number) {
+  constructor(id: string, type: string, sponsor: string, description: string, stock: number, periodic: boolean, note: string, set_date: number, update_date: number, due_date: number, total_handed: number) {
     this.id = id;
     this.type = type;
     this.sponsor = sponsor;
@@ -22,6 +23,7 @@ export class Prize {
     this.set_date = set_date;
     this.update_date = update_date;
     this.due_date = due_date;
+    this.total_handed = total_handed || 0;
   }
 
   public get Id(): string {

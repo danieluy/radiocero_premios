@@ -2,12 +2,13 @@
 const express = require('express');
 const api_router = express.Router();
 const bodyParser = require("body-parser");
+const db = require('./db.js');
 const Prizes = require('./prizes.js');
 const Prize = Prizes.Prize;
 const Users = require('./users.js');
 const User = Users.User;
-const Winners = require('./winners.js');
-const Winner = Winners.Winner;
+const Winners = require('./winners.js')(db).Winners;
+const Winner = require('./winners.js')(db).Winner;
 const security = require('./security.js');
 const requireLogin = security.requireLogin;
 const checkRoleAdmin = security.checkRoleAdmin;
@@ -28,7 +29,7 @@ api_router.get('/prizes', (req, res) => {
   Prizes.findAll()
     .then((prizes) => {
       if (prizes)
-        res.status(200).json(prizes.map(prize => prize.getPublicData()));
+        res.status(200).json(prizes.map(prize =>  prize.getPublicData() ));
       else
         res.status(200).json([]);
     })
@@ -46,7 +47,8 @@ api_router.post('/prizes', (req, res) => {
     stock: req.body.stock,
     periodic: req.body.periodic,
     due_date: req.body.due_date,
-    note: req.body.note
+    note: req.body.note,
+    total_handed: req.body.total_handed
   }).save()
     .then((WriteResult) => {
       if (WriteResult.insertedCount > 0) {
@@ -71,18 +73,24 @@ api_router.post('/prizes/edit', checkRoleAdmin, (req, res) => {
           stock: req.body.stock,
           periodic: req.body.periodic,
           due_date: req.body.due_date,
-          note: req.body.note
+          note: req.body.note,
+          total_handed: req.body.total_handed
         })
           .then(WriteResult => {
-            if (WriteResult.nModified > 0) {
+            if (WriteResult.nModified > 0)
               res.status(200).json({ message: 'The prize has been correctly updated' });
-            }
             else
-              res.status(500).json({ error: "There was a problem updating the prize", details: null });
+              res.status(500).json({ error: "There was a problem updating the prize", details: 'WriteResult.nModified < 0' });
+          })
+          .catch(err => {
+            console.error(err.stack ? err.stack : err)
+            res.status(500).json({ error: "There was a problem updating the prize", details: (err.stack ? err.stack : err) });
           })
       }
-      else
+      else {
+        console.error("The prize does not exist");
         res.status(500).json({ error: "The prize does not exist", details: null });
+      }
     })
 });
 
@@ -164,14 +172,14 @@ api_router.post('/winners/findci', (req, res) => {
       if (winner) {
         res.status(200).json({
           winner: {
-            ci: winner.getCi(),
-            name: winner.getName(),
-            lastname: winner.getLastname(),
-            facebook: winner.getFacebook(),
-            gender: winner.getGender(),
-            phone: winner.getPhone(),
-            mail: winner.getMail(),
-            prizes: winner.getPrizes()
+            ci: winner.ci,
+            name: winner.name,
+            lastname: winner.lastname,
+            facebook: winner.facebook,
+            gender: winner.gender,
+            phone: winner.phone,
+            mail: winner.mail,
+            prizes: winner.prizes
           }
         })
       }
@@ -189,36 +197,100 @@ api_router.post('/winners/handprize', (req, res) => {
   let prize_id = req.body.prize_id;
   if (winner_ci && prize_id) {
     Prizes.findById(prize_id)
-      .then((prize) => {
+      .then(prize => {
         if (prize) {
           Winners.findByCi(winner_ci)
             .then((winner) => {
               if (winner) {
                 winner.handOverPrize(prize_id)
-                  .then((WriteResult) => {
+                  .then(WriteResult => {
                     if (WriteResult.nModified > 0) {
                       res.status(200).json({ message: "The prize was correctly handed over" });
                     }
-                    else {
+                    else
                       res.status(500).json({ error: "There was a problem handing over the prize", details: "ERROR [ api-router.js ][ post(/winners/handprize) ][ winner.handOverPrize(" + prize_id + ") ]" });
-                    }
+                  })
+                  .catch(err => {
+                    console.error(500).json({ error: "There was a problem handing over the prize", details: err.stack });
                   })
               }
-              else {
+              else
                 res.status(500).json({ error: "The winner could not be found", details: "ERROR [ api-router.js ][ post(/winners/handprize) ][ Winners.findByCi(" + winner_ci + ") ]" });
-              }
             })
         }
-        else {
+        else
           res.status(500).json({ error: "The prize could not be found", details: "ERROR [ api-router.js ][ post(/winners/handprize) ][ Prizes.findById(" + prize_id + ") ]" });
-        }
       })
       .catch((err) => {
-        res.status(500).json({ error: "There was a problem handing over the prize", details: err.toString() });
+        console.error(err.stack ? err.stack : err);
+        res.status(500).json({ error: "There was a problem handing over the prize", details: (err.stack ? err.stack : err) });
+      })
+  }
+  else
+    res.status(400).json({ error: "Bad request, a winner's ci and prize id must be provided", details: "ERROR [ api-router.js ][ post(/winners/handprize) ]" });
+});
+
+api_router.post('/winners/cancelHandprize', (req, res) => {
+  let winner_ci = req.body.winner_ci;
+  let prize_id = req.body.prize_id;
+  if (winner_ci && prize_id) {
+    Promise.all([
+      Prizes.findById(prize_id),
+      Winners.findByCi(winner_ci)
+    ])
+      .then(res_array => {
+        const prize = res_array[0];
+        const winner = res_array[1];
+        if (prize) {
+          if (winner) {
+            const original_prize_stock = prize.stock;
+            const original_winner_prizes = winner.prizes;
+            Promise.all([
+              prize.stockIncrease(1),
+              winner.deletePrize(prize_id)
+            ])
+              .then(writeResults_array => {
+                const WriteResult_prize = writeResults_array[0];
+                const WriteResult_winner = writeResults_array[1];
+                if (WriteResult_prize.nModified > 0 && WriteResult_winner.nModified > 0)
+                  res.status(200).json({ message: "The prize was correctly returned" });
+                else {
+                  prize.stock = original_prize_stock;
+                  winner.prizes = original_winner_prizes;
+                  Promise.all([
+                    prize.update(),
+                    winner.update()
+                  ])
+                    .then(writeResults_array => {
+                      const WriteResult_prize = writeResults_array[0];
+                      const WriteResult_winner = writeResults_array[1];
+                      if (WriteResult_prize.nModified > 0 && WriteResult_winner.nModified > 0)
+                        res.status(500).json({ message: "There was a problem returning the prize and no changes have been made" });
+                      else
+                        res.status(500).json({ message: `There was a problem returning the prize and some data may be corrupted. The original prize stock value was ${original_prize_stock}, please check that it remains to be` });
+                    })
+                    .catch()
+                  res.status(500).json({ error: "There was a problem returning the prize", details: "ERROR [ api-router.js ][ post(/winners/cancelHandprize) ][ winner.deletePrize(" + prize_id + ") ]" });
+                }
+              })
+              .catch(err => {
+                console.error(err);
+                res.status(500).json({ error: "There was a problem returning the prize", details: err.toString() });
+              })
+          }
+          else
+            res.status(500).json({ error: "The winner could not be found", details: "ERROR [ api-router.js ][ post(/winners/cancelHandprize) ][ Winners.findByCi(" + winner_ci + ") ]" });
+        }
+        else
+          res.status(500).json({ error: "The prize could not be found", details: "ERROR [ api-router.js ][ post(/winners/cancelHandprize) ][ Prizes.findById(" + prize_id + ") ]" });
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: "There was a problem returning the prize", details: err.toString() });
       })
   }
   else {
-    res.status(400).json({ error: "Bad request, a winner's ci and prize id must be provided", details: "ERROR [ api-router.js ][ post(/winners/handprize) ]" });
+    res.status(400).json({ error: "Bad request, a winner's ci and prize id must be provided", details: "ERROR [ api-router.js ][ post(/winners/cancelHandprize) ]" });
   }
 });
 
@@ -226,11 +298,11 @@ api_router.post('/winners/checkwinner', (req, res) => { //  NEED TO GUARANTEE TH
   Winners.findByCi(req.body.ci)
     .then((winner) => {
       if (winner && winner.hasWonSinceThreeMonths())
-        res.status(200).json({ allowed: false, message: `This person has won in the last three months` });
+        res.status(200).json({ allowed: false, message: `This person has won in the last three months`, winner: null });
       else if (winner && !winner.hasWonSinceThreeMonths())
-        res.status(200).json({ allowed: true, message: `This person is allowed to participate but has already won` });
+        res.status(200).json({ allowed: true, message: `This person is allowed to participate but has already won`, winner: winner.getPublicData() });
       else
-        res.status(200).json({ allowed: true, message: `This person is allowed to participate` });
+        res.status(200).json({ allowed: true, message: `This person is allowed to participate`, winner: null });
     })
     .catch((err) => {
       console.error(err);
@@ -247,7 +319,7 @@ api_router.post('/grantprize', (req, res) => {
           Prizes.findById(req.body.prize_id)
             .then((prize) => {
               if (prize) {
-                if (prize.stock > 0) {
+                if (prize.periodic || prize.stock > 0) {
                   prize.stockDecrease(1)
                     .then((WriteResult) => {
                       if (WriteResult.nModified > 0) {
@@ -258,6 +330,7 @@ api_router.post('/grantprize', (req, res) => {
                             else
                               res.status(500).json({ error: "There was a problem assigning the prize", details: "ERROR [ api-router.js ][ post(/grantprize) ][ existing winner ][ winner.addPrize(" + req.body.prize_id + ") ]" });
                           })
+                          .catch(err => console.error(err))
                       }
                       else
                         res.status(500).json({ error: "There was a problem decreasing the prize's stock", details: "ERROR [ api-router.js ][ post(/grantprize) ][ existing winner ][ stockDecrease(1) ]" });
@@ -269,6 +342,7 @@ api_router.post('/grantprize', (req, res) => {
               else
                 res.status(500).json({ error: "There prize couldn't be found", details: "ERROR [ api-router.js ][ post(/grantprize) ][ existing winner ][ Prizes.findById(" + req.body.prize_id + ") ]" });
             })
+            .catch(err => console.error(err))
         }
         else
           res.status(500).json({ error: "This person has won in the last three months", details: "ERROR [ api-router.js ][ post(/grantprize) ][ existing winner ][ !winner.hasWonSinceThreeMonths() ]" });
@@ -290,23 +364,35 @@ api_router.post('/grantprize', (req, res) => {
               Prizes.findById(req.body.prize_id)
                 .then((prize) => {
                   if (prize) {
-                    if (prize.stock > 0) {
+                    if (prize.periodic || prize.stock > 0) {
                       prize.stockDecrease(1)
-                        .then((WriteResult) => {
+                        .then(WriteResult => {
                           if (WriteResult.nModified > 0) {
                             Winners.findByCi(req.body.ci)
-                              .then((winner) => {
+                              .then(winner => {
                                 winner.addPrize(req.body.prize_id)
                                   .then((WriteResult) => {
                                     if (WriteResult.nModified > 0)
                                       res.status(200).json({ message: 'The prize has been correctly assigned' });
                                     else
-                                      res.status(500).json({ error: "There was a problem assigning the prize", details: "ERROR [ api-router.js ][ post(/winners) ][ !existing winner ][ winner.addPrize(" + req.body.prize_id + ") ]" });
+                                      res.status(500).json({ error: "There was a problem assigning the prize, WriteResult.nModified < 0", details: "ERROR [ api-router.js ][ post(/winners) ][ !existing winner ][ winner.addPrize(" + req.body.prize_id + ") ]" });
                                   })
+                                  .catch(err => {
+                                    console.error(err.stack ? err.stack : err);
+                                    res.status(500).json({ error: "There was a problem assigning the prize", details: (err.stack ? err.stack : err) });
+                                  })
+                              })
+                              .catch(err => {
+                                console.error(err.stack ? err.stack : err);
+                                res.status(500).json({ error: "There was a problem finding the winner", details: (err.stack ? err.stack : err) });
                               })
                           }
                           else
                             res.status(500).json({ error: "There was a problem decreasing the prize's stock", details: "ERROR [ api-router.js ][ post(/winners) ][ !existing winner ][ stockDecrease(1) ]" });
+                        })
+                        .catch(err => {
+                          console.error(err.stack ? err.stack : err);
+                          res.status(500).json({ error: "There was a problem decreasing the prize's stock", details: (err.stack ? err.stack : err) });
                         })
                     }
                     else

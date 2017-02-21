@@ -68,7 +68,7 @@
         </ul>
       </div>
 
-      <!--Grant Prize Form-->
+      <!--New Prize Form-->
       <div class="content-form" [style.display]="visible_tab == 'newPrize' ? 'inherit' : 'none'">
         <h2>Nuevo Premio</h2>
 
@@ -76,14 +76,14 @@
 
         <form (ngSubmit)="onSubmit()" #newPrizeForm="ngForm">
 
+          <label>Descripción *</label>
+          <input [(ngModel)]="new_prize.description" name="description" placeholder="Descripción" required>
+
           <label>Tipo de premio *</label>
           <input [(ngModel)]="new_prize.type" name="type" list="types_list" placeholder="Tipo de premio" required>
           <datalist id="types_list">
             <option *ngFor="let type of prizes_type_list" value="{{type}}">
           </datalist>
-
-          <label>Descripción *</label>
-          <input [(ngModel)]="new_prize.description" name="description" placeholder="Descripción" required>
 
           <label>Espónsor *</label>
           <input [(ngModel)]="new_prize.sponsor" name="sponsor" list="sponsors_list" placeholder="Espónsor" required>

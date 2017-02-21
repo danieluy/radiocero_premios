@@ -20,7 +20,7 @@ export class LoginService {
   public login$ = this.login_source.asObservable();
 
   login(userName: string, password: string): any {
-    return this.http.post(`${Const.APIURL}login`, `userName=${userName}&password=${password}`, { headers: Const.HEADERS.urlencoded(), withCredentials: true })
+    return this.http.post(`${Const.URL}login`, `userName=${userName}&password=${password}`, { headers: Const.HEADERS.urlencoded(), withCredentials: true })
       .map(res => res.json())
       .subscribe(
       res => {
@@ -38,7 +38,7 @@ export class LoginService {
   }
 
   logout() {
-    return this.http.post(`${Const.APIURL}logout`, '', { headers: Const.HEADERS.urlencoded(), withCredentials: true })
+    return this.http.post(`${Const.URL}logout`, '', { headers: Const.HEADERS.urlencoded(), withCredentials: true })
       .subscribe(res => {
         let json_res = JSON.parse(res.text());
         if (json_res.error)

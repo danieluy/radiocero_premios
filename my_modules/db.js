@@ -19,19 +19,19 @@ const insert = (collection, values) => {
   return new Promise((resolve, reject) => {
     mongo.connect(url, (err, db) => {
       if (err)
-      return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
+        return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
       else {
         db.collection(collection)
-        .insert(values)
-        .then((WriteResult) => {
-          let str_result = JSON.stringify(WriteResult);
-          db.close();
-          return resolve(JSON.parse(str_result));
-        })
-        .catch((err) => {
-          db.close();
-          return reject('ERR_DB - There was a problem inserting into the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
-        });
+          .insert(values)
+          .then((WriteResult) => {
+            let str_result = JSON.stringify(WriteResult);
+            db.close();
+            return resolve(JSON.parse(str_result));
+          })
+          .catch((err) => {
+            db.close();
+            return reject('ERR_DB - There was a problem inserting into the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
+          });
       }
     });
   });
@@ -42,24 +42,24 @@ const insert = (collection, values) => {
 */
 const find = (collection, query) => {
   if (!collection)
-    throw "Collection parameter must be provided";
+    throw new Error("Collection parameter must be provided");
   return new Promise(function (resolve, reject) {
     mongo.connect(url, function (err, db) {
       if (err)
-        return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
+        return reject(new Error('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err));
       let key = query ? Object.keys(query)[0] : undefined;
       let regEx = query ? new RegExp(query[key], "i") : undefined;
       db.collection(collection)
-      .find(query ? { [key]: { $regex: regEx } } : {})
-      .toArray()
-      .then((result) => {
-        db.close();
-        return resolve(result);
-      })
-      .catch((err) => {
-        db.close();
-        return reject('ERR_DB - There was a problem querying the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
-      });
+        .find(query ? { [key]: { $regex: regEx } } : {})
+        .toArray()
+        .then((result) => {
+          db.close();
+          return resolve(result);
+        })
+        .catch((err) => {
+          db.close();
+          return reject(new Error('ERR_DB - There was a problem querying the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err));
+        });
     });
   });
 }
@@ -69,23 +69,23 @@ const find = (collection, query) => {
 */
 const findOne = (collection, query) => {
   if (!collection || !query)
-  throw "Collection and query parameters must be provided";
+    throw "Collection and query parameters must be provided";
   return new Promise(function (resolve, reject) {
     mongo.connect(url, function (err, db) {
       if (err)
-      return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
+        return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
       let key = Object.keys(query)[0];
       let regEx = new RegExp('^' + query[key] + '$', "i");
       db.collection(collection)
-      .findOne({ [key]: { $regex: regEx } })
-      .then((result) => {
-        db.close();
-        return resolve(result);
-      })
-      .catch((err) => {
-        db.close();
-        return reject('ERR_DB - There was a problem querying the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
-      });
+        .findOne({ [key]: { $regex: regEx } })
+        .then((result) => {
+          db.close();
+          return resolve(result);
+        })
+        .catch((err) => {
+          db.close();
+          return reject('ERR_DB - There was a problem querying the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
+        });
     });
   });
 }
@@ -95,21 +95,21 @@ const findOne = (collection, query) => {
 */
 const findById = (collection, id) => {
   if (!collection || !id)
-  throw "Collection and id parameters must be provided";
+    throw "Collection and id parameters must be provided";
   return new Promise(function (resolve, reject) {
     mongo.connect(url, function (err, db) {
       if (err)
-      return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
+        return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
       db.collection(collection)
-      .findOne({ _id: ObjectID(id) })
-      .then((result) => {
-        db.close();
-        return resolve(result);
-      })
-      .catch((err) => {
-        db.close();
-        return reject('ERR_DB - There was a problem querying the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
-      });
+        .findOne({ _id: ObjectID(id) })
+        .then((result) => {
+          db.close();
+          return resolve(result);
+        })
+        .catch((err) => {
+          db.close();
+          return reject('ERR_DB - There was a problem querying the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
+        });
     });
   });
 }
@@ -119,23 +119,23 @@ const findById = (collection, id) => {
 */
 const exists = (collection, query) => {
   if (!collection || !query)
-  throw "Collection and Query parameters must be provided";
+    throw "Collection and Query parameters must be provided";
   return new Promise(function (resolve, reject) {
     mongo.connect(url, function (err, db) {
       if (err)
-      return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
+        return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
       let key = Object.keys(query)[0];
       let regEx = new RegExp(("^" + query[key] + "$"), "i");
       db.collection(collection)
-      .findOne({ [key]: { $regex: regEx } })
-      .then((result) => {
-        db.close();
-        return resolve(result ? true : false);
-      })
-      .catch((err) => {
-        db.close();
-        return reject('ERR_DB - There was a problem querying the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
-      })
+        .findOne({ [key]: { $regex: regEx } })
+        .then((result) => {
+          db.close();
+          return resolve(result ? true : false);
+        })
+        .catch((err) => {
+          db.close();
+          return reject('ERR_DB - There was a problem querying the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
+        })
     });
   });
 }
@@ -151,19 +151,19 @@ const update = (collection, query, update) => {
       if (err)
         return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
       let query_key = Object.keys(query)[0];
-      if(query_key === 'id' || query_key === '_id')
+      if (query_key === 'id' || query_key === '_id')
         query = { _id: ObjectID((query[query_key])) }
       db.collection(collection)
-      .update(query, { $set: update })
-      .then((WriteResult) => {
-        let str_result = JSON.stringify(WriteResult);
-        db.close();
-        return resolve(JSON.parse(str_result));
-      })
-      .catch((err) => {
-        db.close();
-        return reject('ERR_DB - There was a problem updating a document of the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
-      });
+        .update(query, { $set: update })
+        .then((WriteResult) => {
+          let str_result = JSON.stringify(WriteResult);
+          db.close();
+          return resolve(JSON.parse(str_result));
+        })
+        .catch((err) => {
+          db.close();
+          return reject('ERR_DB - There was a problem updating a document of the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
+        });
     });
   });
 }

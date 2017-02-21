@@ -21,7 +21,7 @@ export class UsersService {
   constructor(private http: Http, private notificationService: NotificationService) { }
 
   fetchUsers() {
-    this.http.get(`${Const.APIURL}api/users`, { withCredentials: true })
+    this.http.get(`${Const.APIURL}users`, { withCredentials: true })
       .map(res => res.json().map(u => new User(u.id, u.userName, u.email, u.set_date, u.role)))
       .subscribe(
       users => this.users_source.next(users),
@@ -30,7 +30,7 @@ export class UsersService {
   }
 
   newUser(user: User): Observable<any> {
-    return this.http.post(`${Const.APIURL}api/users`, `name=${user.name}&password=${user.password}&role=${user.role}&email=${user.email}`, { headers: Const.HEADERS.urlencoded(), withCredentials: true })
+    return this.http.post(`${Const.APIURL}users`, `name=${user.name}&password=${user.password}&role=${user.role}&email=${user.email}`, { headers: Const.HEADERS.urlencoded(), withCredentials: true })
       .map(res => res.json())
   }
 

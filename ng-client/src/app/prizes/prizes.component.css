@@ -16,7 +16,7 @@
 }
 .list-item{
   list-style-type: none;
-  padding: 20px 0px;
+  padding: 10px 0px;
   border-top: 1px solid #eee;
   cursor: pointer;
 }

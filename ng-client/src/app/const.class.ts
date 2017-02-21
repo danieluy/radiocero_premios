@@ -6,7 +6,8 @@ export class Const {
   constructor() { }
 
   // public static APIURL: string = 'http://localhost:1043/';
-  public static APIURL: string = `http://${window.location.hostname}:1043/`;
+  public static URL: string = `http://${window.location.hostname}:1043/`;
+  public static APIURL: string = `http://${window.location.hostname}:1043/api/`;
 
 
 
@@ -23,6 +24,6 @@ export class Const {
     }
   }
 
-  public static WINNING_MIN_PERIOD = 6;
+  public static WINNING_MIN_PERIOD = 3;
 
 }

@@ -4,12 +4,7 @@ const db = require('./db.js');
 
 const Prize = function (prize_info) {
 
-  if (!prize_info.type || !prize_info.sponsor || !prize_info.description)
-    throw 'ERROR: To create a new prize, "type", "sponsor" and "description" parameters must be provided';
-  if ((isNaN(parseInt(prize_info.stock)) || parseInt(prize_info.stock) < 0) && prize_info.periodic === false)
-    throw 'ERROR: The stock value must be an integer >= 0';
-  if (prize_info.due_date && new Date(prize_info.due_date).getTime() === NaN)
-    throw 'ERROR: Invalid date format for due date. Required format "yyyy/MM/dd"';
+  checkInputData(prize_info);
 
   // Properties
   let id = prize_info.id;
@@ -76,46 +71,55 @@ const Prize = function (prize_info) {
   }
 
   const edit = (values) => {
-    if (values.type)
-      type = values.type;
-    if (values.sponsor)
-      sponsor = values.sponsor;
-    if (values.description)
-      description = values.description;
-    if (values.stock)
-      stock = values.stock;
-    if (values.periodic)
-      periodic = values.periodic;
-    if (values.due_date)
-      due_date = values.due_date;
-    if (values.note)
-      note = values.note;
-    if (values.total_handed)
-      total_handed = values.total_handed;
+    checkInputData(values);
+    type = values.type;
+    sponsor = values.sponsor;
+    description = values.description;
+    stock = values.stock;
+    periodic = values.periodic;
+    due_date = values.due_date;
+    note = values.note;
+    total_handed = values.total_handed;
     return update();
   }
 
-  const stockUpdate = (value) => {
-    let intVal = parseInt(value);
-    if (!value || isNaN(intVal))
-      throw "ERROR: The stock's modifier value must be a integer - Prizes.js module stockUpdate()";
-    if (stock + intVal < 0)
-      throw "ERROR: The stock's modifier value was greater than the current stock - Prizes.js module stockUpdate()";
-    stock += intVal;
-    total_handed -= intVal;
+  const stockUpdate = (stock_val, handed_val) => {
+    let int_stock_val = parseInt(stock_val);
+    let int_handed_val = parseInt(handed_val);
+    if (!stock_val || isNaN(int_stock_val))
+      throw new Error("The stock's modifier stock_val must be a integer");
+    if (!handed_val || isNaN(int_handed_val))
+      throw new Error("The total_handed modifier handed_val must be a integer");
+    if (stock + int_stock_val < 0)
+      throw new Error("The stock's modifier stock_val was greater than the current stock");
+    if (total_handed + int_handed_val < 0)
+      throw new Error("The substraction of the provided value handed_val would result in a negative total_handed value");
+    if (stock)
+      stock += int_stock_val;
+    total_handed -= int_stock_val;
     return update();
   }
 
   const stockIncrease = (val) => {
     if (!val || isNaN(parseInt(val)) || parseInt(val) <= 0)
-      throw "ERROR: The stock's modifier value must be a integer > 0 - Prizes.js module stockIncrease()";
-    return stockUpdate(Math.abs(val))
+      throw new Error("The stock's modifier value must be a integer > 0");
+    let modifier = Math.abs(val);
+    if (!this.periodic) {
+      return stockUpdate(modifier, modifier)
+    }
+    else
+      return stockUpdate(0, modifier)
   }
 
   const stockDecrease = (val) => {
     if (!val || isNaN(parseInt(val)) || parseInt(val) <= 0)
-      throw "ERROR: The stock's modifier value must be a integer > 0 - Prizes.js module stockDecrease()";
-    return stockUpdate(Math.abs(val) * -1)
+      throw new Error("The stock's modifier value must be a integer > 0");
+    let modifier = Math.abs(val) * -1;
+    if (!this.periodic) {
+      return stockUpdate(modifier, modifier)
+    }
+    else
+      return stockUpdate(0, modifier)
   }
 
   const getPublicData = () => {
@@ -145,6 +149,37 @@ const Prize = function (prize_info) {
     getId: () => id,
     getStock: () => stock
   }
+}
+
+const checkInputData = (prize_info) => {
+  if (!prize_info.type || !prize_info.sponsor || !prize_info.description)
+    throw new Error('ERROR: To create a new prize, "type", "sponsor" and "description" parameters must be provided');
+
+  if (prize_info.periodic === null || prize_info.periodic === undefined)
+    throw new Error('ERROR: To create a new prize the "periodic: boolean" parameter must be provided');
+  else {
+    if (prize_info.periodic !== true && prize_info.periodic !== false)
+      prize_info.periodic = prize_info.periodic === 'true' ? true : false;
+    prize_info.stock = prize_info.periodic === true ? null : parseInt(prize_info.stock);
+  }
+
+  if (prize_info.stock && (isNaN(prize_info.stock) || prize_info.stock < 0))
+    throw new Error('ERROR: The stock value must be an integer >= 0');
+
+  if (prize_info.due_date && new Date(prize_info.due_date).getTime() === NaN)
+    throw new Error('ERROR: Invalid date format for due_date. Required format "yyyy/MM/dd"');
+  else if (prize_info.due_date)
+    prize_info.due_date = new Date(prize_info.due_date).getTime();
+
+  if (prize_info.update_date && new Date(prize_info.update_date).getTime() === NaN)
+    throw new Error('ERROR: Invalid date format for update_date. Required format "yyyy/MM/dd"');
+  else if (prize_info.update_date)
+    prize_info.update_date = new Date(prize_info.update_date).getTime();
+
+  if (prize_info.set_date && new Date(prize_info.set_date).getTime() === NaN)
+    throw new Error('ERROR: Invalid date format for set_date. Required format "yyyy/MM/dd"');
+  else if (prize_info.set_date)
+    prize_info.set_date = new Date(prize_info.set_date).getTime();
 }
 
 const findById = (id) => {

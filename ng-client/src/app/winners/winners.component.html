@@ -39,7 +39,7 @@
                   <span class="data-date">{{item.grantedDate}}</span>
                 </div>
                 <button (click)="handOverPrize(item.w.CiRaw, item.p.Id)" type="button" class="btn-ok btn-hand-over-prize">Entregado</button>
-                <button (click)="cancelHandOverPrize()" type="button" class="btn-cancel btn-cancel-hand-over-prize">Cancelar</button>
+                <button (click)="cancelHandOverPrize(item.w.CiRaw, item.p.Id)" type="button" class="btn-cancel btn-cancel-hand-over-prize">Cancelar</button>
               </div>
             </div>
           </li>

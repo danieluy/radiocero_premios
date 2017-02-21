@@ -21,19 +21,18 @@ export class PrizesService {
   constructor(private http: Http, private notificationService: NotificationService) { }
 
   fetchPrizes(): void {
-    this.http.get(`${Const.APIURL}api/prizes`, { withCredentials: true })
-      .map(res => res.json().map(p => new Prize(p.id, p.type, p.sponsor, p.description, p.stock, p.periodic, p.note, p.set_date, p.update_date, p.due_date)))
+    this.http.get(`${Const.APIURL}prizes`, { withCredentials: true })
+      .map(res => res.json().map(p => new Prize(p.id, p.type, p.sponsor, p.description, p.stock, p.periodic, p.note, p.set_date, p.update_date, p.due_date, p.total_handed) ))
       .subscribe(
-      prizes => this.prizes_source.next(prizes),
+      prizes => { this.prizes_source.next(prizes) },
       error => {
-        console.log(error);
-        this.notificationService.error("Error descargando los premios", error.json().details);
-      }
-      );
+        this.notificationService.error("Error descargando los premios", (error.stack ? error.stack : error));
+        console.error(error.stack ? error.stack : error);
+      });
   }
 
   newPrize(prize: Prize): Observable<any> {
-    return this.http.post(`${Const.APIURL}api/prizes`, this.newPrizeComposeParameters(prize), { headers: Const.HEADERS.urlencoded(), withCredentials: true })
+    return this.http.post(`${Const.APIURL}prizes`, this.newPrizeComposeParameters(prize), { headers: Const.HEADERS.urlencoded(), withCredentials: true })
       .map(res => res.json())
   }
   newPrizeComposeParameters(prize: Prize): string {
@@ -45,12 +44,11 @@ export class PrizesService {
   }
 
   editPrize(prize: Prize): Observable<any> {
-    console.log('editPrize', prize);
-    return this.http.post(`${Const.APIURL}api/prizes/edit`, this.editPrizeComposeParameters(prize), { headers: Const.HEADERS.urlencoded(), withCredentials: true })
+    return this.http.post(`${Const.APIURL}prizes/edit`, this.editPrizeComposeParameters(prize), { headers: Const.HEADERS.urlencoded(), withCredentials: true })
       .map(res => res.json())
   }
   editPrizeComposeParameters(prize: Prize): string {
-    let params: string = `id=${prize.id}&type=${prize.type}&sponsor=${prize.sponsor}&description=${prize.description}&periodic=${prize.periodic}`;
+    let params: string = `id=${prize.id}&type=${prize.type}&sponsor=${prize.sponsor}&description=${prize.description}&periodic=${prize.periodic}&total_handed=${prize.total_handed}`;
     if (prize.stock) params += `&stock=${prize.stock}`;
     if (prize.due_date) params += `&due_date=${prize.StrDueDateToPost}`;
     if (prize.note) params += `&note=${prize.note}`;;
@@ -58,8 +56,7 @@ export class PrizesService {
   }
 
   grantPrize(prize: Prize, winner: Winner): Observable<any> {
-    console.log(prize, winner)
-    return this.http.post(`${Const.APIURL}api/grantprize`, this.grantPrizeComposeParameters(prize, winner), { headers: Const.HEADERS.urlencoded(), withCredentials: true })
+    return this.http.post(`${Const.APIURL}grantprize`, this.grantPrizeComposeParameters(prize, winner), { headers: Const.HEADERS.urlencoded(), withCredentials: true })
       .map(res => res.json())
   }
   grantPrizeComposeParameters(prize: Prize, winner: Winner): string {

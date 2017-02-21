@@ -36,7 +36,7 @@ export class PrizesComponent implements OnInit {
     });
     this.prizesService.fetchPrizes();
     this.winner = new Winner(null, null, null, null, null, null, null, null, null, null, null);
-    this.new_prize = new Prize(null, null, null, null, null, null, null, null, null, null);
+    this.new_prize = new Prize(null, null, null, null, null, null, null, null, null, null, null);
   }
   navigateTo(tab: string) {
     this.prizesService.fetchPrizes();
@@ -71,7 +71,7 @@ export class PrizesComponent implements OnInit {
   // TODO: Remove this when we're done
   // get newPrizeInputs(): any { return JSON.stringify(this.new_prize, null, 2) };
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //  Prize Grant Form  ///////////////////////////////////////////////////////////////////////////////////////
+  //  Grant Prize Form  ///////////////////////////////////////////////////////////////////////////////////////
   winner: Winner;
   prize: Prize;
   displayGrantPrizeForm(prize: Prize) {
@@ -99,10 +99,22 @@ export class PrizesComponent implements OnInit {
     if (this.validateCi(ci)) {
       this.winnersService.checkWinnerCi(ci)
         .subscribe(
-        ok => {
-          if (ok.allowed && ok.message === 'This person is allowed to participate but has already won')
+        res => {
+          if (res.allowed && res.message === 'This person is allowed to participate but has already won') {
+            this.winner.id = res.winner.id;
+            this.winner.ci = res.winner.ci;
+            this.winner.name = res.winner.name;
+            this.winner.lastname = res.winner.lastname;
+            this.winner.facebook = res.winner.facebook;
+            this.winner.gender = res.winner.gender;
+            this.winner.phone = res.winner.phone;
+            this.winner.mail = res.winner.mail;
+            this.winner.prizes = res.winner.prizes;
+            this.winner.set_date = res.winner.set_date;
+            this.winner.update_date = res.winner.update_date;
             this.notificationService.alert('Persona habilitada', 'Ganó hace más de 3 meses', 6000);
-          else if (ok.allowed)
+          }
+          else if (res.allowed)
             this.notificationService.ok('Persona habilitada', "No hay registro de que haya participado anteriormente", 3000);
           else {
             this.prize = null;

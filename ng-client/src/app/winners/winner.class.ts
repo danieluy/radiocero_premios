@@ -1,16 +1,16 @@
 export class Winner {
 
   public id: string;
-  private ci: string;
+  public ci: string;
   public name: string;
   public lastname: string;
   public facebook: string;
-  private gender: string;
+  public gender: string;
   public phone: string;
   public mail: string;
   public prizes: Array<any>;
-  private set_date: number;
-  private update_date: number;
+  public set_date: number;
+  public update_date: number;
 
   constructor(id: string, ci: string, name: string, lastname: string, facebook: string, gender: string, phone: string, mail: string, prizes: Array<any>, set_date: number, update_date: number) {
     this.id = id;
@@ -99,12 +99,12 @@ export class Winner {
     return false;
   }
 
-  private dateToString(date: number): string {
+  public dateToString(date: number): string {
     let aux: Date = new Date(date);
     return aux.getDate() + '/' + (aux.getMonth() + 1) + '/' + aux.getUTCFullYear();
   }
 
-  private escapeString(txt: string): string {
+  public escapeString(txt: string): string {
     return txt.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
   }
 

@@ -73,9 +73,14 @@ export class WinnersComponent implements OnInit {
       );
   }
 
-  cancelHandOverPrize(): void {
-    // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-    console.log('cancelHandOverPrize() was called');
+  cancelHandOverPrize(winner_ci: string, prize_id: string): void {
+    this.winnersService.cancelHandOverPrize(winner_ci, prize_id)
+      .subscribe(
+      res => {
+        this.winnersService.fetchWinners();
+        this.notificationService.ok("Exito", "El premio se a devuelto correctamente", 3000)
+      },
+      error =>  this.notificationService.error("Error, el premio NO ha sido devuelto", error._body) )
   }
 
   searchWinner(e: any): void {

@@ -1,10 +1,11 @@
 {
   "name": "radiocero_premios",
-  "version": "v0.7.0",
+  "version": "v0.7.1",
   "description": "Aplicación de gestión de premios a la audiencia. Radiocero 104.3",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "mocha --timeout 2000"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,8 @@
     "express": "^4.13.3",
     "ip": "^1.1.4",
     "mongodb": "^2.1.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
   }
 }

@@ -139,7 +139,7 @@
 
     function findByCi(ci){
         Winners.findByCi(ci)
-        .then(w => console.log(w.getName(), w.getLastname(), w.getFacebook()))
+        .then(w => console.log(w.name, w.lastname, w.facebook))
         .catch(err => console.log(err));
     }
     // findByCi('1234561');
