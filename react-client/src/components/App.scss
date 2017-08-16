@@ -1,0 +1,22 @@
+$primary-color: #F58500;
+
+html{
+  font-size: 16px;
+  font-weight: 300;
+  font-family: Roboto, sans-serif;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import './app-content/AppContent'
+
+/*@media screen and (max-width: 1200px){ }*/
+
+/*@media screen and (max-width: 960px){ }*/
+
+/*@media screen and (max-width: 768px){ }*/
+
+/*@media screen and (max-width: 480px){ }*/

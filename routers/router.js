@@ -2,8 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require("body-parser");
-const security = require('./security');
-const headers = require('./headers.js');
+const security = require('../my_modules/security');
+const headers = require('../my_modules/headers.js');
 const path = require('path');
 
 // Body parser
@@ -20,6 +20,10 @@ router.use(headers.writeCORS);
 
 //  home  //////////////////////////////////////////////////////////////////////
 router.get('/', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../public/index.html'))
+});
+
+router.get('/v2', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../public/index.html'))
 });
 
