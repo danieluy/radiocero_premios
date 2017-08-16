@@ -10,11 +10,12 @@
   "author": "Daniel Sosa <danielsosa.dev@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.16.2",
     "lodash": "^4.17.4",
     "material-ui": "^0.19.0",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "request": "^2.81.0",
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",

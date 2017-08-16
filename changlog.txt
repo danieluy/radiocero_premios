@@ -7,6 +7,9 @@
   00000000 | T | Change administrator password, or allow it to be changed from UI
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
+v2.0.0
+  20170816 | P | Solved comunication with server
+  20170816 | P | Started front end rewrite on React
 v0.7.1
   #Deployed
   20170217 | F4 | the problem was the total un-implementation of the total_handed attribute :\

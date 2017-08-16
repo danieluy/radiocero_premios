@@ -41,6 +41,7 @@ router.get('/winners', (req, res) => {
 
 //  login  /////////////////////////////////////////////////////////////////////
 router.post('/login', (req, res) => {
+  console.log('req.body', req.body)
   security.login(req.body.userName, req.body.password)
     .then((user) => {
       if (user) {

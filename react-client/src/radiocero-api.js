@@ -1,10 +1,17 @@
-import axios from 'axios'
+const superagent = require('superagent');
 
-function test() {
-  return axios.post('http://192.168.5.6:1043/login', {
-    userName: 'admin',
-    password: 'Rmc12242008'
+
+
+function login() {
+  return new Promise((resolve, reject) => {
+    superagent.post('http://localhost:1043/login')
+      .type('form')
+      .send({ userName: 'admin', password: 'Rmc12242008' })
+      .end((err, res) => {
+        if (err) reject(err)
+        else resolve(res.body)
+      });
   })
 }
 
-export { test }
+export { login }

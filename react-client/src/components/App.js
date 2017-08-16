@@ -7,10 +7,10 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Navbar from './navbar/Navbar';
 import AppContent from './app-content/AppContent';
 
-import { test } from '../radiocero-api'
+import { login } from '../radiocero-api'
 
-test()
-  .then(res => { console.log(test) })
+login()
+  .then(res => { console.log(res) })
   .catch(err => { console.error(err) })
 
 const muiTheme = getMuiTheme({
