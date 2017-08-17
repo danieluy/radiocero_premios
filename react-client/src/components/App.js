@@ -7,11 +7,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Navbar from './navbar/Navbar';
 import AppContent from './app-content/AppContent';
 
-import { login } from '../radiocero-api'
-
-login()
-  .then(res => { console.log(res) })
-  .catch(err => { console.error(err) })
+import session from '../session'
+import events from '../events'
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -26,11 +23,23 @@ class App extends Component {
       window: {
         height: window.innerHeight,
         width: window.innerWidth
-      }
+      },
+      loggedUser: null
     }
   }
   componentWillMount() {
     window.addEventListener('resize', _.debounce(this.updateWindowDimensions.bind(this), 100))
+  }
+  componentDidMount() {
+    events.on('exception', (data) => {
+      console.error(data.message)
+    })
+    events.on('login', (data) => {
+      this.setState({
+        loggedUser: data
+      })
+    })
+    session.init()
   }
   updateWindowDimensions() {
     this.setState({
@@ -44,7 +53,9 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="app-wrapper" style={{ height: `${this.state.window.height}px` }}>
-          <Navbar />
+          <Navbar
+            loggedUser={this.state.loggedUser}
+          />
           <AppContent height={this.state.window.height - 64} />
         </div>
       </MuiThemeProvider >
