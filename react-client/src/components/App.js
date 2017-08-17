@@ -50,6 +50,7 @@ class App extends Component {
     })
   }
   render() {
+    console.log('Logged user:', this.state.loggedUser)
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="app-wrapper" style={{ height: `${this.state.window.height}px` }}>

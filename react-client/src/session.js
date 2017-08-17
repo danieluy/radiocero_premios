@@ -3,24 +3,25 @@ import events from './events'
 
 const session = {
   init: function () {
-    const localUser = getLocalUser()
-    if (localUser.err)
-      events.emit('exception', { message: localUser.err.message, err: localUser.err })
-    else if (localUser.user)
-      this.login(localUser.userName, localUser.password)
-    else
-      events.emit('login', null)
+    console.log('localUser',  (getLocalUser()).user)
   },
   login: function (userName, password) {
     login(userName, password)
-      .then(user => { events.emit('login', user) })
+      .then(user => {
+        if (!user)
+          events.emit('alert', { message: 'Error de usuario o contraseña' })
+        else {
+          setLocalUser(user)
+          events.emit('login', user)
+        }
+      })
       .catch(err => { events.emit('exception', { message: localUser.err.message, err: localUser.err }) })
   }
 }
 
 function getLocalUser() {
   try {
-    const user = window.localStorage.getItem('user')
+    const user = JSON.parse(window.localStorage.getItem('user'))
     return { err: null, user: user }
   }
   catch (err) {

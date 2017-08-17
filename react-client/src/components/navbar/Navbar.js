@@ -15,9 +15,9 @@ class Navbar extends Component {
       openLogin: false,
       loginForm: {
         userName: null,
-        userNameError: null,
+        userNameMessage: null,
         password: null,
-        passwordError: null
+        passwordMessage: null
       }
     }
   }
@@ -35,16 +35,33 @@ class Navbar extends Component {
   setInputUserName(evt) {
     const formData = this.state.loginForm
     formData.userName = evt.target.value
+    formData.userNameMessage = null
     this.setState({ loginForm: formData })
   }
   setInputPassword(evt) {
     const formData = this.state.loginForm
     formData.password = evt.target.value
+    formData.passwordMessage = null
     this.setState({ loginForm: formData })
   }
   login() {
-    session.login(this.state.loginForm.userName, this.state.loginForm.password)
-    this.openCloseLogin()
+    const formData = this.state.loginForm
+    if (!formData.userName || formData.userName === '')
+      formData.userNameMessage = 'Este campo es obligatorio'
+    if (!formData.password || formData.password === '')
+      formData.passwordMessage = 'Este campo es obligatorio'
+    if (formData.userNameMessage || formData.passwordMessage)
+      this.setState({
+        loginForm: formData
+      })
+    else {
+      session.login(formData.userName, formData.password)
+      this.openCloseLogin()
+    }
+  }
+  handleKeyPress(evt) {
+    if (evt.key === 'Enter')
+      this.login()
   }
   render() {
     return (
@@ -61,20 +78,24 @@ class Navbar extends Component {
         >
           <TextField
             hintText="Ingresa tu nombre de usuario"
-            errorText={this.state.loginForm.userNameError}
+            errorText={this.state.loginForm.userNameMessage}
             floatingLabelText="Usuario"
             onChange={this.setInputUserName.bind(this)}
+            onKeyPress={this.handleKeyPress.bind(this)}
+          //onKeyPress={this.handleKeyPress.bind(this)}
           />
           <br />
           <TextField
             hintText="Ingresa tu contraseña"
-            errorText={this.state.loginForm.userNameError}
+            errorText={this.state.loginForm.passwordMessage}
             floatingLabelText="Contraseña"
             onChange={this.setInputPassword.bind(this)}
+            onKeyPress={this.handleKeyPress.bind(this)}
+            //onKeyPress={this.handleKeyPress.bind(this)}
             type="password"
           />
           <br />
-          <RaisedButton onClick={this.login.bind(this)} label="Login" primary={true} />
+          <RaisedButton onClick={this.login.bind(this)} label="Entrar" primary={true} />
         </Dialog>
       </div>
     )
