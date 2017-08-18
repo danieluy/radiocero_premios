@@ -11,7 +11,17 @@ html{
   box-sizing: border-box;
 }
 
-@import './app-content/AppContent'
+@import './drawer/Drawer';
+
+.app-routes{
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+
+  .app-container{
+    width: 1200px;
+  }
+}
 
 /*@media screen and (max-width: 1200px){ }*/
 

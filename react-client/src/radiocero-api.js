@@ -6,7 +6,7 @@ function login(userName, password) {
   if (!userName || !password)
     throw new Error('Username and Password must be provided')
   return new Promise((resolve, reject) => {
-    superagent.post('http://localhost:1043/login')
+    superagent.post('http://localhost:1043/v2/login')
       .type('form')
       .send({ userName, password })
       .end((err, res) => {
@@ -21,7 +21,7 @@ function login(userName, password) {
 }
 function logout() {
   return new Promise((resolve, reject) => {
-    superagent.post('http://localhost:1043/logout')
+    superagent.post('http://localhost:1043/v2/logout')
       .end((err, res) => {
         if (err)
           reject(err)
@@ -31,4 +31,18 @@ function logout() {
   })
 }
 
-export { login, logout }
+function getUsers() {
+  return new Promise((resolve, reject) => {
+    superagent.get('http://localhost:1043/api/users')
+      .end((err, res) => {
+        if (err && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
+
+export { login, logout, getUsers }

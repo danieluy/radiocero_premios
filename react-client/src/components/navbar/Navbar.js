@@ -75,7 +75,7 @@ class Navbar extends Component {
       this.openCloseLogin()
     }
   }
-  logout(){
+  logout() {
     session.logout()
   }
   handleKeyPress(evt) {
@@ -88,6 +88,7 @@ class Navbar extends Component {
         <AppBar
           title="Radiocero Premios v2"
           iconElementRight={this.checkLoggedUser.call(this)}
+          onLeftIconButtonTouchTap={this.props.toggleDrawer}
         />
         <Dialog
           title="Iniciar Sesión"

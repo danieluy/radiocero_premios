@@ -7,6 +7,7 @@ const app = express();
 const server = require('http').createServer(app);
 const router = require('./routers/router.js');
 const api_router = require('./routers/api-router.js');
+const v2_router = require('./routers/v2-router.js');
 const fs = require('fs');
 const config = require('./config.json');
 const sessions = require('client-sessions');
@@ -49,6 +50,7 @@ app.use(sessions({
 }));
 // Routing
 app.use('/', router);
+app.use('/v2', v2_router);
 app.use('/api', api_router);
 ////////////////////////////////////////////////////////////////////////////////
 //  Server  ////////////////////////////////////////////////////////////////////

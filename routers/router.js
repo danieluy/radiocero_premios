@@ -23,8 +23,8 @@ router.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../public/index.html'))
 });
 
-router.get('/v2', (req, res) => {
-  res.status(200).sendFile(path.join(__dirname, '../public/index.html'))
+router.get('/v2/*', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../public/v2/index.html'))
 });
 
 router.get('/users', (req, res) => {

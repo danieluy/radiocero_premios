@@ -8,6 +8,9 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
+  20170818 | P | Added basic Users section
+  20170818 | P | Added react-router v4
+  20170818 | P | Added v2-router for /v2/* routes
   20170818 | P | Added working login/logout functionality
 v2.0.0
   20170816 | P | Solved comunication with server
