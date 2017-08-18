@@ -19,5 +19,16 @@ function login(userName, password) {
       });
   })
 }
+function logout() {
+  return new Promise((resolve, reject) => {
+    superagent.post('http://localhost:1043/logout')
+      .end((err, res) => {
+        if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
 
-export { login }
+export { login, logout }

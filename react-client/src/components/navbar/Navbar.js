@@ -7,6 +7,10 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import MenuItem from 'material-ui/MenuItem';
 
 class Navbar extends Component {
   constructor() {
@@ -23,9 +27,21 @@ class Navbar extends Component {
   }
   checkLoggedUser() {
     if (this.props.loggedUser)
-      return <FlatButton label="Logout" />
+      return (
+        // <FlatButton label="Cerrar Sesión">
+        //   {this.props.loggedUser.userName}
+        // </FlatButton>
+        <IconMenu
+          iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+          targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+        >
+          <MenuItem primaryText={this.props.loggedUser.userName} style={{ fontWeight: '700' }} />
+          <MenuItem onClick={this.logout} primaryText="Cerrar Sesión" />
+        </IconMenu>
+      )
     else
-      return <FlatButton onClick={this.openCloseLogin.bind(this)} label="Login" />
+      return <FlatButton onClick={this.openCloseLogin.bind(this)} label="Iniciar Sesión" />
   }
   openCloseLogin() {
     this.setState({
@@ -58,6 +74,9 @@ class Navbar extends Component {
       session.login(formData.userName, formData.password)
       this.openCloseLogin()
     }
+  }
+  logout(){
+    session.logout()
   }
   handleKeyPress(evt) {
     if (evt.key === 'Enter')

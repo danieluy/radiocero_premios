@@ -24,22 +24,21 @@ class App extends Component {
         height: window.innerHeight,
         width: window.innerWidth
       },
-      loggedUser: null
+      loggedUser: session.getLocalUser()
     }
   }
   componentWillMount() {
     window.addEventListener('resize', _.debounce(this.updateWindowDimensions.bind(this), 100))
   }
   componentDidMount() {
-    events.on('exception', (data) => {
-      console.error(data.message)
+    events.on('exception', (err) => {
+      console.error(err)
     })
     events.on('login', (data) => {
       this.setState({
         loggedUser: data
       })
     })
-    session.init()
   }
   updateWindowDimensions() {
     this.setState({

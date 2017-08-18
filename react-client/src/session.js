@@ -1,42 +1,48 @@
-import { login } from './radiocero-api'
+import { login as serverLogin, logout as serverLogout } from './radiocero-api'
 import events from './events'
+import db from './db'
 
-const session = {
-  init: function () {
-    console.log('localUser',  (getLocalUser()).user)
-  },
-  login: function (userName, password) {
-    login(userName, password)
-      .then(user => {
-        if (!user)
-          events.emit('alert', { message: 'Error de usuario o contraseña' })
-        else {
-          setLocalUser(user)
-          events.emit('login', user)
-        }
-      })
-      .catch(err => { events.emit('exception', { message: localUser.err.message, err: localUser.err }) })
-  }
+function login(userName, password) {
+  serverLogin(userName, password)
+    .then(user => {
+      if (!user)
+        events.emit('alert', { message: 'Error de usuario o contraseña' })
+      else {
+        setLocalUser(user)
+        events.emit('login', user)
+      }
+    })
+    .catch(err => {
+      events.emit('exception', err)
+    })
 }
-
+function logout() {
+  serverLogout()
+    .then(() => {
+      setLocalUser(null)
+      events.emit('login', null)
+    })
+    .catch(err => {
+      events.emit('exception', err)
+    })
+}
 function getLocalUser() {
-  try {
-    const user = JSON.parse(window.localStorage.getItem('user'))
-    return { err: null, user: user }
-  }
-  catch (err) {
-    return { err }
-  }
+  return (db.get(db.keys.USER)).data
 }
-
 function setLocalUser(user) {
-  try {
-    window.localStorage.setItem('user', user)
-    return { err: null }
-  }
-  catch (err) {
-    return { err }
-  }
+  return db.set(db.keys.USER, user)
+}
+function deleteLocalUser() {
+  return db.set(db.keys.USER, null)
 }
 
-export default session
+export default {
+  login,
+  logout,
+  getLocalUser,
+  setLocalUser
+}
+
+window.getLocalUser = getLocalUser
+window.setLocalUser = setLocalUser
+
