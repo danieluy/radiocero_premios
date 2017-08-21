@@ -13,7 +13,7 @@ function login(userName, password) {
         if (err)
           reject(err)
         else if (res.body.error)
-          resolve(null)
+          reject(res.body.error)
         else
           resolve(res.body.user)
       });

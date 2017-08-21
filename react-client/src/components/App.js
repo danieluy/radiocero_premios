@@ -16,6 +16,7 @@ import events from '../events'
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#F58500',
+    accent1Color: '#0070F5'
   }
 });
 

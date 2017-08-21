@@ -115,6 +115,8 @@ class Navbar extends Component {
             type="password"
           />
           <br />
+          <br />
+          <br />
           <RaisedButton onClick={this.login.bind(this)} label="Entrar" primary={true} />
         </Dialog>
       </div>
