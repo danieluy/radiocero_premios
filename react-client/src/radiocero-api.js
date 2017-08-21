@@ -45,4 +45,25 @@ function getUsers() {
   })
 }
 
-export { login, logout, getUsers }
+function updateUser(user) {
+  return new Promise((resolve, reject) => {
+    superagent.patch('http://localhost:1043/api/users')
+      .type('form')
+      .send(user)
+      .end((err, res) => {
+        if (err && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
+
+export {
+  login,
+  logout,
+  getUsers,
+  updateUser
+}

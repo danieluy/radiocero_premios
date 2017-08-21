@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { updateUser } from '../../radiocero-api'
+
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -11,19 +13,21 @@ class EditUserForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      user: null
+      user: null,
+      editForm: null
     }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.state.user)
       this.setState({
-        user: nextProps.user
+        originalRole: nextProps.user.role,
+        editForm: nextProps.user
       })
   }
   componentDidMount() {
-    if (this.props.user)
+    if (this.props.editForm)
       this.setState({
-        user: {
+        editForm: {
           id: this.props.user.id,
           idMessage: null,
           userName: this.props.user.userName,
@@ -38,60 +42,72 @@ class EditUserForm extends Component {
       })
   }
   updateUserName(e) {
-    const user = this.state.user
-    user.userName = e.target.value
-    user.userNameMessage = null
-    this.setState({ user })
+    const editForm = this.state.editForm
+    editForm.userName = e.target.value
+    editForm.userNameMessage = null
+    this.setState({ editForm })
   }
   updateRole(e, index, value) {
-    const user = this.state.user
-    user.role = value
-    user.roleMessage = null
-    this.setState({ user })
+    const editForm = this.state.editForm
+    editForm.role = value
+    editForm.roleMessage = null
+    this.setState({ editForm })
   }
   updateEmail(e) {
-    const user = this.state.user
-    user.email = e.target.value
-    user.emailMessage = null
-    this.setState({ user })
+    const editForm = this.state.editForm
+    editForm.email = e.target.value
+    editForm.emailMessage = null
+    this.setState({ editForm })
   }
   handleKeyPress(evt) {
     if (evt.key === 'Enter')
       console.log('Enter pressed')
   }
+  editUser() {
+    const editForm = this.state.editForm
+    if (!editForm.userName || editForm.userName === '')
+      editForm.userNameMessage = 'Este campo es obligatorio'
+    if (editForm.email && editForm.userName !== '' && !editForm.email.match(/\S+@\S+\.\S+/))
+      editForm.emailMessage = 'Este campo solo acepta un email'
+    if (editForm.userNameMessage || editForm.emailMessage)
+      this.setState({ editForm })
+    else
+      updateUser(editForm)
+  }
   render() {
-    if (this.state.user)
+    if (this.state.editForm)
       return (
         <Dialog
-          title="Iniciar Sesión"
+          title="Editar Usuario"
           modal={false}
-          open={!!this.state.user}
-          onRequestClose={() => { this.setState({ user: null }) }}
+          open={!!this.state.editForm}
+          onRequestClose={() => { this.setState({ editForm: null }) }}
         >
           <TextField
             hintText="Nombre de usuario"
-            errorText={this.state.userNameMessage}
+            errorText={this.state.editForm.userNameMessage}
             floatingLabelText="Usuario"
-            value={this.state.user.userName}
+            value={this.state.editForm.userName}
             onChange={this.updateUserName.bind(this)}
             onKeyPress={this.handleKeyPress.bind(this)}
           />
           <br />
           <SelectField
             floatingLabelText="Permisos"
-            value={this.state.user.role}
+            value={this.state.editForm.role}
             onChange={this.updateRole.bind(this)}
             errorText={this.state.roleMessage}
+            disabled={this.state.originalRole === 'admin' ? false : true}
           >
             <MenuItem value={'user'} primaryText="Usuario" />
             <MenuItem value={'admin'} primaryText="Administrador" />
           </SelectField>
           <br />
           <TextField
-            hintText="Correo electrónico"
-            errorText={this.state.emailMessage}
+            hintText="nombre@dominio.com.uy"
+            errorText={this.state.editForm.emailMessage}
             floatingLabelText="Email"
-            value={this.state.user.email}
+            value={this.state.editForm.email || ''}
             onChange={this.updateEmail.bind(this)}
             onKeyPress={this.handleKeyPress.bind(this)}
           />
@@ -99,12 +115,16 @@ class EditUserForm extends Component {
           <br />
           <br />
           <RaisedButton
-            //onClick={this.login.bind(this)}
+            onClick={this.editUser.bind(this)}
             label="Guardar"
             primary={true}
           />
+          <RaisedButton
+            onClick={() => { this.setState({ editForm: null }) }}
+            label="Cancelar"
+          />
           <pre>
-            {JSON.stringify(this.state.user, null, 4)}
+            {JSON.stringify(this.state.editForm, null, 4)}
           </pre>
         </Dialog>
       );

@@ -40,4 +40,9 @@ users_router.post('/', checkRoleAdmin, (req, res) => {
     })
 });
 
+users_router.patch('/', checkRoleAdmin, (req, res) => {
+  console.log(req.body)
+  res.status(200).json({ message: 'The user has been correctly updated' })
+});
+
 module.exports = users_router
