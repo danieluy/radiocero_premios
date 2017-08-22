@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { deleteUser } from '../../radiocero-api'
 import session from '../../session'
 
+import styles from '../../assets/styles'
+
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -16,7 +18,6 @@ class DeleteUserForm extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps', nextProps)
     if (nextProps.user !== this.state.user)
       this.setState({ user: nextProps.user })
   }
@@ -32,6 +33,7 @@ class DeleteUserForm extends Component {
   }
   handleClose() {
     this.setState({ user: null })
+    this.props.onActionCanceled()
   }
   render() {
     if (this.state.user) {
@@ -54,6 +56,7 @@ class DeleteUserForm extends Component {
           modal={false}
           open={!!this.state.user}
           onRequestClose={this.handleClose.bind(this)}
+          contentStyle={styles.dialog}
         >
           <p>Esta acción NO se puede deshacer</p>
         </Dialog>

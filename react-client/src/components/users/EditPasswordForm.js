@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { updateUser } from '../../radiocero-api'
+import { updateUserPassword } from '../../radiocero-api'
 import session from '../../session'
 
 import styles from '../../assets/styles'
@@ -13,7 +13,7 @@ import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-class EditUserForm extends Component {
+class EditPasswordForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -42,34 +42,52 @@ class EditUserForm extends Component {
           email: this.props.user.email,
           emailMessage: null,
           set_date: this.props.user.set_date,
-          set_dateMessage: null
+          set_dateMessage: null,
+          passwordNew: null,
+          passwordNewMessage: null,
+          passwordMatch: null,
+          passwordMatchMessage: null
         }
       })
   }
-  updateRole(e, index, value) {
+  updatePasswordNew(e) {
     const editForm = this.state.editForm
-    editForm.role = value
-    editForm.roleMessage = null
+    editForm.passwordNew = e.target.value
+    editForm.passwordNewMessage = null
     this.setState({ editForm })
   }
-  updateEmail(e) {
+  updatePasswordMatch(e) {
     const editForm = this.state.editForm
-    editForm.email = e.target.value
-    editForm.emailMessage = null
+    editForm.passwordMatch = e.target.value
+    editForm.passwordMatchMessage = null
     this.setState({ editForm })
   }
   handleKeyPress(evt) {
     if (evt.key === 'Enter')
-      this.editUser()
+      this.editPassword()
   }
-  editUser() {
+  editPassword() {
     const editForm = this.state.editForm
-    if (editForm.email && editForm.userName !== '' && !editForm.email.match(/\S+@\S+\.\S+/))
-      editForm.emailMessage = 'Este campo solo acepta un email'
-    if (editForm.userNameMessage || editForm.emailMessage)
+    if (!editForm.passwordNew || editForm.passwordNew === '')
+      editForm.passwordNewMessage = 'Este campo es obligatorio'
+    if (!editForm.passwordMatch || editForm.passwordMatch === '')
+      editForm.passwordMatchMessage = 'Este campo es obligatorio'
+    if (editForm.passwordNew !== editForm.passwordMatch)
+      editForm.passwordMatchMessage = 'Las contraseñas no coinciden'
+    if (editForm.passwordNewMessage || editForm.passwordMatchMessage)
       this.setState({ editForm })
-    else
-      updateUser(editForm)
+    else {
+      delete editForm.idMessage
+      delete editForm.userNameMessage
+      delete editForm.role
+      delete editForm.roleMessage
+      delete editForm.email
+      delete editForm.emailMessage
+      delete editForm.set_date
+      delete editForm.set_dateMessage
+      delete editForm.passwordNewMessage
+      delete editForm.passwordMatchMessage
+      updateUserPassword(editForm)
         .then(res => {
           this.props.onActionSuccess()
           this.handleClose()
@@ -77,6 +95,7 @@ class EditUserForm extends Component {
         .catch(err => {
           console.error(err)
         })
+    }
   }
 
   handleClose() {
@@ -88,36 +107,34 @@ class EditUserForm extends Component {
     if (this.state.editForm)
       return (
         <Dialog
-          title="Editar Usuario"
+          title="Cambiar Contraseña"
           modal={false}
           open={!!this.state.editForm}
           onRequestClose={this.handleClose.bind(this)}
           contentStyle={styles.dialog}
         >
-          <SelectField
-            floatingLabelText="Permisos"
-            value={this.state.editForm.role}
-            onChange={this.updateRole.bind(this)}
-            errorText={this.state.roleMessage}
-            disabled={(this.state.originalRole === 'admin' || this.state.loggedUser.role === 'admin') ? false : true}
-          >
-            <MenuItem value={'user'} primaryText="Usuario" />
-            <MenuItem value={'admin'} primaryText="Administrador" />
-          </SelectField>
+          <TextField
+            hintText="Ingrese una nueva contraseña"
+            errorText={this.state.editForm.passwordNewMessage}
+            floatingLabelText="Nueva Contraseña"
+            value={this.state.editForm.passwordNew || ''}
+            onChange={this.updatePasswordNew.bind(this)}
+            onKeyPress={this.handleKeyPress.bind(this)}
+          />
           <br />
           <TextField
-            hintText="nombre@dominio.com.uy"
-            errorText={this.state.editForm.emailMessage}
-            floatingLabelText="Email"
-            value={this.state.editForm.email || ''}
-            onChange={this.updateEmail.bind(this)}
+            hintText="Repita la nueva contraseña"
+            errorText={this.state.editForm.passwordMatchMessage}
+            floatingLabelText="Repetir Contraseña"
+            value={this.state.editForm.passwordMatch || ''}
+            onChange={this.updatePasswordMatch.bind(this)}
             onKeyPress={this.handleKeyPress.bind(this)}
           />
           <br />
           <br />
           <br />
           <RaisedButton
-            onClick={this.editUser.bind(this)}
+            onClick={this.editPassword.bind(this)}
             label="Guardar"
             primary={true}
           />
@@ -135,10 +152,10 @@ class EditUserForm extends Component {
   }
 }
 
-export default EditUserForm;
+export default EditPasswordForm;
 
 
-EditUserForm.propTypes = {
+EditPasswordForm.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.string,
     userName: PropTypes.string,

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import session from '../../session'
 
+import styles from '../../assets/styles'
+
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
@@ -95,6 +97,8 @@ class Navbar extends Component {
           modal={false}
           open={this.state.openLogin}
           onRequestClose={this.openCloseLogin.bind(this)}
+          contentStyle={styles.dialog}
+          autoScrollBodyContent={true}
         >
           <TextField
             hintText="Ingresa tu nombre de usuario"

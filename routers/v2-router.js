@@ -20,7 +20,6 @@ v2_router.use(headers.writeCORS);
 
 //  login  /////////////////////////////////////////////////////////////////////
 v2_router.post('/login', (req, res) => {
-  console.log('req.body', req.body)
   security.login(req.body.userName, req.body.password)
   .then((user) => {
     if (user) {
@@ -30,7 +29,7 @@ v2_router.post('/login', (req, res) => {
     }
     else {
       req.session.reset();
-      res.status(200).json({ error: 'Wrong user name or password.', user: null });
+      res.status(401).json({ error: 'Wrong user name or password.', user: null });
     }
   })
   .catch((err) => {

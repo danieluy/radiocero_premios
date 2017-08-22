@@ -8,6 +8,10 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
+  20170822 | P | Improved Drawer header UI
+  20170822 | P | Added FAB for adding users functionality
+  20170822 | P | Added password reset functionality for administrators
+  20170822 | P | Added edit and delete options to Users
   20170818 | P | Added basic Users section
   20170818 | P | Added react-router v4
   20170818 | P | Added v2-router for /v2/* routes
@@ -98,7 +102,7 @@ v0.4.2
   19700101 | P | Added info-hub to display messages
   19700101 | P | New prize's UI to back-end connection finished
   19700101 | P | Refined forms UI
-  19700101 | P | Added resert functionallity to forms
+  19700101 | P | Added resert functionality to forms
 # commited & pushed
 v0.4.1
   19700101 | P | Added concurrently dev-dependency to run MongoDB along with app.js

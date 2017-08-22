@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
 import { getUsers } from '../../radiocero-api'
+import events from '../../events'
 
 import EditUserForm from './EditUserForm'
 import DeleteUserForm from './DeleteUserForm'
+import EditPasswordForm from './EditPasswordForm'
+
 
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
@@ -12,8 +15,10 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 class Users extends Component {
   constructor() {
@@ -21,36 +26,47 @@ class Users extends Component {
     this.state = {
       users: [],
       userToEdit: null,
-      userToDelete: null
+      userToDelete: null,
+      userToEditPassowrd: null
     }
   }
   componentDidMount() {
     this.updateUsers()
+    events.on('login', this.updateUsers.bind(this))
   }
 
   updateUsers() {
     getUsers()
       .then(users => {
         this.setState({
-          users: users,
-          userToEdit: null
+          users: users
         })
+        this.resetModals()
       })
       .catch(err => {
         console.error(err)
       })
   }
 
-  openEditUser(user) {
-    this.setState({
-      userToEdit: user,
-      userToDelete: null
-    })
-  }
-
-  promptDeleteUser(user) {
+  resetModals() {
     this.setState({
       userToEdit: null,
+      userToDelete: null,
+      userToEditPassowrd: null
+    })
+  }
+  openEditUser(user) {
+    this.setState({
+      userToEdit: user
+    })
+  }
+  openEditPassword(user) {
+    this.setState({
+      userToEditPassowrd: user
+    })
+  }
+  openDeleteUser(user) {
+    this.setState({
       userToDelete: user
     })
   }
@@ -61,52 +77,65 @@ class Users extends Component {
 
         <List>
           <Subheader>Usuarios</Subheader>
-          {this.state.users.map((user, i) => {
-            return (
-              <Paper zDepth={1} key={i}>
-                <ListItem
-                  leftAvatar={<Avatar>{user.userName ? user.userName.slice(0, 1).toUpperCase() : null}</Avatar>}
-                  primaryText={user.userName}
-                  secondaryTextLines={2}
-                  disabled={true}
-                  secondaryText={
-                    <p>
-                      <span>{user.role === 'admin' ? 'Administrador' : 'Usuario'}</span><br />
-                      {user.email}
-                    </p>
-                  }
-                  rightIconButton={
-                    <IconMenu iconButtonElement={
-                      <IconButton
-                        touch={true}
-                        tooltip="Opciones"
-                        tooltipPosition="bottom-left"
-                      >
-                        <MoreVertIcon color={'#888'} />
-                      </IconButton>
-                    }>
-                      <MenuItem onClick={this.openEditUser.bind(this, user)}>Editar</MenuItem>
-                      <MenuItem onClick={this.promptDeleteUser.bind(this, user)}>Borrar</MenuItem>
-                    </IconMenu>
-                  }
-                />
-                <Divider />
-              </Paper>
-            )
-          })}
+          <Paper zDepth={1}>
+            {this.state.users.map((user, i) => {
+              return (
+                <div key={i}>
+                  <ListItem
+                    leftAvatar={<Avatar>{user.userName ? user.userName.slice(0, 1).toUpperCase() : null}</Avatar>}
+                    primaryText={user.userName}
+                    secondaryTextLines={2}
+                    disabled={true}
+                    secondaryText={
+                      <p>
+                        <span>{user.role === 'admin' ? 'Administrador' : 'Usuario'}</span><br />
+                        {user.email}
+                      </p>
+                    }
+                    rightIconButton={
+                      <IconMenu iconButtonElement={
+                        <IconButton
+                          touch={true}
+                          tooltip="Opciones"
+                          tooltipPosition="bottom-left"
+                        >
+                          <MoreVertIcon color={'#888'} />
+                        </IconButton>
+                      }>
+                        <MenuItem onClick={this.openEditUser.bind(this, user)}>Editar</MenuItem>
+                        <MenuItem onClick={this.openEditPassword.bind(this, user)}>Contraseña </MenuItem>
+                        <MenuItem onClick={this.openDeleteUser.bind(this, user)}>Borrar</MenuItem>
+                      </IconMenu>
+                    }
+                  />
+                  <Divider />
+                </div>
+              )
+            })}
+          </Paper>
         </List>
 
         <EditUserForm
           user={this.state.userToEdit}
           onActionSuccess={this.updateUsers.bind(this)}
+          onActionCanceled={this.resetModals.bind(this)}
         />
 
         <DeleteUserForm
           user={this.state.userToDelete}
           onActionSuccess={this.updateUsers.bind(this)}
+          onActionCanceled={this.resetModals.bind(this)}
         />
 
+        <EditPasswordForm
+          user={this.state.userToEditPassowrd}
+          onActionSuccess={this.updateUsers.bind(this)}
+          onActionCanceled={this.resetModals.bind(this)}
+        />
 
+        <FloatingActionButton style={{ position: 'fixed', bottom: '10px', right: '10px' }}>
+          <ContentAdd />
+        </FloatingActionButton>
 
       </div>
     )

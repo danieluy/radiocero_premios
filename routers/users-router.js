@@ -43,10 +43,8 @@ users_router.post('/', checkRoleAdmin, (req, res) => {
 users_router.patch('/', checkRoleAdmin, (req, res) => {
   Users.findById(req.body.id)
     .then(user => {
-      console.log(user)
       user.setEmail(req.body.email)
       user.setRole(req.body.role)
-      user.setPassword(req.body.password)
       return user.update()
     })
     .then(WriteResult => {
@@ -59,6 +57,27 @@ users_router.patch('/', checkRoleAdmin, (req, res) => {
       console.error(err)
       res.status(500).json({ error: 'There was a problem updating the user', details: err.toString() })
     })
+});
+
+users_router.patch('/password', checkRoleAdmin, (req, res) => {
+  if (req.body.passwordNew === req.body.passwordMatch)
+    Users.findById(req.body.id)
+      .then(user => {
+        user.setPassword(req.body.passwordNew)
+        return user.update()
+      })
+      .then(WriteResult => {
+        if (WriteResult.ok === 1)
+          res.status(200).json({ message: 'Password correctly updated' })
+        else
+          res.status(500).json({ error: 'There was a problem writing to database', details: 'WriteResult.ok != 1' })
+      })
+      .catch(err => {
+        console.error(err)
+        res.status(500).json({ error: 'There was a problem updating the password', details: err.toString() })
+      })
+  else
+    res.status(400).json({ error: 'Passwords mismatch', details: 'Passwords mismatch' })
 });
 
 users_router.delete('/:id', checkRoleAdmin, (req, res) => {

@@ -5,12 +5,9 @@ import db from './db'
 function login(userName, password) {
   serverLogin(userName, password)
     .then(user => {
-      if (!user)
-        events.emit('alert', { message: 'Error de usuario o contraseña' })
-      else {
+      if (user)
         setLocalUser(user)
-        events.emit('login', user)
-      }
+      events.emit('login', user)
     })
     .catch(err => {
       events.emit('exception', err)
@@ -20,7 +17,7 @@ function logout() {
   serverLogout()
     .then(() => {
       setLocalUser(null)
-      events.emit('login', null)
+      window.location.reload()
     })
     .catch(err => {
       events.emit('exception', err)
