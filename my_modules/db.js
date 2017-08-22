@@ -37,6 +37,32 @@ const insert = (collection, values) => {
   });
 }
 /*
+* Params String: collection, Number: id [, Boolean: justOne]
+* Returns Object: document
+*/
+const remove = (collection, id, justOne) => {
+  if (!collection || !id)
+    throw "Collection and id parameters must be provided";
+  if (justOne && typeof justOne !== 'boolean')
+    throw "Third parameter mismatch [, justOne: boolean]";
+  return new Promise(function (resolve, reject) {
+    mongo.connect(url, function (err, db) {
+      if (err)
+        return reject('ERR_DB - Unable to connect to the database - db.js module - Returned ERROR: ' + err);
+      db.collection(collection)
+        .remove({ _id: ObjectID(id) }, (justOne || false))
+        .then((result) => {
+          db.close();
+          return resolve(result);
+        })
+        .catch((err) => {
+          db.close();
+          return reject('ERR_DB - There was a problem querying the "' + collection + '" collection on the database - db.js module - Returned ERROR: ' + err);
+        });
+    });
+  });
+}
+/*
 * Params String: collection [, Object: query {key: value}]
 * Returns Object[]: [Object: document, ...]
 */
@@ -64,7 +90,7 @@ const find = (collection, query) => {
   });
 }
 /*
-* Params String: collection [, Object: query {key: value}]
+* Params String: collection Object: query {key: value}
 * Returns Object: document
 */
 const findOne = (collection, query) => {
@@ -90,7 +116,7 @@ const findOne = (collection, query) => {
   });
 }
 /*
-* Params String: collection [, Object: query {key: value}]
+* Params String: collection, String: id]
 * Returns Json: document
 */
 const findById = (collection, id) => {
@@ -169,10 +195,11 @@ const update = (collection, query, update) => {
 }
 
 module.exports = {
-  insert: insert,
-  update: update,
-  find: find,
-  findOne: findOne,
-  findById: findById,
-  exists: exists
+  insert,
+  remove,
+  update,
+  find,
+  findOne,
+  findById,
+  exists
 }

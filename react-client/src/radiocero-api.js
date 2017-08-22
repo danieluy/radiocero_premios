@@ -61,9 +61,25 @@ function updateUser(user) {
   })
 }
 
+function deleteUser(user) {
+  return new Promise((resolve, reject) => {
+    superagent.delete('http://localhost:1043/api/users/' + user.id)
+      .end((err, res) => {
+        console.log(res)
+        if (err && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
+
 export {
   login,
   logout,
   getUsers,
-  updateUser
+  updateUser,
+  deleteUser
 }

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { getUsers } from '../../radiocero-api'
 
 import EditUserForm from './EditUserForm'
+import DeleteUserForm from './DeleteUserForm'
 
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
@@ -19,7 +20,8 @@ class Users extends Component {
     super()
     this.state = {
       users: [],
-      userToEdit: null
+      userToEdit: null,
+      userToDelete: null
     }
   }
   componentDidMount() {
@@ -41,7 +43,15 @@ class Users extends Component {
 
   openEditUser(user) {
     this.setState({
-      userToEdit: user
+      userToEdit: user,
+      userToDelete: null
+    })
+  }
+
+  promptDeleteUser(user) {
+    this.setState({
+      userToEdit: null,
+      userToDelete: user
     })
   }
 
@@ -61,7 +71,7 @@ class Users extends Component {
                   disabled={true}
                   secondaryText={
                     <p>
-                      <span>{user.role}</span><br />
+                      <span>{user.role === 'admin' ? 'Administrador' : 'Usuario'}</span><br />
                       {user.email}
                     </p>
                   }
@@ -76,7 +86,7 @@ class Users extends Component {
                       </IconButton>
                     }>
                       <MenuItem onClick={this.openEditUser.bind(this, user)}>Editar</MenuItem>
-                      <MenuItem>Borrar</MenuItem>
+                      <MenuItem onClick={this.promptDeleteUser.bind(this, user)}>Borrar</MenuItem>
                     </IconMenu>
                   }
                 />
@@ -88,8 +98,15 @@ class Users extends Component {
 
         <EditUserForm
           user={this.state.userToEdit}
-          onEditSuccess={this.updateUsers.bind(this)}
+          onActionSuccess={this.updateUsers.bind(this)}
         />
+
+        <DeleteUserForm
+          user={this.state.userToDelete}
+          onActionSuccess={this.updateUsers.bind(this)}
+        />
+
+
 
       </div>
     )

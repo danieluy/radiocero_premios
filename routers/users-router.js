@@ -41,8 +41,39 @@ users_router.post('/', checkRoleAdmin, (req, res) => {
 });
 
 users_router.patch('/', checkRoleAdmin, (req, res) => {
-  console.log(req.body)
-  res.status(200).json({ message: 'The user has been correctly updated' })
+  Users.findById(req.body.id)
+    .then(user => {
+      console.log(user)
+      user.setEmail(req.body.email)
+      user.setRole(req.body.role)
+      user.setPassword(req.body.password)
+      return user.update()
+    })
+    .then(WriteResult => {
+      if (WriteResult.ok === 1)
+        res.status(200).json({ message: 'The user has been correctly updated' })
+      else
+        res.status(500).json({ error: 'There was a problem writing to database', details: 'WriteResult.ok != 1' })
+    })
+    .catch(err => {
+      console.error(err)
+      res.status(500).json({ error: 'There was a problem updating the user', details: err.toString() })
+    })
 });
+
+users_router.delete('/:id', checkRoleAdmin, (req, res) => {
+  Users.removeById(req.params.id)
+    .then(WriteResult => {
+      if (WriteResult.result.n > 0)
+        res.status(200).json({ message: 'The user has been correctly deleted' })
+      else
+        res.status(500).json({ error: 'There was a problem removing a document', details: 'WriteResult.result.n <= 0' })
+    })
+    .catch(err => {
+      console.error(err)
+      res.status(500).json({ error: 'There was a problem deleting the user', details: err.toString() })
+    })
+});
+
 
 module.exports = users_router

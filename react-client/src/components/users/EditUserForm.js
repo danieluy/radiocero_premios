@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { updateUser } from '../../radiocero-api'
+import session from '../../session'
 
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -14,7 +16,8 @@ class EditUserForm extends Component {
     super(props)
     this.state = {
       user: null,
-      editForm: null
+      editForm: null,
+      loggedUser: session.getLocalUser()
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -73,7 +76,19 @@ class EditUserForm extends Component {
       this.setState({ editForm })
     else
       updateUser(editForm)
+        .then(res => {
+          this.props.onActionSuccess()
+          this.handleClose()
+        })
+        .catch(err => {
+          console.error(err)
+        })
   }
+
+  handleClose() {
+    this.setState({ editForm: null })
+  }
+
   render() {
     if (this.state.editForm)
       return (
@@ -81,9 +96,9 @@ class EditUserForm extends Component {
           title="Editar Usuario"
           modal={false}
           open={!!this.state.editForm}
-          onRequestClose={() => { this.setState({ editForm: null }) }}
+          onRequestClose={this.handleClose.bind(this)}
         >
-          <TextField
+          {/* <TextField
             hintText="Nombre de usuario"
             errorText={this.state.editForm.userNameMessage}
             floatingLabelText="Usuario"
@@ -91,13 +106,13 @@ class EditUserForm extends Component {
             onChange={this.updateUserName.bind(this)}
             onKeyPress={this.handleKeyPress.bind(this)}
           />
-          <br />
+          <br /> */}
           <SelectField
             floatingLabelText="Permisos"
             value={this.state.editForm.role}
             onChange={this.updateRole.bind(this)}
             errorText={this.state.roleMessage}
-            disabled={this.state.originalRole === 'admin' ? false : true}
+            disabled={(this.state.originalRole === 'admin' || this.state.loggedUser.role === 'admin') ? false : true}
           >
             <MenuItem value={'user'} primaryText="Usuario" />
             <MenuItem value={'admin'} primaryText="Administrador" />
@@ -119,13 +134,14 @@ class EditUserForm extends Component {
             label="Guardar"
             primary={true}
           />
-          <RaisedButton
-            onClick={() => { this.setState({ editForm: null }) }}
+          <FlatButton
+            onClick={this.handleClose.bind(this)}
             label="Cancelar"
+            style={{ marginLeft: '5px' }}
           />
-          <pre>
+          {/* <pre>
             {JSON.stringify(this.state.editForm, null, 4)}
-          </pre>
+          </pre> */}
         </Dialog>
       );
     return null;
