@@ -91,11 +91,28 @@ function deleteUser(user) {
   })
 }
 
+function addUser(user) {
+  return new Promise((resolve, reject) => {
+    superagent.post('/api/users/')
+      .type('form')
+      .send(user)
+      .end((err, res) => {
+        if (err && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
+
 export {
   login,
   logout,
   getUsers,
   updateUser,
   updateUserPassword,
-  deleteUser
+  deleteUser,
+  addUser
 }

@@ -6,6 +6,7 @@ import events from '../../events'
 import EditUserForm from './EditUserForm'
 import DeleteUserForm from './DeleteUserForm'
 import EditPasswordForm from './EditPasswordForm'
+import AddUserForm from './AddUserForm'
 
 
 import { List, ListItem } from 'material-ui/List';
@@ -27,7 +28,8 @@ class Users extends Component {
       users: [],
       userToEdit: null,
       userToDelete: null,
-      userToEditPassowrd: null
+      userToEditPassowrd: null,
+      addUserOpen: false
     }
   }
   componentDidMount() {
@@ -52,7 +54,8 @@ class Users extends Component {
     this.setState({
       userToEdit: null,
       userToDelete: null,
-      userToEditPassowrd: null
+      userToEditPassowrd: null,
+      addUserOpen: false
     })
   }
   openEditUser(user) {
@@ -68,6 +71,11 @@ class Users extends Component {
   openDeleteUser(user) {
     this.setState({
       userToDelete: user
+    })
+  }
+  openAddUser() {
+    this.setState({
+      addUserOpen: true
     })
   }
 
@@ -133,7 +141,16 @@ class Users extends Component {
           onActionCanceled={this.resetModals.bind(this)}
         />
 
-        <FloatingActionButton style={{ position: 'fixed', bottom: '10px', right: '10px' }}>
+        <AddUserForm
+          open={this.state.addUserOpen}
+          onActionSuccess={this.updateUsers.bind(this)}
+          onActionCanceled={this.resetModals.bind(this)}
+        />
+
+        <FloatingActionButton
+          style={{ position: 'fixed', bottom: '10px', right: '10px' }}
+          onClick={this.openAddUser.bind(this)}
+        >
           <ContentAdd />
         </FloatingActionButton>
 

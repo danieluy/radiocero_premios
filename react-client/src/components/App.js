@@ -3,7 +3,9 @@ import './App.scss'
 import _ from 'lodash'
 
 import { Switch, Route } from 'react-router-dom'
+import Home from './home/Home'
 import Users from './users/Users'
+import QuickNotice from './quick-notice/QuickNotice'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -29,7 +31,8 @@ class App extends Component {
         width: window.innerWidth
       },
       loggedUser: session.getLocalUser(),
-      drawerOpen: false
+      drawerOpen: false,
+      quickNotice: null
     }
   }
   componentWillMount() {
@@ -58,10 +61,27 @@ class App extends Component {
       drawerOpen: !this.state.drawerOpen
     })
   }
+  onQuickNotice(message) {
+    this.setState({
+      quickNotice: message
+    })
+  }
   render() {
+
+    const HomeWithProps = React.cloneElement(
+      Home,
+      {
+        onQuickNotice: this.onQuickNotice.bind(this)
+      }
+    )
+
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="app-wrapper" style={{ height: `${this.state.window.height}px` }}>
+
+          <QuickNotice
+            message={this.state.quickNotice}
+          />
 
           <Navbar
             loggedUser={this.state.loggedUser}
@@ -76,6 +96,7 @@ class App extends Component {
           <div className="app-routes" style={{ height: `${this.state.window.height - 64}px` }}>
             <div className="app-container">
               <Switch>
+                {/* <Route exact path='/v2' component={HomeWithProps} /> */}
                 <Route exact path='/v2' component={Home} />
                 <Route exact path='/v2/users' component={Users} />
               </Switch>
@@ -83,14 +104,6 @@ class App extends Component {
           </div>
         </div>
       </MuiThemeProvider >
-    )
-  }
-}
-
-class Home extends Component {
-  render() {
-    return (
-      <div>Home</div>
     )
   }
 }

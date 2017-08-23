@@ -12,6 +12,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import Checkbox from 'material-ui/Checkbox';
+import Visibility from 'material-ui/svg-icons/action/visibility';
+import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 
 class EditPasswordForm extends Component {
   constructor(props) {
@@ -19,7 +22,8 @@ class EditPasswordForm extends Component {
     this.state = {
       user: null,
       editForm: null,
-      loggedUser: session.getLocalUser()
+      loggedUser: session.getLocalUser(),
+      showPasswords: false
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -103,6 +107,12 @@ class EditPasswordForm extends Component {
     this.props.onActionCanceled()
   }
 
+  toggleHidePasswords() {
+    this.setState({
+      showPasswords: !this.state.showPasswords
+    });
+  }
+
   render() {
     if (this.state.editForm)
       return (
@@ -120,6 +130,7 @@ class EditPasswordForm extends Component {
             value={this.state.editForm.passwordNew || ''}
             onChange={this.updatePasswordNew.bind(this)}
             onKeyPress={this.handleKeyPress.bind(this)}
+            type={this.state.showPasswords ? null : "password"}
           />
           <br />
           <TextField
@@ -129,6 +140,16 @@ class EditPasswordForm extends Component {
             value={this.state.editForm.passwordMatch || ''}
             onChange={this.updatePasswordMatch.bind(this)}
             onKeyPress={this.handleKeyPress.bind(this)}
+            type={this.state.showPasswords ? null : "password"}
+          />
+          <br />
+          <br />
+          <Checkbox
+            checkedIcon={<Visibility />}
+            uncheckedIcon={<VisibilityOff />}
+            label="Mostrar Contraseñas"
+            checked={this.state.showPasswords}
+            onCheck={(this.toggleHidePasswords.bind(this))}
           />
           <br />
           <br />
@@ -143,9 +164,6 @@ class EditPasswordForm extends Component {
             label="Cancelar"
             style={{ marginLeft: '5px' }}
           />
-          {/* <pre>
-            {JSON.stringify(this.state.editForm, null, 4)}
-          </pre> */}
         </Dialog>
       );
     return null;

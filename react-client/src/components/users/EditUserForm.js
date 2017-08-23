@@ -66,9 +66,14 @@ class EditUserForm extends Component {
     const editForm = this.state.editForm
     if (editForm.email && editForm.userName !== '' && !editForm.email.match(/\S+@\S+\.\S+/))
       editForm.emailMessage = 'Este campo solo acepta un email'
-    if (editForm.userNameMessage || editForm.emailMessage)
+    if (editForm.emailMessage)
       this.setState({ editForm })
-    else
+    else {
+      delete editForm.idMessage
+      delete editForm.userNameMessage
+      delete editForm.roleMessage
+      delete editForm.emailMessage
+      delete editForm.set_dateMessage
       updateUser(editForm)
         .then(res => {
           this.props.onActionSuccess()
@@ -77,6 +82,7 @@ class EditUserForm extends Component {
         .catch(err => {
           console.error(err)
         })
+    }
   }
 
   handleClose() {
@@ -98,7 +104,7 @@ class EditUserForm extends Component {
             floatingLabelText="Permisos"
             value={this.state.editForm.role}
             onChange={this.updateRole.bind(this)}
-            errorText={this.state.roleMessage}
+            errorText={this.state.editForm.roleMessage}
             disabled={(this.state.originalRole === 'admin' || this.state.loggedUser.role === 'admin') ? false : true}
           >
             <MenuItem value={'user'} primaryText="Usuario" />
