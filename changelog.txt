@@ -8,7 +8,9 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
-  20170823 | P | Working to pass props to components on routes
+  20170823 | P | Added styles Users.scss
+  20170823 | P | Added links to users when listed
+  20170823 | P | Solved sharing props to components on routes
   20170823 | P | Added add user functionality for administrators
   20170822 | P | Improved Drawer header UI
   20170822 | P | Added FAB for adding users functionality

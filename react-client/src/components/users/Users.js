@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import { getUsers } from '../../radiocero-api'
 import events from '../../events'
@@ -7,7 +7,6 @@ import EditUserForm from './EditUserForm'
 import DeleteUserForm from './DeleteUserForm'
 import EditPasswordForm from './EditPasswordForm'
 import AddUserForm from './AddUserForm'
-
 
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
@@ -21,7 +20,7 @@ import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-class Users extends Component {
+class Users extends PureComponent {
   constructor() {
     super()
     this.state = {
@@ -44,12 +43,12 @@ class Users extends Component {
           users: users
         })
         this.resetModals()
+        this.props.onQuickNotice('Usuarios actualizados')
       })
       .catch(err => {
         console.error(err)
       })
   }
-
   resetModals() {
     this.setState({
       userToEdit: null,
@@ -82,7 +81,6 @@ class Users extends Component {
   render() {
     return (
       <div>
-
         <List>
           <Subheader>Usuarios</Subheader>
           <Paper zDepth={1}>
@@ -90,6 +88,7 @@ class Users extends Component {
               return (
                 <div key={i}>
                   <ListItem
+                    className="users-item"
                     leftAvatar={<Avatar>{user.userName ? user.userName.slice(0, 1).toUpperCase() : null}</Avatar>}
                     primaryText={user.userName}
                     secondaryTextLines={2}
@@ -97,7 +96,16 @@ class Users extends Component {
                     secondaryText={
                       <p>
                         <span>{user.role === 'admin' ? 'Administrador' : 'Usuario'}</span><br />
-                        {user.email}
+                        {user.email && user.email !== '' ?
+                          <a
+                            href={`mailto:${user.email}?subject=Radiocero%20Premios`}
+                            target="_blank"
+                            className="users-item-link"
+                            >
+                            {user.email}
+                          </a>
+                          : null
+                        }
                       </p>
                     }
                     rightIconButton={
@@ -153,7 +161,6 @@ class Users extends Component {
         >
           <ContentAdd />
         </FloatingActionButton>
-
       </div>
     )
   }

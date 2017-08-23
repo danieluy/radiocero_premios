@@ -91,6 +91,7 @@ class EditUserForm extends Component {
   }
 
   render() {
+    console.log(this.state.loggedUser)
     if (this.state.editForm)
       return (
         <Dialog
@@ -105,7 +106,7 @@ class EditUserForm extends Component {
             value={this.state.editForm.role}
             onChange={this.updateRole.bind(this)}
             errorText={this.state.editForm.roleMessage}
-            disabled={(this.state.originalRole === 'admin' || this.state.loggedUser.role === 'admin') ? false : true}
+            disabled={(this.state.loggedUser && this.state.loggedUser.role === 'admin') ? false : true}
           >
             <MenuItem value={'user'} primaryText="Usuario" />
             <MenuItem value={'admin'} primaryText="Administrador" />

@@ -85,7 +85,7 @@ class AddUserForm extends Component {
       newUser.passwordMatchMessage = 'Las contraseñas no coinciden'
     if (newUser.userNameMessage || newUser.roleMessage || newUser.emailMessage || newUser.passwordMessage || newUser.passwordMatchMessage)
       this.setState({ newUser })
-    else{
+    else {
       delete newUser.userNameMessage
       delete newUser.roleMessage
       delete newUser.emailMessage
@@ -136,7 +136,7 @@ class AddUserForm extends Component {
           value={this.state.user.role}
           onChange={this.updateRole.bind(this)}
           errorText={this.state.user.roleMessage}
-          disabled={(this.state.loggedUser.role === 'admin') ? false : true}
+          disabled={(this.state.loggedUser && this.state.loggedUser.role === 'admin') ? false : true}
         >
           <MenuItem value={'user'} primaryText="Usuario" />
           <MenuItem value={'admin'} primaryText="Administrador" />
@@ -174,7 +174,7 @@ class AddUserForm extends Component {
         <br />
         <Checkbox
           checkedIcon={<Visibility />}
-          uncheckedIcon={<VisibilityOff />}
+          uncheckedIcon={<VisibilityOff style={{ fill: '#888' }} />}
           label="Mostrar Contraseñas"
           checked={this.state.showPasswords}
           onCheck={(this.toggleHidePasswords.bind(this))}
@@ -192,9 +192,9 @@ class AddUserForm extends Component {
           label="Cancelar"
           style={{ marginLeft: '5px' }}
         />
-        <pre>
+        {/* <pre>
           {JSON.stringify(this.state.user, null, 2)}
-        </pre>
+        </pre> */}
       </Dialog>
     )
   }

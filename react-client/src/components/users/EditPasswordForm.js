@@ -146,7 +146,7 @@ class EditPasswordForm extends Component {
           <br />
           <Checkbox
             checkedIcon={<Visibility />}
-            uncheckedIcon={<VisibilityOff />}
+            uncheckedIcon={<VisibilityOff style={{ fill: '#888' }} />}
             label="Mostrar Contraseñas"
             checked={this.state.showPasswords}
             onCheck={(this.toggleHidePasswords.bind(this))}

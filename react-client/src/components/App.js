@@ -67,14 +67,6 @@ class App extends Component {
     })
   }
   render() {
-
-    const HomeWithProps = React.cloneElement(
-      Home,
-      {
-        onQuickNotice: this.onQuickNotice.bind(this)
-      }
-    )
-
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="app-wrapper" style={{ height: `${this.state.window.height}px` }}>
@@ -96,9 +88,8 @@ class App extends Component {
           <div className="app-routes" style={{ height: `${this.state.window.height - 64}px` }}>
             <div className="app-container">
               <Switch>
-                {/* <Route exact path='/v2' component={HomeWithProps} /> */}
-                <Route exact path='/v2' component={Home} />
-                <Route exact path='/v2/users' component={Users} />
+                <Route exact path='/v2' render={() => <Home onQuickNotice={this.onQuickNotice.bind(this)} />} />
+                <Route exact path='/v2/users'  render={() => <Users onQuickNotice={this.onQuickNotice.bind(this)} />} />
               </Switch>
             </div>
           </div>

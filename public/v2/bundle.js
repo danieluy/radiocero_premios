@@ -33955,10 +33955,7 @@ var App = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-
-      var HomeWithProps = _react2.default.cloneElement(_Home2.default, {
-        onQuickNotice: this.onQuickNotice.bind(this)
-      });
+      var _this3 = this;
 
       return _react2.default.createElement(
         _MuiThemeProvider2.default,
@@ -33986,8 +33983,12 @@ var App = function (_Component) {
               _react2.default.createElement(
                 _reactRouterDom.Switch,
                 null,
-                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/v2', component: _Home2.default }),
-                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/v2/users', component: _Users2.default })
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/v2', render: function render() {
+                    return _react2.default.createElement(_Home2.default, { onQuickNotice: _this3.onQuickNotice.bind(_this3) });
+                  } }),
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/v2/users', render: function render() {
+                    return _react2.default.createElement(_Users2.default, { onQuickNotice: _this3.onQuickNotice.bind(_this3) });
+                  } })
               )
             )
           )
@@ -34041,7 +34042,7 @@ exports = module.exports = __webpack_require__(174)(undefined);
 
 
 // module
-exports.push([module.i, "html {\n  font-size: 16px;\n  font-weight: 300;\n  font-family: Roboto, sans-serif; }\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\n.drawer .drawer-header {\n  font-size: 1.5rem;\n  font-weight: 100;\n  height: 200px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center; }\n  .drawer .drawer-header .drawer-header-icon {\n    height: 120px;\n    width: 120px;\n    padding: 10px; }\n\n.drawer .drawer-item-icon {\n  width: 64px;\n  height: 64px;\n  padding: 12px; }\n\n.app-routes {\n  overflow-y: auto;\n  display: flex;\n  justify-content: center; }\n  .app-routes .app-container {\n    width: 1200px; }\n\n/*@media screen and (max-width: 1200px){ }*/\n/*@media screen and (max-width: 960px){ }*/\n/*@media screen and (max-width: 768px){ }*/\n/*@media screen and (max-width: 480px){ }*/\n", ""]);
+exports.push([module.i, "html {\n  font-size: 16px;\n  font-weight: 300;\n  font-family: Roboto, sans-serif; }\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\n.drawer .drawer-header {\n  font-size: 1.5rem;\n  font-weight: 100;\n  height: 200px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center; }\n  .drawer .drawer-header .drawer-header-icon {\n    height: 120px;\n    width: 120px;\n    padding: 10px; }\n\n.drawer .drawer-item-icon {\n  width: 64px;\n  height: 64px;\n  padding: 12px; }\n\n.users-item .users-item-link {\n  text-decoration: none;\n  color: #0070F5; }\n\n.app-routes {\n  overflow-y: auto;\n  display: flex;\n  justify-content: center; }\n  .app-routes .app-container {\n    width: 1200px; }\n\n/*@media screen and (max-width: 1200px){ }*/\n/*@media screen and (max-width: 960px){ }*/\n/*@media screen and (max-width: 768px){ }*/\n/*@media screen and (max-width: 480px){ }*/\n", ""]);
 
 // exports
 
@@ -51270,7 +51271,6 @@ var Home = function (_Component) {
   _createClass(Home, [{
     key: 'render',
     value: function render() {
-      console.log(this.props);
       return _react2.default.createElement(
         'div',
         null,
@@ -51373,8 +51373,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Users = function (_Component) {
-  _inherits(Users, _Component);
+var Users = function (_PureComponent) {
+  _inherits(Users, _PureComponent);
 
   function Users() {
     _classCallCheck(this, Users);
@@ -51407,6 +51407,7 @@ var Users = function (_Component) {
           users: users
         });
         _this2.resetModals();
+        _this2.props.onQuickNotice('Usuarios actualizados');
       }).catch(function (err) {
         console.error(err);
       });
@@ -51473,6 +51474,7 @@ var Users = function (_Component) {
                 'div',
                 { key: i },
                 _react2.default.createElement(_List.ListItem, {
+                  className: 'users-item',
                   leftAvatar: _react2.default.createElement(
                     _Avatar2.default,
                     null,
@@ -51490,7 +51492,15 @@ var Users = function (_Component) {
                       user.role === 'admin' ? 'Administrador' : 'Usuario'
                     ),
                     _react2.default.createElement('br', null),
-                    user.email
+                    user.email && user.email !== '' ? _react2.default.createElement(
+                      'a',
+                      {
+                        href: 'mailto:' + user.email + '?subject=Radiocero%20Premios',
+                        target: '_blank',
+                        className: 'users-item-link'
+                      },
+                      user.email
+                    ) : null
                   ),
                   rightIconButton: _react2.default.createElement(
                     _IconMenu2.default,
@@ -51558,7 +51568,7 @@ var Users = function (_Component) {
   }]);
 
   return Users;
-}(_react.Component);
+}(_react.PureComponent);
 
 exports.default = Users;
 
@@ -53685,6 +53695,7 @@ var EditUserForm = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      console.log(this.state.loggedUser);
       if (this.state.editForm) return _react2.default.createElement(
         _Dialog2.default,
         {
@@ -53701,7 +53712,7 @@ var EditUserForm = function (_Component) {
             value: this.state.editForm.role,
             onChange: this.updateRole.bind(this),
             errorText: this.state.editForm.roleMessage,
-            disabled: this.state.originalRole === 'admin' || this.state.loggedUser.role === 'admin' ? false : true
+            disabled: this.state.loggedUser && this.state.loggedUser.role === 'admin' ? false : true
           },
           _react2.default.createElement(_MenuItem2.default, { value: 'user', primaryText: 'Usuario' }),
           _react2.default.createElement(_MenuItem2.default, { value: 'admin', primaryText: 'Administrador' })
@@ -62383,7 +62394,7 @@ var EditPasswordForm = function (_Component) {
         _react2.default.createElement('br', null),
         _react2.default.createElement(_Checkbox2.default, {
           checkedIcon: _react2.default.createElement(_visibility2.default, null),
-          uncheckedIcon: _react2.default.createElement(_visibilityOff2.default, null),
+          uncheckedIcon: _react2.default.createElement(_visibilityOff2.default, { style: { fill: '#888' } }),
           label: 'Mostrar Contrase\xF1as',
           checked: this.state.showPasswords,
           onCheck: this.toggleHidePasswords.bind(this)
@@ -63480,7 +63491,7 @@ var AddUserForm = function (_Component) {
             value: this.state.user.role,
             onChange: this.updateRole.bind(this),
             errorText: this.state.user.roleMessage,
-            disabled: this.state.loggedUser.role === 'admin' ? false : true
+            disabled: this.state.loggedUser && this.state.loggedUser.role === 'admin' ? false : true
           },
           _react2.default.createElement(_MenuItem2.default, { value: 'user', primaryText: 'Usuario' }),
           _react2.default.createElement(_MenuItem2.default, { value: 'admin', primaryText: 'Administrador' })
@@ -63518,7 +63529,7 @@ var AddUserForm = function (_Component) {
         _react2.default.createElement('br', null),
         _react2.default.createElement(_Checkbox2.default, {
           checkedIcon: _react2.default.createElement(_visibility2.default, null),
-          uncheckedIcon: _react2.default.createElement(_visibilityOff2.default, null),
+          uncheckedIcon: _react2.default.createElement(_visibilityOff2.default, { style: { fill: '#888' } }),
           label: 'Mostrar Contrase\xF1as',
           checked: this.state.showPasswords,
           onCheck: this.toggleHidePasswords.bind(this)
@@ -63535,12 +63546,7 @@ var AddUserForm = function (_Component) {
           onClick: this.handleClose.bind(this),
           label: 'Cancelar',
           style: { marginLeft: '5px' }
-        }),
-        _react2.default.createElement(
-          'pre',
-          null,
-          JSON.stringify(this.state.user, null, 2)
-        )
+        })
       );
     }
   }]);
