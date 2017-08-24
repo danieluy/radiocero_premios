@@ -6,7 +6,7 @@ const User = Users.User;
 const security = require('../my_modules/security.js');
 const checkRoleAdmin = security.checkRoleAdmin;
 
-users_router.get('/', (req, res) => {
+users_router.get('/', checkRoleAdmin, (req, res) => {
   Users.findAll()
     .then((results) => {
       if (results) {
@@ -77,7 +77,7 @@ users_router.patch('/password', checkRoleAdmin, (req, res) => {
         res.status(500).json({ error: 'There was a problem updating the password', details: err.toString() })
       })
   else
-    res.status(400).json({ error: 'Passwords mismatch', details: 'Passwords mismatch' })
+    res.status(400).json({ error: 'Password mismatch', details: 'Password mismatch' })
 });
 
 users_router.delete('/:id', checkRoleAdmin, (req, res) => {

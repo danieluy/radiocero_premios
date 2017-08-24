@@ -40,6 +40,3 @@ export default {
   setLocalUser
 }
 
-window.getLocalUser = getLocalUser
-window.setLocalUser = setLocalUser
-

@@ -201,14 +201,3 @@ class AddUserForm extends Component {
 }
 
 export default AddUserForm;
-
-
-AddUserForm.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.string,
-    userName: PropTypes.string,
-    role: PropTypes.string,
-    email: PropTypes.string,
-    set_date: PropTypes.number
-  })
-};

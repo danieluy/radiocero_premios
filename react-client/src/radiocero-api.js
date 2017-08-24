@@ -121,6 +121,18 @@ function getPrizes() {
   })
 }
 
+function addPrize(){
+  return Promise.resolve()
+  // type
+  // sponsor
+  // description
+  // stock
+  // periodic
+  // due_date
+  // note
+  // total_handed
+}
+
 export {
   login,
   logout,
@@ -129,7 +141,6 @@ export {
   updateUserPassword,
   deleteUser,
   addUser,
-  getPrizes
+  getPrizes,
+  addPrize
 }
-
-window.getPrizes = getPrizes

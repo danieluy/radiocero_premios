@@ -149,7 +149,7 @@ Prize.prototype.checkInputData = function (prize_info) {
   if (!prize_info.type || !prize_info.sponsor || !prize_info.description)
     throw new Error('To create a new prize, "type", "sponsor" and "description" parameters must be provided');
 
-  if (prize_info.periodic === null || prize_info.periodic === undefined)
+  if (!prize_info.periodic && prize_info.periodic !== false)
     throw new Error('To create a new prize the "periodic: boolean" parameter must be provided');
   else {
     if (prize_info.periodic !== true && prize_info.periodic !== false)

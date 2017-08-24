@@ -91,7 +91,6 @@ class EditUserForm extends Component {
   }
 
   render() {
-    console.log(this.state.loggedUser)
     if (this.state.editForm)
       return (
         <Dialog

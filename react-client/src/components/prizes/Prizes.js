@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
 
-import { getUsers } from '../../radiocero-api'
+import { getPrizes } from '../../radiocero-api'
 import events from '../../events'
+
+import moment from 'moment';
+
+import AddPrizeForm from './AddPrizeForm'
 
 import { PrizesIcon } from '../../assets/icons'
 
@@ -21,7 +25,10 @@ class Users extends PureComponent {
   constructor() {
     super()
     this.state = {
-      prizes: []
+      prizes: [],
+      prizeToEdit: null,
+      prizeToDelete: null,
+      addPrizeOpen: false
     }
   }
   componentDidMount() {
@@ -43,17 +50,24 @@ class Users extends PureComponent {
       })
   }
   resetModals() {
-    console.log('Prizes.resetModals()')
-    // this.setState({
-    //   userToEdit: null,
-    //   userToDelete: null,
-    //   userToEditPassowrd: null,
-    //   addUserOpen: false
-    // })
+    this.setState({
+      prizeToEdit: null,
+      prizeToDelete: null,
+      addPrizeOpen: false
+    })
+  }
+  openEditPrize(prize) {
+    this.setState({
+      prizeToEdit: prize
+    })
+  }
+  openAddPrize() {
+    this.setState({
+      addPrizeOpen: true
+    })
   }
 
   render() {
-    console.log(this.state.prizes)
     return (
       <div className="app-container">
         <List>
@@ -69,34 +83,26 @@ class Users extends PureComponent {
                     secondaryTextLines={2}
                     secondaryText={
                       <p>
-                        <span>{prize.sponsor}</span><br />
-                        {prize.email && prize.email !== '' ?
-                          <a
-                            href={`mailto:${prize.email}?subject=Radiocero%20Premios`}
-                            target="_blank"
-                            className="users-item-link"
-                          >
-                            {prize.email}
-                          </a>
-                          : null
-                        }
+                        <span>{prize.sponsor}</span>
+                        <br />
+                        {moment(prize.set_date).locale('es').format("D/MM/YYYY, H:mm")}
                       </p>
                     }
-                  /*rightIconButton={
-                    <IconMenu iconButtonElement={
-                      <IconButton
-                        touch={true}
-                        tooltip="Opciones"
-                        tooltipPosition="bottom-left"
-                      >
-                        <MoreVertIcon color={'#888'} />
-                      </IconButton>
-                    }>
-                      <MenuItem onClick={this.openEditUser.bind(this, user)}>Editar</MenuItem>
-                      <MenuItem onClick={this.openEditPassword.bind(this, user)}>Contraseña </MenuItem>
-                      <MenuItem onClick={this.openDeleteUser.bind(this, user)}>Borrar</MenuItem>
-                    </IconMenu>
-                  }*/
+                    rightIconButton={
+                      <IconMenu iconButtonElement={
+                        <IconButton
+                          touch={true}
+                          tooltip="Opciones"
+                          tooltipPosition="bottom-left"
+                        >
+                          <MoreVertIcon color={'#888'} />
+                        </IconButton>
+                      }>
+                        <MenuItem onClick={this.openEditPrize.bind(this, prize)}>Editar</MenuItem>
+                        {/* <MenuItem onClick={this.openEditPassword.bind(this, user)}>Contraseña </MenuItem> */}
+                        {/* <MenuItem onClick={this.openDeleteUser.bind(this, user)}>Borrar</MenuItem> */}
+                      </IconMenu>
+                    }
                   />
                   <Divider />
                 </div>
@@ -104,6 +110,21 @@ class Users extends PureComponent {
             })}
           </Paper>
         </List>
+
+
+        <AddPrizeForm
+          open={this.state.addPrizeOpen}
+          prizes={this.state.prizes}
+          onActionSuccess={this.updatePrizes.bind(this)}
+          onActionCanceled={this.resetModals.bind(this)}
+        />
+
+        <FloatingActionButton
+          style={{ position: 'fixed', bottom: '10px', right: '10px' }}
+          onClick={this.openAddPrize.bind(this)}
+        >
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     )
   }
