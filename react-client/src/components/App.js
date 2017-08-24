@@ -5,6 +5,7 @@ import _ from 'lodash'
 import { Switch, Route } from 'react-router-dom'
 import Home from './home/Home'
 import Users from './users/Users'
+import Prizes from './prizes/Prizes'
 import QuickNotice from './quick-notice/QuickNotice'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -86,12 +87,11 @@ class App extends Component {
           />
 
           <div className="app-routes" style={{ height: `${this.state.window.height - 64}px` }}>
-            <div className="app-container">
-              <Switch>
-                <Route exact path='/v2' render={() => <Home onQuickNotice={this.onQuickNotice.bind(this)} />} />
-                <Route exact path='/v2/users'  render={() => <Users onQuickNotice={this.onQuickNotice.bind(this)} />} />
-              </Switch>
-            </div>
+            <Switch>
+              <Route exact path='/v2' render={() => <Home onQuickNotice={this.onQuickNotice.bind(this)} />} />
+              <Route exact path='/v2/users' render={() => <Users onQuickNotice={this.onQuickNotice.bind(this)} />} />
+              <Route exact path='/v2/prizes' render={() => <Prizes onQuickNotice={this.onQuickNotice.bind(this)} />} />
+            </Switch>
           </div>
         </div>
       </MuiThemeProvider >

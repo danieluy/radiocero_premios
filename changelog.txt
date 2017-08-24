@@ -8,6 +8,11 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
+  20170824 | P | Started Prizes section
+  20170824 | P | Improved logout, it now redirects to home
+  20170824 | P | Added Home section
+  20170824 | P | Added login listener in Drawer
+  20170824 | P | Improved Drawer UI
   20170823 | P | Added styles Users.scss
   20170823 | P | Added links to users when listed
   20170823 | P | Solved sharing props to components on routes

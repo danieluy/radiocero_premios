@@ -107,6 +107,20 @@ function addUser(user) {
   })
 }
 
+function getPrizes() {
+  return new Promise((resolve, reject) => {
+    superagent.get('/api/prizes/')
+      .end((err, res) => {
+        if (err && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
+
 export {
   login,
   logout,
@@ -114,5 +128,8 @@ export {
   updateUser,
   updateUserPassword,
   deleteUser,
-  addUser
+  addUser,
+  getPrizes
 }
+
+window.getPrizes = getPrizes

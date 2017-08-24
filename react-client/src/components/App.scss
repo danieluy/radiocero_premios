@@ -1,5 +1,8 @@
 $primary-color: #F58500;
 $accent-color: #0070F5;
+$light-grey: #AAA;
+$grey: #888;
+$dark-grey: #555;
 
 html{
   font-size: 16px;
@@ -12,8 +15,9 @@ html{
   box-sizing: border-box;
 }
 
-@import './drawer/Drawer';
-@import './users/Users';
+@import './home/home';
+@import './drawer/drawer';
+@import './users/users';
 
 .app-routes{
   overflow-y: auto;

@@ -24,4 +24,15 @@
     padding: 12px;
   }
 
+  a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $grey;
+    
+    .drawer-link-icon{
+      fill: $grey;
+    }
+  
+  }
+
 }

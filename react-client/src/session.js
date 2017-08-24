@@ -17,7 +17,7 @@ function logout() {
   serverLogout()
     .then(() => {
       setLocalUser(null)
-      window.location.reload()
+      window.location.assign('/v2/')
     })
     .catch(err => {
       events.emit('exception', err)

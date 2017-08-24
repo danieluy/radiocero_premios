@@ -80,7 +80,7 @@ class Users extends PureComponent {
 
   render() {
     return (
-      <div>
+      <div className="app-container">
         <List>
           <Subheader>Usuarios</Subheader>
           <Paper zDepth={1}>
