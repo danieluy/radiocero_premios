@@ -1,4 +1,4 @@
-import { login as serverLogin, logout as serverLogout } from './radiocero-api'
+import { login as serverLogin, logout as serverLogout, logged } from './radiocero-api'
 import events from './events'
 import db from './db'
 
@@ -23,6 +23,17 @@ function logout() {
       events.emit('exception', err)
     })
 }
+function checkLoggedUser() {
+  logged()
+    .then(user => {
+      setLocalUser(user)
+      events.emit('login', user)
+    })
+    .catch(err => {
+      setLocalUser(null)
+      events.emit('login', null)
+    })
+}
 function getLocalUser() {
   return (db.get(db.keys.USER)).data
 }
@@ -36,6 +47,7 @@ function deleteLocalUser() {
 export default {
   login,
   logout,
+  checkLoggedUser,
   getLocalUser,
   setLocalUser
 }

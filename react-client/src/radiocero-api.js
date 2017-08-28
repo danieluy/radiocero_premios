@@ -30,6 +30,19 @@ function logout() {
       });
   })
 }
+function logged() {
+  return new Promise((resolve, reject) => {
+    superagent.post('/v2/logged')
+      .end((err, res) => {
+        if (err) {
+          reject(err)
+        }
+        else {
+          resolve(res.body.user)
+        }
+      });
+  })
+}
 
 function getUsers() {
   return new Promise((resolve, reject) => {
@@ -121,7 +134,7 @@ function getPrizes() {
   })
 }
 
-function addPrize(){
+function addPrize() {
   return Promise.resolve()
   // type
   // sponsor
@@ -136,6 +149,7 @@ function addPrize(){
 export {
   login,
   logout,
+  logged,
   getUsers,
   updateUser,
   updateUserPassword,

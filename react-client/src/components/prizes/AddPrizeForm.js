@@ -14,6 +14,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
 import AutoComplete from 'material-ui/AutoComplete';
+import Toggle from 'material-ui/Toggle';
 
 class AddPrizeForm extends Component {
   constructor() {
@@ -56,6 +57,27 @@ class AddPrizeForm extends Component {
     const newPrize = this.state.newPrize
     newPrize.sponsor = searchText
     newPrize.sponsorMessage = null
+    this.setState({ newPrize })
+  }
+  updatePrizePeriodic(evt, checked) {
+    const newPrize = this.state.newPrize
+    newPrize.periodic = checked
+    newPrize.periodicMessage = null
+    this.setState({ newPrize })
+  }
+  updatePrizeStock(e) {
+    if(!this.state.newPrize.periodic){
+      const newPrize = this.state.newPrize
+      let stock = parseInt(e.target.value)
+      else if(isNaN(stock)){
+        newPrize.stock = null
+        newPrize.stockMessage = 'Este campo solo acepta números enteros positivos'
+      }
+      else{
+        newPrize.stock = stock
+        newPrize.stockMessage = null
+      }
+    }
     this.setState({ newPrize })
   }
   handleKeyPress(evt) {
@@ -158,6 +180,22 @@ class AddPrizeForm extends Component {
           searchText={this.state.newPrize.sponsor}
           onUpdateInput={this.updatePrizeSponsor.bind(this)}
         />
+        <Toggle
+          label="Este premio se entregará periódicamente"
+          labelPosition="right"
+          onToggle={this.updatePrizePeriodic.bind(this)}
+          style={{ marginTop: '14px' }}
+        />
+        <TextField
+          hintText="Ingrese un valor entero"
+          errorText={this.state.newPrize.stockMessage}
+          floatingLabelText="Stock"
+          value={this.state.newPrize.stock || ''}
+          onChange={this.updatePrizeStock.bind(this)}
+          onKeyPress={this.handleKeyPress.bind(this)}
+          disabled={this.state.newPrize.periodic}
+        />
+        <br />
         {/* 
         <br />
         <SelectField

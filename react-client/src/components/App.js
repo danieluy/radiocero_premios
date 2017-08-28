@@ -48,6 +48,7 @@ class App extends Component {
         loggedUser: data
       })
     })
+    session.checkLoggedUser()
   }
   updateWindowDimensions() {
     this.setState({
