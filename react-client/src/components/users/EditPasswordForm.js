@@ -122,6 +122,7 @@ class EditPasswordForm extends Component {
           open={!!this.state.editForm}
           onRequestClose={this.handleClose.bind(this)}
           contentStyle={styles.dialog}
+          autoScrollBodyContent={true}
         >
           <TextField
             hintText="Ingrese una nueva contraseña"

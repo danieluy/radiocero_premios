@@ -20,10 +20,10 @@ class DrawerCustom extends Component {
       activeLink: window.location.pathname
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     events.on('login', this.updateLoggedUser.bind(this))
   }
-  updateLoggedUser(){
+  updateLoggedUser() {
     this.setState({
       loggedUser: session.getLocalUser()
     })
@@ -35,7 +35,7 @@ class DrawerCustom extends Component {
   }
   setConditionalStyle(path) {
     if (this.state.activeLink === path)
-      return {backgroundColor: '#EEE'}
+      return { backgroundColor: '#EEE' }
     return null
   }
   render() {
@@ -60,20 +60,26 @@ class DrawerCustom extends Component {
               style={this.setConditionalStyle("/v2/")}
             />
           </Link>
-          <Link to="/v2/winners" onClick={this.setActiveLink.bind(this, '/v2/winners')}>
-            <MenuItem
-              primaryText="Ganadores"
-              leftIcon={<WinnersIcon className="drawer-link-icon" />}
-              style={this.setConditionalStyle("/v2/winners")}
-            />
-          </Link>
-          <Link to="/v2/prizes" onClick={this.setActiveLink.bind(this, '/v2/prizes')}>
-            <MenuItem
-              primaryText="Premios"
-              leftIcon={<PrizesIcon className="drawer-link-icon" />}
-              style={this.setConditionalStyle("/v2/prizes")}
-            />
-          </Link>
+          {this.state.loggedUser ?
+            <Link to="/v2/winners" onClick={this.setActiveLink.bind(this, '/v2/winners')}>
+              <MenuItem
+                primaryText="Ganadores"
+                leftIcon={<WinnersIcon className="drawer-link-icon" />}
+                style={this.setConditionalStyle("/v2/winners")}
+              />
+            </Link>
+            : null
+          }
+          {this.state.loggedUser ?
+            <Link to="/v2/prizes" onClick={this.setActiveLink.bind(this, '/v2/prizes')}>
+              <MenuItem
+                primaryText="Premios"
+                leftIcon={<PrizesIcon className="drawer-link-icon" />}
+                style={this.setConditionalStyle("/v2/prizes")}
+              />
+            </Link>
+            : null
+          }
           {(this.state.loggedUser && this.state.loggedUser.role === 'admin') ?
             <Link to="/v2/users" onClick={this.setActiveLink.bind(this, '/v2/users')}>
               <MenuItem

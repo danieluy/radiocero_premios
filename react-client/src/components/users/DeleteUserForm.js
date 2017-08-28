@@ -57,6 +57,7 @@ class DeleteUserForm extends Component {
           open={!!this.state.user}
           onRequestClose={this.handleClose.bind(this)}
           contentStyle={styles.dialog}
+          autoScrollBodyContent={true}
         >
           <p>Esta acción NO se puede deshacer</p>
         </Dialog>

@@ -48,8 +48,14 @@ class AddPrizeForm extends Component {
   }
   updatePrizeType(searchText) {
     const newPrize = this.state.newPrize
-    newPrize.description = searchText
-    newPrize.descriptionMessage = null
+    newPrize.type = searchText
+    newPrize.typeMessage = null
+    this.setState({ newPrize })
+  }
+  updatePrizeSponsor(searchText) {
+    const newPrize = this.state.newPrize
+    newPrize.sponsor = searchText
+    newPrize.sponsorMessage = null
     this.setState({ newPrize })
   }
   handleKeyPress(evt) {
@@ -60,24 +66,15 @@ class AddPrizeForm extends Component {
     const newPrize = this.state.newPrize
     if (!newPrize.description || newPrize.description === '')
       newPrize.descriptionMessage = 'Este campo es obligatorio'
-    // if (!newPrize.role)
-    //   newPrize.roleMessage = 'Seleccione los permisos de Usuario'
-    // if (newPrize.email && newPrize.userName !== '' && !newPrize.email.match(/\S+@\S+\.\S+/))
-    //   newPrize.emailMessage = 'Este campo solo acepta un email'
-    // if (!newPrize.password || newPrize.password === '')
-    //   newPrize.passwordMessage = 'Este campo es obligatorio'
-    // if (!newPrize.passwordMatch || newPrize.passwordMatch === '')
-    //   newPrize.passwordMatchMessage = 'Este campo es obligatorio'
-    // if (newPrize.password !== newPrize.passwordMatch)
-    //   newPrize.passwordMatchMessage = 'Las contraseñas no coinciden'
-    if (false)
+    if (!newPrize.type || newPrize.type === '')
+      newPrize.typeMessage = 'Este campo es obligatorio'
+    if (!newPrize.sponsor || newPrize.sponsor === '')
+      newPrize.sponsorMessage = 'Este campo es obligatorio'
+    if (newPrize.descriptionMessage || newPrize.typeMessage || newPrize.sponsorMessage)
       this.setState({ newPrize })
     else {
-      // delete newPrize.userNameMessage
-      // delete newPrize.roleMessage
-      // delete newPrize.emailMessage
-      // delete newPrize.passwordMessage
-      // delete newPrize.passwordMatchMessage
+      delete newPrize.descriptionMessage
+      delete newPrize.typeMessage
       addPrize(newPrize)
         .then(res => {
           this.props.onActionSuccess()
@@ -111,6 +108,18 @@ class AddPrizeForm extends Component {
     }, [])
   }
 
+  sponsorsList() {
+    return this.props.prizes.reduce((sponsors, prize) => {
+      let found = false;
+      for (let i = 0; i < sponsors.length && !found; i++)
+        if (sponsors[i] === prize.sponsor)
+          found = true;
+      if (!found)
+        sponsors.push(prize.sponsor)
+      return sponsors
+    }, [])
+  }
+
   render() {
     return (
       <Dialog
@@ -119,6 +128,7 @@ class AddPrizeForm extends Component {
         open={this.props.open}
         onRequestClose={this.handleClose.bind(this)}
         contentStyle={styles.dialog}
+        autoScrollBodyContent={true}
       >
         <TextField
           hintText="Ej: Artista X en sala X"
@@ -130,12 +140,23 @@ class AddPrizeForm extends Component {
         />
         <br />
         <AutoComplete
-          hintText="Empieza a escribir"
+          hintText="Buscar o Agregar"
+          errorText={this.state.newPrize.typeMessage}
           floatingLabelText="Tipo de Premio"
           filter={AutoComplete.caseInsensitiveFilter}
           dataSource={this.prizeTypes.call(this)}
           searchText={this.state.newPrize.type}
           onUpdateInput={this.updatePrizeType.bind(this)}
+        />
+        <br />
+        <AutoComplete
+          hintText="Buscar o Agregar"
+          errorText={this.state.newPrize.sponsorMessage}
+          floatingLabelText="Espónsor"
+          filter={AutoComplete.caseInsensitiveFilter}
+          dataSource={this.sponsorsList.call(this)}
+          searchText={this.state.newPrize.sponsor}
+          onUpdateInput={this.updatePrizeSponsor.bind(this)}
         />
         {/* 
         <br />

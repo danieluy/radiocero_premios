@@ -99,6 +99,7 @@ class EditUserForm extends Component {
           open={!!this.state.editForm}
           onRequestClose={this.handleClose.bind(this)}
           contentStyle={styles.dialog}
+          autoScrollBodyContent={true}
         >
           <SelectField
             floatingLabelText="Permisos"

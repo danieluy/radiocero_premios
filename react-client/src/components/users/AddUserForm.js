@@ -121,6 +121,7 @@ class AddUserForm extends Component {
         open={this.props.open}
         onRequestClose={this.handleClose.bind(this)}
         contentStyle={styles.dialog}
+        autoScrollBodyContent={true}
       >
         <TextField
           hintText="Nombre de usuario sin espacios"
