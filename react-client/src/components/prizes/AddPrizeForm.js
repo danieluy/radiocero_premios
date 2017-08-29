@@ -15,6 +15,9 @@ import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
 import AutoComplete from 'material-ui/AutoComplete';
 import Toggle from 'material-ui/Toggle';
+import DatePicker from 'material-ui/DatePicker';
+
+import moment from 'moment';
 
 class AddPrizeForm extends Component {
   constructor() {
@@ -66,19 +69,23 @@ class AddPrizeForm extends Component {
     this.setState({ newPrize })
   }
   updatePrizeStock(e) {
-    if(!this.state.newPrize.periodic){
-      const newPrize = this.state.newPrize
-      let stock = parseInt(e.target.value)
-      else if(isNaN(stock)){
-        newPrize.stock = null
-        newPrize.stockMessage = 'Este campo solo acepta números enteros positivos'
-      }
-      else{
-        newPrize.stock = stock
-        newPrize.stockMessage = null
-      }
-    }
+    const newPrize = this.state.newPrize
+    newPrize.stock = parseInt(e.target.value)
+    newPrize.stockMessage = null
     this.setState({ newPrize })
+  }
+  updateNewPrize(field, value) {
+    const newPrize = this.state.newPrize
+    newPrize[field] = value
+    newPrize[`${field}Message`] = null
+    this.setState({ newPrize })
+  }
+  updatePrizeDueDate(date) {
+    console.log(date)
+    // const newPrize = this.state.newPrize
+    // newPrize.due_date = parseInt(e.target.value)
+    // newPrize.due_dateMessage = null
+    // this.setState({ newPrize })
   }
   handleKeyPress(evt) {
     if (evt.key === 'Enter')
@@ -92,7 +99,22 @@ class AddPrizeForm extends Component {
       newPrize.typeMessage = 'Este campo es obligatorio'
     if (!newPrize.sponsor || newPrize.sponsor === '')
       newPrize.sponsorMessage = 'Este campo es obligatorio'
-    if (newPrize.descriptionMessage || newPrize.typeMessage || newPrize.sponsorMessage)
+    if (!this.state.newPrize.periodic) {
+      let stock = parseInt(this.state.newPrize.stock)
+      if (isNaN(stock)) {
+        newPrize.stock = null
+        newPrize.stockMessage = 'Ingrese un número'
+      }
+      else if (stock < 1) {
+        newPrize.stock = null
+        newPrize.stockMessage = 'Mínimo: 1'
+      }
+    }
+    else {
+      newPrize.stock = null
+      newPrize.stockMessage = null
+    }
+    if (newPrize.descriptionMessage || newPrize.typeMessage || newPrize.sponsorMessage || newPrize.stockMessage)
       this.setState({ newPrize })
     else {
       delete newPrize.descriptionMessage
@@ -186,8 +208,9 @@ class AddPrizeForm extends Component {
           onToggle={this.updatePrizePeriodic.bind(this)}
           style={{ marginTop: '14px' }}
         />
+        <br />
         <TextField
-          hintText="Ingrese un valor entero"
+          hintText="Ingrese un número (>1)"
           errorText={this.state.newPrize.stockMessage}
           floatingLabelText="Stock"
           value={this.state.newPrize.stock || ''}
@@ -196,47 +219,10 @@ class AddPrizeForm extends Component {
           disabled={this.state.newPrize.periodic}
         />
         <br />
-        {/* 
-        <br />
-        <SelectField
-          floatingLabelText="Permisos"
-          value={this.state.user.role}
-          onChange={this.updateRole.bind(this)}
-          errorText={this.state.user.roleMessage}
-          disabled={(this.state.loggedUser && this.state.loggedUser.role === 'admin') ? false : true}
-        >
-          <MenuItem value={'user'} primaryText="Usuario" />
-          <MenuItem value={'admin'} primaryText="Administrador" />
-        </SelectField>
-        <br />
-        <TextField
-          hintText="nombre@dominio.com.uy"
-          errorText={this.state.user.emailMessage}
-          floatingLabelText="Email"
-          value={this.state.user.email || ''}
-          onChange={this.updateEmail.bind(this)}
-          onKeyPress={this.handleKeyPress.bind(this)}
+        <CustomDatePicker
+          controlledDate={this.state.newPrize.due_date}
+          handleChange={this.updatePrizeDueDate.bind(this)}
         />
-        <br />
-        <TextField
-          hintText="Ingrese una contraseña"
-          errorText={this.state.user.passwordMessage}
-          floatingLabelText="Contraseña"
-          value={this.state.user.password || ''}
-          onChange={this.updatePasswordNew.bind(this)}
-          onKeyPress={this.handleKeyPress.bind(this)}
-          type={this.state.showPasswords ? null : "password"}
-        />
-        <br />
-        <TextField
-          hintText="Repita la contraseña"
-          errorText={this.state.user.passwordMatchMessage}
-          floatingLabelText="Repetir Contraseña"
-          value={this.state.user.passwordMatch || ''}
-          onChange={this.updatePasswordMatch.bind(this)}
-          onKeyPress={this.handleKeyPress.bind(this)}
-          type={this.state.showPasswords ? null : "password"}
-        /> */}
         <br />
         <br />
         <br />
@@ -259,3 +245,28 @@ class AddPrizeForm extends Component {
 }
 
 export default AddPrizeForm;
+
+
+class CustomDatePicker extends Component {
+  constructor() {
+    super()
+    this.state = {}
+  }
+  handleChange(e, date) {
+    console.log(date, typeof date === 'string')
+    this.props.handleChange(moment(date).valueOf())
+  }
+  render() {
+    console.log(this.props.controlledDate)
+    const displayDate = this.props.controlledDate ? moment(this.props.controlledDate).locale('es').format("D/MM/YYYY") : 'Vencimiento'
+    return (
+      <DatePicker
+        hintText={displayDate}
+        floatingLabelText="Vencimiento"
+        value={moment(this.props.controlledDate)}
+        onChange={this.handleChange.bind(this)}
+        autoOk={true}
+      />
+    )
+  }
+}
