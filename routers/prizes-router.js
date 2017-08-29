@@ -21,6 +21,7 @@ prizes_router.get('/', (req, res) => {
 });
 
 prizes_router.post('/', (req, res) => {
+  console.log(req.body)
   let p = new Prize({
     type: req.body.type,
     sponsor: req.body.sponsor,
@@ -30,7 +31,8 @@ prizes_router.post('/', (req, res) => {
     due_date: req.body.due_date,
     note: req.body.note,
     total_handed: req.body.total_handed
-  }).save()
+  })
+    .save()
     .then((WriteResult) => {
       if (WriteResult.insertedCount > 0) {
         res.status(200).json({ message: 'The prize has been correctly saved' });

@@ -6,5 +6,9 @@ export default {
         maxWidth: 'none',
       }
     return null
+  },
+  color: {
+    primary: '#F58500',
+    accent: '#0070F5'
   }
 }

@@ -30,11 +30,16 @@ class Navbar extends Component {
   checkLoggedUser() {
     if (this.props.loggedUser)
       return (
-        // <FlatButton label="Cerrar Sesión">
-        //   {this.props.loggedUser.userName}
-        // </FlatButton>
         <IconMenu
-          iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+          iconButtonElement={
+            <IconButton
+              tooltip="Opciones de usuario"
+              tooltipPosition="bottom-left"
+              tooltipStyles={{ fontSize: '0.85rem', padding: '5px' }}
+            >
+              <MoreVertIcon />
+            </IconButton>
+          }
           targetOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
         >

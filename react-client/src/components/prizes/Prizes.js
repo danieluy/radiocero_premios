@@ -6,6 +6,7 @@ import events from '../../events'
 import moment from 'moment';
 
 import AddPrizeForm from './AddPrizeForm'
+import PrizeCard from './PrizeCard'
 
 import { PrizesIcon } from '../../assets/icons'
 
@@ -28,7 +29,8 @@ class Users extends PureComponent {
       prizes: [],
       prizeToEdit: null,
       prizeToDelete: null,
-      addPrizeOpen: false
+      addPrizeOpen: false,
+      prizeToDisplay: null
     }
   }
   componentDidMount() {
@@ -66,6 +68,11 @@ class Users extends PureComponent {
       addPrizeOpen: true
     })
   }
+  openPrizeCard(prize) {
+    this.setState({
+      prizeToDisplay: prize
+    })
+  }
 
   render() {
     return (
@@ -81,6 +88,7 @@ class Users extends PureComponent {
                     leftAvatar={<PrizesIcon width="30px" fill="#888" />}
                     primaryText={prize.description}
                     secondaryTextLines={2}
+                    onClick={this.openPrizeCard.bind(this, prize)}
                     secondaryText={
                       <p>
                         <span>{prize.sponsor}</span>
@@ -117,6 +125,12 @@ class Users extends PureComponent {
           prizes={this.state.prizes}
           onActionSuccess={this.updatePrizes.bind(this)}
           onActionCanceled={this.resetModals.bind(this)}
+        />
+
+        <PrizeCard
+          prize={this.state.prizeToDisplay}
+          open={!!this.state.prizeToDisplay}
+          onClose={() => { this.setState({ prizeToDisplay: null }) }}
         />
 
         <FloatingActionButton

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { addPrize } from '../../radiocero-api'
 import session from '../../session'
 
 import styles from '../../assets/styles'
+
+import CustomDatePicker from '../custom-date-picker/CustomDatePicker'
 
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
@@ -15,9 +16,6 @@ import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
 import AutoComplete from 'material-ui/AutoComplete';
 import Toggle from 'material-ui/Toggle';
-import DatePicker from 'material-ui/DatePicker';
-
-import moment from 'moment';
 
 class AddPrizeForm extends Component {
   constructor() {
@@ -37,9 +35,7 @@ class AddPrizeForm extends Component {
         due_date: null,
         due_dateMessage: null,
         note: null,
-        noteMessage: null,
-        total_handed: null,
-        total_handedMessage: null,
+        noteMessage: null
       },
       loggedUser: session.getLocalUser()
     }
@@ -81,11 +77,16 @@ class AddPrizeForm extends Component {
     this.setState({ newPrize })
   }
   updatePrizeDueDate(date) {
-    console.log(date)
-    // const newPrize = this.state.newPrize
-    // newPrize.due_date = parseInt(e.target.value)
-    // newPrize.due_dateMessage = null
-    // this.setState({ newPrize })
+    const newPrize = this.state.newPrize
+    newPrize.due_date = date
+    newPrize.due_dateMessage = null
+    this.setState({ newPrize })
+  }
+  updatePrizeNote(e) {
+    const newPrize = this.state.newPrize
+    newPrize.note = e.target.value
+    newPrize.noteMessage = null
+    this.setState({ newPrize })
   }
   handleKeyPress(evt) {
     if (evt.key === 'Enter')
@@ -114,11 +115,20 @@ class AddPrizeForm extends Component {
       newPrize.stock = null
       newPrize.stockMessage = null
     }
+    if (newPrize.note === '')
+      newPrize.note = null
+    if (newPrize.periodic !== true)
+      newPrize.periodic = false
     if (newPrize.descriptionMessage || newPrize.typeMessage || newPrize.sponsorMessage || newPrize.stockMessage)
       this.setState({ newPrize })
     else {
-      delete newPrize.descriptionMessage
       delete newPrize.typeMessage
+      delete newPrize.sponsorMessage
+      delete newPrize.descriptionMessage
+      delete newPrize.stockMessage
+      delete newPrize.periodicMessage
+      delete newPrize.due_dateMessage
+      delete newPrize.noteMessage
       addPrize(newPrize)
         .then(res => {
           this.props.onActionSuccess()
@@ -202,13 +212,14 @@ class AddPrizeForm extends Component {
           searchText={this.state.newPrize.sponsor}
           onUpdateInput={this.updatePrizeSponsor.bind(this)}
         />
+        <br />
+        <br />
         <Toggle
           label="Este premio se entregará periódicamente"
           labelPosition="right"
           onToggle={this.updatePrizePeriodic.bind(this)}
           style={{ marginTop: '14px' }}
         />
-        <br />
         <TextField
           hintText="Ingrese un número (>1)"
           errorText={this.state.newPrize.stockMessage}
@@ -219,9 +230,20 @@ class AddPrizeForm extends Component {
           disabled={this.state.newPrize.periodic}
         />
         <br />
+        <br />
         <CustomDatePicker
           controlledDate={this.state.newPrize.due_date}
           handleChange={this.updatePrizeDueDate.bind(this)}
+        />
+        <TextField
+          hintText="Ingrese comentarios sobre el premio"
+          errorText={this.state.newPrize.noteMessage}
+          floatingLabelText="Notas"
+          value={this.state.newPrize.note || ''}
+          onChange={this.updatePrizeNote.bind(this)}
+          onKeyPress={this.handleKeyPress.bind(this)}
+          multiLine={true}
+          rows={2}
         />
         <br />
         <br />
@@ -236,37 +258,12 @@ class AddPrizeForm extends Component {
           label="Cancelar"
           style={{ marginLeft: '5px' }}
         />
-        <pre>
+        {/* <pre>
           {JSON.stringify(this.state.newPrize, null, 2)}
-        </pre>
+        </pre> */}
       </Dialog>
     )
   }
 }
 
 export default AddPrizeForm;
-
-
-class CustomDatePicker extends Component {
-  constructor() {
-    super()
-    this.state = {}
-  }
-  handleChange(e, date) {
-    console.log(date, typeof date === 'string')
-    this.props.handleChange(moment(date).valueOf())
-  }
-  render() {
-    console.log(this.props.controlledDate)
-    const displayDate = this.props.controlledDate ? moment(this.props.controlledDate).locale('es').format("D/MM/YYYY") : 'Vencimiento'
-    return (
-      <DatePicker
-        hintText={displayDate}
-        floatingLabelText="Vencimiento"
-        value={moment(this.props.controlledDate)}
-        onChange={this.handleChange.bind(this)}
-        autoOk={true}
-      />
-    )
-  }
-}

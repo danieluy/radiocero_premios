@@ -8,7 +8,7 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
-  20170829 | P | Working on AddPrizeForm <CustomDatePicker />
+  20170829 | P | Added add Prize functionality for any user
   20170828 | P | Added session.checkLoggedUser()
   20170828 | P | Added Drawer permissions filter
   20170824 | P | Started Prizes section

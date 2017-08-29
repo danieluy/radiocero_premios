@@ -134,16 +134,20 @@ function getPrizes() {
   })
 }
 
-function addPrize() {
-  return Promise.resolve()
-  // type
-  // sponsor
-  // description
-  // stock
-  // periodic
-  // due_date
-  // note
-  // total_handed
+function addPrize(prize) {
+  return new Promise((resolve, reject) => {
+    superagent.post('/api/prizes/')
+      .type('form')
+      .send(prize)
+      .end((err, res) => {
+        if (err && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
 }
 
 export {
