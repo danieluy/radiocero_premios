@@ -10,11 +10,11 @@ class CustomDatePicker extends Component {
     this.state = {}
   }
   handleChange(e, date) {
-    this.props.handleChange(moment(date).valueOf())
+    this.props.handleChange(moment(date).format('YYYY/MM/DD'))
   }
   render() {
     const valueDate = this.props.controlledDate ? moment(this.props.controlledDate) : null
-    const displayDate = this.props.controlledDate ? moment(this.props.controlledDate).locale('es').format("D/MM/YYYY") : 'Vencimiento'
+    const displayDate = this.props.controlledDate ? moment(this.props.controlledDate).locale('es').format("DD/MM/YYYY") : 'Vencimiento'
     return (
       <DatePicker
         hintText={displayDate}

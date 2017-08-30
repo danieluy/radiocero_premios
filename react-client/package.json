@@ -10,6 +10,7 @@
   "author": "Daniel Sosa <danielsosa.dev@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "chart.js": "^2.6.0",
     "lodash": "^4.17.4",
     "material-ui": "^0.19.0",
     "moment": "^2.18.1",

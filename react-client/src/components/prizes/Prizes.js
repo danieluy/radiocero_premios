@@ -93,7 +93,7 @@ class Users extends PureComponent {
                       <p>
                         <span>{prize.sponsor}</span>
                         <br />
-                        {moment(prize.set_date).locale('es').format("D/MM/YYYY, H:mm")}
+                        {prize.due_date ? moment(prize.due_date).locale('es').format("DD/MM/YYYY") : 'Sin vencimiento'}
                       </p>
                     }
                     rightIconButton={
