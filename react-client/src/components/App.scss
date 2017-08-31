@@ -1,8 +1,9 @@
 $primary-color: #F58500;
 $accent-color: #0070F5;
-$light-grey: #AAA;
+$light-grey: #EEE;
 $grey: #888;
 $dark-grey: #555;
+$bar-height: 64px;
 
 html{
   font-size: 16px;
@@ -18,6 +19,7 @@ html{
 @import './home/home';
 @import './drawer/drawer';
 @import './users/users';
+@import './prizes/prizesToolbar';
 
 .app-routes{
   overflow-y: auto;
@@ -26,6 +28,10 @@ html{
 
   .app-container{
     width: 1200px;
+
+    @media screen and (max-width: 1200px){
+      width: 960px;
+    }
   }
 }
 

@@ -22,7 +22,6 @@ class PrizeCard extends PureComponent {
     return true
   }
   render() {
-    console.log(this.props.prize)
     if (this.props.open) {
       const prize = this.props.prize
       const enabled = this.checkEnabled()

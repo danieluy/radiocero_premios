@@ -1,0 +1,23 @@
+.prizes-toolbar{
+  position: relative;
+  width: 100%;
+  height: $bar-height;
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  
+  @media screen and (max-width: 960px){
+    margin-top: 0;
+  }
+  
+  .search-bar{
+    width: 50%;
+    height: 100%;
+    border-style: none;
+    border-radius: 3px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+  }
+}

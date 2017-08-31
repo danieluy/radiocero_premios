@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import AddPrizeForm from './AddPrizeForm'
 import PrizeCard from './PrizeCard'
+import PrizesToolbar from './PrizesToolbar'
 
 import { PrizesIcon } from '../../assets/icons'
 
@@ -77,6 +78,9 @@ class Users extends PureComponent {
   render() {
     return (
       <div className="app-container">
+        <PrizesToolbar
+          onSearch={q => { console.log('q', q) }}
+        />
         <List>
           <Subheader>Premios</Subheader>
           <Paper zDepth={1}>
@@ -134,7 +138,7 @@ class Users extends PureComponent {
         />
 
         <FloatingActionButton
-          style={{ position: 'fixed', bottom: '10px', right: '10px' }}
+          style={{ position: 'fixed', bottom: '10px', right: '10px', zIndex: '10' }}
           onClick={this.openAddPrize.bind(this)}
         >
           <ContentAdd />
