@@ -28,29 +28,72 @@ class Users extends PureComponent {
     super()
     this.state = {
       prizes: [],
+      prizesToDisplay: [],
       prizeToEdit: null,
       prizeToDelete: null,
       addPrizeOpen: false,
-      prizeToDisplay: null
+      prizeToDisplay: null,
+      filters: {
+        query: null,
+        enabledOnly: true
+      }
     }
   }
   componentDidMount() {
     this.updatePrizes()
     events.on('login', this.updatePrizes.bind(this))
   }
-
   updatePrizes() {
     getPrizes()
       .then(prizes => {
         this.setState({
           prizes: prizes
-        })
+        }, this.renderPrizes())
         this.resetModals()
         this.props.onQuickNotice('Premios actualizados')
       })
       .catch(err => {
         console.error(err)
       })
+  }
+  renderPrizes() {
+    let prizes = this.state.prizes
+    if (this.state.filters.query)
+      prizes = prizes.filter(prize => {
+        const regex = new RegExp(this.state.filters.query, 'ig')
+        if (prize.type.match(regex)) return true
+        if (prize.sponsor.match(regex)) return true
+        if (prize.description.match(regex)) return true
+        if (prize.note && prize.note.match(regex)) return true
+      })
+    if (this.state.filters.enabledOnly)
+      prizes = prizes.filter(prize => {
+        return this.checkEnabled(prize)
+      })
+    this.setState({
+      prizesToDisplay: prizes
+    })
+  }
+  checkEnabled(prize) {
+    if (!!prize.due_date && prize.due_date < moment().valueOf())
+      return false
+    if (prize.stock !== null && prize.stock === 0)
+      return false
+    return true
+  }
+  filterEnabledOnly() {
+    const filters = this.state.filters
+    filters.enabledOnly = !filters.enabledOnly
+    this.setState({
+      filters
+    }, this.renderPrizes.bind(this))
+  }
+  filterByQuery(query) {
+    const filters = this.state.filters
+    filters.query = (query && query !== '') ? query : null
+    this.setState({
+      filters
+    }, this.renderPrizes.bind(this))
   }
   resetModals() {
     this.setState({
@@ -79,12 +122,14 @@ class Users extends PureComponent {
     return (
       <div className="app-container">
         <PrizesToolbar
-          onSearch={q => { console.log('q', q) }}
+          onSearch={this.filterByQuery.bind(this)}
+          onEnabledOnlyChange={this.filterEnabledOnly.bind(this)}
+          filtersState={this.state.filters}
         />
         <List>
           <Subheader>Premios</Subheader>
           <Paper zDepth={1}>
-            {this.state.prizes.map((prize, i) => {
+            {this.state.prizesToDisplay.map((prize, i) => {
               return (
                 <div key={i}>
                   <ListItem
@@ -135,6 +180,7 @@ class Users extends PureComponent {
           prize={this.state.prizeToDisplay}
           open={!!this.state.prizeToDisplay}
           onClose={() => { this.setState({ prizeToDisplay: null }) }}
+          checkEnabled={this.checkEnabled}
         />
 
         <FloatingActionButton

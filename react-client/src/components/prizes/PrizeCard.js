@@ -13,18 +13,10 @@ import Divider from 'material-ui/Divider';
 import Checkbox from 'material-ui/Checkbox';
 
 class PrizeCard extends PureComponent {
-  checkEnabled() {
-    const prize = this.props.prize
-    if (!!prize.due_date && prize.due_date < moment().valueOf())
-      return false
-    if (prize.stock !== null && prize.stock === 0)
-      return false
-    return true
-  }
   render() {
     if (this.props.open) {
       const prize = this.props.prize
-      const enabled = this.checkEnabled()
+      const enabled = this.props.checkEnabled(this.props.prize)
       return (
         <Dialog
           modal={false}

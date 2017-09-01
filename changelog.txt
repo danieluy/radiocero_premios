@@ -8,7 +8,9 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
-  20170830 | P | Working on Prizes toolbar (event debounce)
+  20170901 | P | Working on Prizes toolbar (responsive styles)
+  20170901 | P | Added filter controls on Prizes toolbar
+  20170901 | P | Added filters on Prizes
   20170830 | P | Added prizes cards
   20170829 | P | Added add Prize functionality for any user
   20170828 | P | Added session.checkLoggedUser()
