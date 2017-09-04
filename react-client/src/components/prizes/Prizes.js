@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 
 import { getPrizes } from '../../radiocero-api'
 import events from '../../events'
+import { removeVowelAccent } from '../../utils'
 
 import moment from 'moment';
 
@@ -60,11 +61,11 @@ class Users extends PureComponent {
     let prizes = this.state.prizes
     if (this.state.filters.query)
       prizes = prizes.filter(prize => {
-        const regex = new RegExp(this.state.filters.query, 'ig')
-        if (prize.type.match(regex)) return true
-        if (prize.sponsor.match(regex)) return true
-        if (prize.description.match(regex)) return true
-        if (prize.note && prize.note.match(regex)) return true
+        const regex = new RegExp(removeVowelAccent(this.state.filters.query), 'ig')
+        if (removeVowelAccent(prize.type).match(regex)) return true
+        if (removeVowelAccent(prize.sponsor).match(regex)) return true
+        if (removeVowelAccent(prize.description).match(regex)) return true
+        if (prize.note && removeVowelAccent(prize.note).match(regex)) return true
       })
     if (this.state.filters.enabledOnly)
       prizes = prizes.filter(prize => {

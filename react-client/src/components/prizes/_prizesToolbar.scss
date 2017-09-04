@@ -2,50 +2,52 @@
   position: relative;
   width: 100%;
   margin-top: 10px;
-  padding: 10px;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   background-color: $light-grey;
   border-radius: 3px;
+  padding: 0 10px;
   
   @media screen and (max-width: 960px){
     margin-top: 0;
     border-radius: 0;
   }
+  
+  @media screen and (max-width: 768px){
+    flex-direction: column;
+  }
 
   .search-bar{
-    width: 85%;
+    flex-grow: 10;
     height: $bar-height;
     border-style: none;
     border-radius: 3px;
     padding: 0 10px;
     display: flex;
     align-items: center;
-
-    @media screen and (max-width: 1200px){
-      width: 80%;
-    }
-    @media screen and (max-width: 960px){
+    
+    @media screen and (max-width: 768px){
+      flex-grow: 0;
       width: 100%;
-      height: 50%;
-      order: 2;
     }
   }
 
   .prizes-controls{
-    width: 15%;
+    flex-grow: 1;
     height: $bar-height;
     display: flex;
     align-items: center;
     
-    @media screen and (max-width: 1200px){
-      width: 20%;
+    @media screen and (max-width: 768px){
+      flex-grow: 0;
+      width: 100%;
+      padding: 0 10px;
     }
-    @media screen and (max-width: 960px){
-      height: 50%;
-      margin-left: 10px;
-      order: 1;
+
+    .prizes-controls-item{
+      flex-grow: 1;
+      flex-wrap: wrap;
     }
   }
 }

@@ -258,9 +258,9 @@ class AddPrizeForm extends Component {
           label="Cancelar"
           style={{ marginLeft: '5px' }}
         />
-        <pre>
+        {/* <pre>
           {JSON.stringify(this.state.newPrize, null, 2)}
-        </pre>
+        </pre> */}
       </Dialog>
     )
   }

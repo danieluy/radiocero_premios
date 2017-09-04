@@ -30,16 +30,13 @@ class PrizesToolbar extends Component {
           />
         </div>
         <div className="prizes-controls">
-          <Checkbox
-            label="Solo Habilitados"
-            checked={this.props.filtersState.enabledOnly}
-            onCheck={this.props.onEnabledOnlyChange}
-          />
-          <Checkbox
-            label="Solo Habilitados"
-            checked={this.props.filtersState.enabledOnly}
-            onCheck={this.props.onEnabledOnlyChange}
-          />
+          <div className="prizes-controls-item">
+            <Checkbox
+              label="Solo Habilitados"
+              checked={this.props.filtersState.enabledOnly}
+              onCheck={this.props.onEnabledOnlyChange}
+            />
+          </div>
         </div>
       </div>
     );
