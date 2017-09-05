@@ -45,7 +45,39 @@ prizes_router.post('/', (req, res) => {
     })
 });
 
-prizes_router.post('//edit', checkRoleAdmin, (req, res) => {
+prizes_router.post('/edit', checkRoleAdmin, (req, res) => {
+  Prizes.findById(req.body.id)
+    .then(prize => {
+      if (prize) {
+        prize.edit({
+          type: req.body.type,
+          sponsor: req.body.sponsor,
+          description: req.body.description,
+          stock: req.body.stock,
+          periodic: req.body.periodic,
+          due_date: req.body.due_date,
+          note: req.body.note,
+          total_handed: req.body.total_handed
+        })
+          .then(WriteResult => {
+            if (WriteResult.nModified > 0)
+              res.status(200).json({ message: 'The prize has been correctly updated' });
+            else
+              res.status(500).json({ error: "There was a problem updating the prize", details: 'WriteResult.nModified < 0' });
+          })
+          .catch(err => {
+            console.error(err.stack ? err.stack : err)
+            res.status(500).json({ error: "There was a problem updating the prize", details: (err.stack ? err.stack : err) });
+          })
+      }
+      else {
+        console.error("The prize does not exist");
+        res.status(500).json({ error: "The prize does not exist", details: null });
+      }
+    })
+});
+
+prizes_router.patch('/', checkRoleAdmin, (req, res) => {
   Prizes.findById(req.body.id)
     .then(prize => {
       if (prize) {

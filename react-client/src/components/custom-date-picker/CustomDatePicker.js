@@ -9,7 +9,7 @@ import moment from 'moment';
 
 class CustomDatePicker extends Component {
   handleChange(e, date) {
-    this.props.handleChange(moment(date).format('YYYY/MM/DD'))
+    this.props.handleChange(moment(date).valueOf())
   }
   render() {
     const valueDate = this.props.controlledDate ? moment(this.props.controlledDate) : null

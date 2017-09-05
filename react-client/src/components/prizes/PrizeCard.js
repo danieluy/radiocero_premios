@@ -14,7 +14,6 @@ import Checkbox from 'material-ui/Checkbox';
 
 class PrizeCard extends PureComponent {
   render() {
-    console.log(this.props.prize)
     if (this.props.open) {
       const prize = this.props.prize
       const enabled = this.props.checkEnabled(this.props.prize)

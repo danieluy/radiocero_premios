@@ -5,6 +5,7 @@ import events from '../../events'
 import { removeVowelAccent } from 'ds-mini-utils'
 
 import moment from 'moment';
+import _ from 'lodash'
 
 import AddPrizeForm from './AddPrizeForm'
 import EditPrizeForm from './EditPrizeForm'
@@ -25,7 +26,7 @@ import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-class Users extends PureComponent {
+class Prizes extends PureComponent {
   constructor() {
     super()
     this.state = {
@@ -48,20 +49,19 @@ class Users extends PureComponent {
   updatePrizes() {
     getPrizes()
       .then(prizes => {
-        this.setState({
-          prizes: prizes
-        }, this.renderPrizes())
+        this.setState({ prizes }, this.renderPrizes)
         this.resetModals()
         this.props.onQuickNotice('Premios actualizados')
       })
       .catch(err => {
+        this.props.onQuickNotice('ERROR actualizando premios')
         console.error(err)
       })
   }
   renderPrizes() {
-    let prizes = this.state.prizes
+    let prizesToDisplay = _.cloneDeep(this.state.prizes)
     if (this.state.filters.query)
-      prizes = prizes.filter(prize => {
+      prizesToDisplay = prizesToDisplay.filter(prize => {
         const regex = new RegExp(removeVowelAccent(this.state.filters.query), 'ig')
         if (removeVowelAccent(prize.type).match(regex)) return true
         if (removeVowelAccent(prize.sponsor).match(regex)) return true
@@ -69,12 +69,10 @@ class Users extends PureComponent {
         if (prize.note && removeVowelAccent(prize.note).match(regex)) return true
       })
     if (this.state.filters.enabledOnly)
-      prizes = prizes.filter(prize => {
+      prizesToDisplay = prizesToDisplay.filter(prize => {
         return this.checkEnabled(prize)
       })
-    this.setState({
-      prizesToDisplay: prizes
-    })
+    this.setState({ prizesToDisplay })
   }
   checkEnabled(prize) {
     if (!!prize.due_date && prize.due_date < moment().valueOf())
@@ -84,18 +82,14 @@ class Users extends PureComponent {
     return true
   }
   filterEnabledOnly() {
-    const filters = this.state.filters
+    const filters = _.cloneDeep(this.state.filters)
     filters.enabledOnly = !filters.enabledOnly
-    this.setState({
-      filters
-    }, this.renderPrizes.bind(this))
+    this.setState({ filters }, this.renderPrizes.bind(this))
   }
   filterByQuery(query) {
-    const filters = this.state.filters
+    const filters = _.cloneDeep(this.state.filters)
     filters.query = (query && query !== '') ? query : null
-    this.setState({
-      filters
-    }, this.renderPrizes.bind(this))
+    this.setState({ filters }, this.renderPrizes.bind(this))
   }
   resetModals() {
     this.setState({
@@ -203,4 +197,4 @@ class Users extends PureComponent {
   }
 }
 
-export default Users;
+export default Prizes;

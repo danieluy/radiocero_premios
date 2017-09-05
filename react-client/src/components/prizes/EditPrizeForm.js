@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
-import { editPrize } from '../../radiocero-api'
+import { updatePrize } from '../../radiocero-api'
 import session from '../../session'
 
 import styles from '../../assets/styles'
 
 import CustomDatePicker from '../custom-date-picker/CustomDatePicker'
+
+import moment from 'moment';
 
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
@@ -22,6 +24,7 @@ class EditPrizeForm extends Component {
     super()
     this.state = {
       prizeToEdit: {
+        id: null,
         type: null,
         typeMessage: null,
         sponsor: null,
@@ -35,7 +38,8 @@ class EditPrizeForm extends Component {
         due_date: null,
         due_dateMessage: null,
         note: null,
-        noteMessage: null
+        noteMessage: null,
+        total_handed: null
       },
       loggedUser: session.getLocalUser()
     }
@@ -43,20 +47,15 @@ class EditPrizeForm extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.prize) {
       const prizeToEdit = {
+        id: nextProps.prize.id,
         type: nextProps.prize.type,
-        typeMessage: null,
         sponsor: nextProps.prize.sponsor,
-        sponsorMessage: null,
         description: nextProps.prize.description,
-        descriptionMessage: null,
         stock: nextProps.prize.stock,
-        stockMessage: null,
         periodic: nextProps.prize.periodic,
-        periodicMessage: null,
-        due_date: nextProps.prize.due_date,
-        due_dateMessage: null,
+        due_date: nextProps.prize.due_date ? moment(nextProps.prize.due_date).valueOf() : null,
         note: nextProps.prize.note,
-        noteMessage: null
+        total_handed: nextProps.prize.total_handed
       }
       this.setState({ prizeToEdit })
     }
@@ -150,7 +149,8 @@ class EditPrizeForm extends Component {
       delete prizeToEdit.periodicMessage
       delete prizeToEdit.due_dateMessage
       delete prizeToEdit.noteMessage
-      editPrize(prizeToEdit)
+      prizeToEdit.due_date = prizeToEdit.due_date ? moment(prizeToEdit.due_date).format('YYYY/MM/DD') : null
+      updatePrize(prizeToEdit)
         .then(res => {
           this.props.onActionSuccess()
           this.handleClose()

@@ -1,6 +1,6 @@
 const superagent = require('superagent');
 
-
+const apibBaseURL = '/api/'
 
 function login(userName, password) {
   if (!userName || !password)
@@ -46,7 +46,7 @@ function logged() {
 
 function getUsers() {
   return new Promise((resolve, reject) => {
-    superagent.get('/api/users')
+    superagent.get(apibBaseURL + 'users')
       .end((err, res) => {
         if (err && res.unauthorized)
           reject('Unauthorized')
@@ -60,7 +60,7 @@ function getUsers() {
 
 function updateUser(user) {
   return new Promise((resolve, reject) => {
-    superagent.patch('/api/users')
+    superagent.patch(apibBaseURL + 'users')
       .type('form')
       .send(user)
       .end((err, res) => {
@@ -76,7 +76,7 @@ function updateUser(user) {
 
 function updateUserPassword(data) {
   return new Promise((resolve, reject) => {
-    superagent.patch('/api/users/password')
+    superagent.patch(apibBaseURL + 'users/password')
       .type('form')
       .send(data)
       .end((err, res) => {
@@ -92,7 +92,7 @@ function updateUserPassword(data) {
 
 function deleteUser(user) {
   return new Promise((resolve, reject) => {
-    superagent.delete('/api/users/' + user.id)
+    superagent.delete(apibBaseURL + 'users/' + user.id)
       .end((err, res) => {
         if (err && res.unauthorized)
           reject('Unauthorized')
@@ -106,7 +106,7 @@ function deleteUser(user) {
 
 function addUser(user) {
   return new Promise((resolve, reject) => {
-    superagent.post('/api/users/')
+    superagent.post(apibBaseURL + 'users/')
       .type('form')
       .send(user)
       .end((err, res) => {
@@ -122,7 +122,7 @@ function addUser(user) {
 
 function getPrizes() {
   return new Promise((resolve, reject) => {
-    superagent.get('/api/prizes/')
+    superagent.get(apibBaseURL + 'prizes/')
       .end((err, res) => {
         if (err && res.unauthorized)
           reject('Unauthorized')
@@ -136,7 +136,7 @@ function getPrizes() {
 
 function addPrize(prize) {
   return new Promise((resolve, reject) => {
-    superagent.post('/api/prizes/')
+    superagent.post(apibBaseURL + 'prizes/')
       .type('form')
       .send(prize)
       .end((err, res) => {
@@ -150,9 +150,22 @@ function addPrize(prize) {
   })
 }
 
-function editPrize(prize){
-  console.log(prize)
-  return Promise.resolve()
+
+
+function updatePrize(prize) {
+  return new Promise((resolve, reject) => {
+    superagent.patch(apibBaseURL + 'prizes')
+      .type('form')
+      .send(prize)
+      .end((err, res) => {
+        if (err && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
 }
 
 export {
@@ -166,5 +179,5 @@ export {
   addUser,
   getPrizes,
   addPrize,
-  editPrize
+  updatePrize
 }
