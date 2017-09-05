@@ -2,11 +2,12 @@ import React, { PureComponent } from 'react';
 
 import { getPrizes } from '../../radiocero-api'
 import events from '../../events'
-import { removeVowelAccent } from '../../utils'
+import { removeVowelAccent } from 'ds-mini-utils'
 
 import moment from 'moment';
 
 import AddPrizeForm from './AddPrizeForm'
+import EditPrizeForm from './EditPrizeForm'
 import PrizeCard from './PrizeCard'
 import PrizesToolbar from './PrizesToolbar'
 
@@ -169,9 +170,16 @@ class Users extends PureComponent {
           </Paper>
         </List>
 
-
         <AddPrizeForm
           open={this.state.addPrizeOpen}
+          prizes={this.state.prizes}
+          onActionSuccess={this.updatePrizes.bind(this)}
+          onActionCanceled={this.resetModals.bind(this)}
+        />
+
+        <EditPrizeForm
+          open={!!this.state.prizeToEdit}
+          prize={this.state.prizeToEdit}
           prizes={this.state.prizes}
           onActionSuccess={this.updatePrizes.bind(this)}
           onActionCanceled={this.resetModals.bind(this)}

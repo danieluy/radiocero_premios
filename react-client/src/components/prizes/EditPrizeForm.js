@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { addPrize } from '../../radiocero-api'
+import { editPrize } from '../../radiocero-api'
 import session from '../../session'
 
 import styles from '../../assets/styles'
@@ -17,11 +17,11 @@ import Checkbox from 'material-ui/Checkbox';
 import AutoComplete from 'material-ui/AutoComplete';
 import Toggle from 'material-ui/Toggle';
 
-class AddPrizeForm extends Component {
+class EditPrizeForm extends Component {
   constructor() {
     super()
     this.state = {
-      newPrize: {
+      prizeToEdit: {
         type: null,
         typeMessage: null,
         sponsor: null,
@@ -40,96 +40,117 @@ class AddPrizeForm extends Component {
       loggedUser: session.getLocalUser()
     }
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.prize) {
+      const prizeToEdit = {
+        type: nextProps.prize.type,
+        typeMessage: null,
+        sponsor: nextProps.prize.sponsor,
+        sponsorMessage: null,
+        description: nextProps.prize.description,
+        descriptionMessage: null,
+        stock: nextProps.prize.stock,
+        stockMessage: null,
+        periodic: nextProps.prize.periodic,
+        periodicMessage: null,
+        due_date: nextProps.prize.due_date,
+        due_dateMessage: null,
+        note: nextProps.prize.note,
+        noteMessage: null
+      }
+      this.setState({ prizeToEdit })
+    }
+  }
   updatePrizeDescrption(e) {
-    const newPrize = this.state.newPrize
-    newPrize.description = e.target.value
-    newPrize.descriptionMessage = null
-    this.setState({ newPrize })
+    const prizeToEdit = this.state.prizeToEdit
+    prizeToEdit.description = e.target.value
+    prizeToEdit.descriptionMessage = null
+    this.setState({ prizeToEdit })
   }
   updatePrizeType(searchText) {
-    const newPrize = this.state.newPrize
-    newPrize.type = searchText
-    newPrize.typeMessage = null
-    this.setState({ newPrize })
+    const prizeToEdit = this.state.prizeToEdit
+    prizeToEdit.type = searchText
+    prizeToEdit.typeMessage = null
+    this.setState({ prizeToEdit })
   }
   updatePrizeSponsor(searchText) {
-    const newPrize = this.state.newPrize
-    newPrize.sponsor = searchText
-    newPrize.sponsorMessage = null
-    this.setState({ newPrize })
+    const prizeToEdit = this.state.prizeToEdit
+    prizeToEdit.sponsor = searchText
+    prizeToEdit.sponsorMessage = null
+    this.setState({ prizeToEdit })
   }
   updatePrizePeriodic(evt, checked) {
-    const newPrize = this.state.newPrize
-    newPrize.periodic = checked
-    newPrize.periodicMessage = null
-    this.setState({ newPrize })
+    const prizeToEdit = this.state.prizeToEdit
+    prizeToEdit.periodic = checked
+    prizeToEdit.periodicMessage = null
+    this.setState({ prizeToEdit })
   }
   updatePrizeStock(e) {
-    const newPrize = this.state.newPrize
-    newPrize.stock = parseInt(e.target.value)
-    newPrize.stockMessage = null
-    this.setState({ newPrize })
+    const prizeToEdit = this.state.prizeToEdit
+    prizeToEdit.stock = parseInt(e.target.value)
+    prizeToEdit.stockMessage = null
+    this.setState({ prizeToEdit })
   }
   updateNewPrize(field, value) {
-    const newPrize = this.state.newPrize
-    newPrize[field] = value
-    newPrize[`${field}Message`] = null
-    this.setState({ newPrize })
+    const prizeToEdit = this.state.prizeToEdit
+    prizeToEdit[field] = value
+    prizeToEdit[`${field}Message`] = null
+    this.setState({ prizeToEdit })
   }
   updatePrizeDueDate(date) {
-    const newPrize = this.state.newPrize
-    newPrize.due_date = date
-    newPrize.due_dateMessage = null
-    this.setState({ newPrize })
+    const prizeToEdit = this.state.prizeToEdit
+    prizeToEdit.due_date = date
+    prizeToEdit.due_dateMessage = null
+    this.setState({ prizeToEdit })
   }
   updatePrizeNote(e) {
-    const newPrize = this.state.newPrize
-    newPrize.note = e.target.value
-    newPrize.noteMessage = null
-    this.setState({ newPrize })
+    const prizeToEdit = this.state.prizeToEdit
+    prizeToEdit.note = e.target.value
+    prizeToEdit.noteMessage = null
+    this.setState({ prizeToEdit })
   }
   handleKeyPress(evt) {
     if (evt.key === 'Enter')
-      this.addPrize()
+      this.editPrize()
   }
-  addPrize() {
-    const newPrize = this.state.newPrize
-    if (!newPrize.description || newPrize.description === '')
-      newPrize.descriptionMessage = 'Este campo es obligatorio'
-    if (!newPrize.type || newPrize.type === '')
-      newPrize.typeMessage = 'Este campo es obligatorio'
-    if (!newPrize.sponsor || newPrize.sponsor === '')
-      newPrize.sponsorMessage = 'Este campo es obligatorio'
-    if (!this.state.newPrize.periodic) {
-      let stock = parseInt(this.state.newPrize.stock)
+  editPrize() {
+    const prizeToEdit = this.state.prizeToEdit
+    if (!prizeToEdit.description || prizeToEdit.description === '')
+      prizeToEdit.descriptionMessage = 'Este campo es obligatorio'
+    if (!prizeToEdit.type || prizeToEdit.type === '')
+      prizeToEdit.typeMessage = 'Este campo es obligatorio'
+    if (!prizeToEdit.sponsor || prizeToEdit.sponsor === '')
+      prizeToEdit.sponsorMessage = 'Este campo es obligatorio'
+    if (!this.state.prizeToEdit.periodic) {
+      let stock = parseInt(this.state.prizeToEdit.stock)
       if (isNaN(stock)) {
-        newPrize.stock = null
-        newPrize.stockMessage = 'Ingrese un número'
+        prizeToEdit.stock = null
+        prizeToEdit.stockMessage = 'Ingrese un número'
       }
       else if (stock < 1) {
-        newPrize.stock = null
-        newPrize.stockMessage = 'Mínimo: 1'
+        prizeToEdit.stock = null
+        prizeToEdit.stockMessage = 'Mínimo: 1'
       }
     }
     else {
-      newPrize.stock = null
-      newPrize.stockMessage = null
+      prizeToEdit.stock = null
+      prizeToEdit.stockMessage = null
     }
-    if (newPrize.note === '')
-      newPrize.note = null
-    if (newPrize.periodic !== true)
-      newPrize.periodic = false
-    if (newPrize.descriptionMessage || newPrize.typeMessage || newPrize.sponsorMessage || newPrize.stockMessage)
-      this.setState({ newPrize })
+    if (prizeToEdit.note === '')
+      prizeToEdit.note = null
+    if (prizeToEdit.periodic !== true)
+      prizeToEdit.periodic = false
+    if (prizeToEdit.descriptionMessage || prizeToEdit.typeMessage || prizeToEdit.sponsorMessage || prizeToEdit.stockMessage)
+      this.setState({ prizeToEdit })
     else {
-      delete newPrize.typeMessage
-      delete newPrize.sponsorMessage
-      delete newPrize.descriptionMessage
-      delete newPrize.stockMessage
-      delete newPrize.periodicMessage
-      delete newPrize.due_dateMessage
-      delete newPrize.noteMessage
-      addPrize(newPrize)
+      delete prizeToEdit.typeMessage
+      delete prizeToEdit.sponsorMessage
+      delete prizeToEdit.descriptionMessage
+      delete prizeToEdit.stockMessage
+      delete prizeToEdit.periodicMessage
+      delete prizeToEdit.due_dateMessage
+      delete prizeToEdit.noteMessage
+      editPrize(prizeToEdit)
         .then(res => {
           this.props.onActionSuccess()
           this.handleClose()
@@ -177,7 +198,7 @@ class AddPrizeForm extends Component {
   render() {
     return (
       <Dialog
-        title="Nuevo Premio"
+        title="Editar Premio"
         modal={false}
         open={this.props.open}
         onRequestClose={this.handleClose.bind(this)}
@@ -186,71 +207,77 @@ class AddPrizeForm extends Component {
       >
         <TextField
           hintText="Ej: Artista X en sala X"
-          errorText={this.state.newPrize.descriptionMessage}
+          errorText={this.state.prizeToEdit.descriptionMessage}
           floatingLabelText="Descripción"
-          value={this.state.newPrize.description || ''}
+          value={this.state.prizeToEdit.description || ''}
           onChange={this.updatePrizeDescrption.bind(this)}
           onKeyPress={this.handleKeyPress.bind(this)}
+          fullWidth={true}
         />
         <br />
         <AutoComplete
           hintText="Buscar o Agregar"
-          errorText={this.state.newPrize.typeMessage}
+          errorText={this.state.prizeToEdit.typeMessage}
           floatingLabelText="Tipo de Premio"
           filter={AutoComplete.caseInsensitiveFilter}
           dataSource={this.prizeTypes.call(this)}
-          searchText={this.state.newPrize.type}
+          searchText={this.state.prizeToEdit.type}
           onUpdateInput={this.updatePrizeType.bind(this)}
+          fullWidth={true}
         />
         <br />
         <AutoComplete
           hintText="Buscar o Agregar"
-          errorText={this.state.newPrize.sponsorMessage}
+          errorText={this.state.prizeToEdit.sponsorMessage}
           floatingLabelText="Espónsor"
           filter={AutoComplete.caseInsensitiveFilter}
           dataSource={this.sponsorsList.call(this)}
-          searchText={this.state.newPrize.sponsor}
+          searchText={this.state.prizeToEdit.sponsor}
           onUpdateInput={this.updatePrizeSponsor.bind(this)}
+          fullWidth={true}
         />
         <br />
         <br />
         <Toggle
           label="Este premio se entregará periódicamente"
           labelPosition="right"
+          toggled={this.state.prizeToEdit.periodic}
           onToggle={this.updatePrizePeriodic.bind(this)}
           style={{ marginTop: '14px' }}
         />
         <TextField
           hintText="Ingrese un número (>1)"
-          errorText={this.state.newPrize.stockMessage}
+          errorText={this.state.prizeToEdit.stockMessage}
           floatingLabelText="Stock"
-          value={this.state.newPrize.stock || ''}
+          value={this.state.prizeToEdit.stock || ''}
           onChange={this.updatePrizeStock.bind(this)}
           onKeyPress={this.handleKeyPress.bind(this)}
-          disabled={this.state.newPrize.periodic}
+          disabled={this.state.prizeToEdit.periodic}
+          fullWidth={true}
         />
         <br />
         <br />
         <CustomDatePicker
-          controlledDate={this.state.newPrize.due_date}
+          controlledDate={this.state.prizeToEdit.due_date}
           handleChange={this.updatePrizeDueDate.bind(this)}
           label="Vencimiento"
         />
         <TextField
           hintText="Ingrese comentarios sobre el premio"
-          errorText={this.state.newPrize.noteMessage}
+          errorText={this.state.prizeToEdit.noteMessage}
           floatingLabelText="Notas"
-          value={this.state.newPrize.note || ''}
+          value={this.state.prizeToEdit.note || ''}
           onChange={this.updatePrizeNote.bind(this)}
           onKeyPress={this.handleKeyPress.bind(this)}
           multiLine={true}
           rows={2}
+          fullWidth={true}
         />
         <br />
         <br />
         <br />
         <RaisedButton
-          onClick={this.addPrize.bind(this)}
+          onClick={this.editPrize.bind(this)}
           label="Guardar"
           primary={true}
         />
@@ -259,12 +286,12 @@ class AddPrizeForm extends Component {
           label="Cancelar"
           style={{ marginLeft: '5px' }}
         />
-        {/* <pre>
-          {JSON.stringify(this.state.newPrize, null, 2)}
-        </pre> */}
+        <pre>
+          {JSON.stringify(this.state.prizeToEdit, null, 2)}
+        </pre>
       </Dialog>
     )
   }
 }
 
-export default AddPrizeForm;
+export default EditPrizeForm;

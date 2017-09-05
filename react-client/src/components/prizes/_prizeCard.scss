@@ -1,0 +1,27 @@
+.prize-card-stock-wrapper{
+  position: relative;
+
+  .prize-card-stock-wrapper-counter{
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    color: $grey;
+    
+    .prize-card-stock-wrapper-counter-stock{
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: $primary-color;
+    }
+    
+    .prize-card-stock-wrapper-counter-total{
+      font-size: 1rem;
+      font-weight: 300;
+    }
+  }
+}

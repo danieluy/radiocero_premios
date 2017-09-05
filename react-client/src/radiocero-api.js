@@ -150,6 +150,11 @@ function addPrize(prize) {
   })
 }
 
+function editPrize(prize){
+  console.log(prize)
+  return Promise.resolve()
+}
+
 export {
   login,
   logout,
@@ -160,5 +165,6 @@ export {
   deleteUser,
   addUser,
   getPrizes,
-  addPrize
+  addPrize,
+  editPrize
 }

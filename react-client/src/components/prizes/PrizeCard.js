@@ -14,6 +14,7 @@ import Checkbox from 'material-ui/Checkbox';
 
 class PrizeCard extends PureComponent {
   render() {
+    console.log(this.props.prize)
     if (this.props.open) {
       const prize = this.props.prize
       const enabled = this.props.checkEnabled(this.props.prize)
@@ -47,26 +48,30 @@ class PrizeCard extends PureComponent {
             </p>
             <br />
             {(prize.stock !== null) ?
-              <div>
+              <div className="prize-card-stock-wrapper">
                 <p><strong>Stock:</strong></p>
-                <GrantedChart
+                <StockChart
                   title="Stock"
                   granted={prize.total_handed}
                   total={prize.total_handed + prize.stock}
                 />
+                <div className="prize-card-stock-wrapper-counter">
+                  <div className="prize-card-stock-wrapper-counter-stock">{prize.stock}</div>
+                  <div className="prize-card-stock-wrapper-counter-total">{prize.total_handed + prize.stock}</div>
+                </div>
               </div>
               :
               <p><strong>Stock:</strong> No corresponde</p>
             }
             <br />
-            <p>
+            <div>
               <strong>Premio periódico:</strong>
               <span style={{ display: 'inline-block', verticalAlign: 'middle', marginLeft: '15px' }}>
                 <Checkbox
                   checked={prize.periodic}
                 />
               </span>
-            </p>
+            </div>
 
           </CardText>
 
@@ -84,7 +89,7 @@ class PrizeCard extends PureComponent {
 export default PrizeCard
 
 
-class GrantedChart extends PureComponent {
+class StockChart extends PureComponent {
   onCanvasReady(node) {
     if (node)
       new Chart(node.getContext("2d"), {
@@ -102,7 +107,7 @@ class GrantedChart extends PureComponent {
           }]
         },
         options: {
-          cutoutPercentage: 50,
+          cutoutPercentage: 80,
           title: {
             display: false,
             text: this.props.title
@@ -132,7 +137,7 @@ class GrantedChart extends PureComponent {
   }
   render() {
     return (
-      <div style={{ width: '150px', marginLeft: '20px' }}>
+      <div style={{ width: '100px', marginLeft: '20px' }}>
         <canvas ref={this.onCanvasReady.bind(this)} />
       </div>
     );
