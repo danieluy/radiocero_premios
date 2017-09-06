@@ -4,11 +4,13 @@ $light-grey: #EEE;
 $grey: #888;
 $dark-grey: #555;
 $bar-height: 64px;
+$html-background-color: #FFF;
 
 html{
   font-size: 16px;
   font-weight: 300;
   font-family: Roboto, sans-serif;
+  background-color: $html-background-color;
 }
 *{
   margin: 0;
@@ -22,11 +24,25 @@ html{
 @import './prizes/prizesToolbar';
 @import './prizes/prizeCard';
 
+.app-wrapper{
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: $html-background-color;
+  }
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid $html-background-color;
+    border-radius: 4px;
+    background-color: $primary-color;
+  }
+}
+
 .app-routes{
   overflow-y: auto;
   display: flex;
   justify-content: center;
-
+  
   .app-container{
     width: 1200px;
 
