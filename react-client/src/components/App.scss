@@ -1,10 +1,15 @@
-$primary-color: #F58500;
-$accent-color: #0070F5;
-$light-grey: #EEE;
-$grey: #888;
-$dark-grey: #555;
+$primary-color: #FF9800;
+$primary-color-light: #FFC947;
+$primary-color-dark: #C66900;
+$accent-color: #00BCD4;
+$accent-color-light: #62EFFF;
+$accent-color-dark: #008BA3;
+$grey100: #FAFAFA;
+$grey300: #E0E0E0;
+$grey500: #9E9E9E;
+$grey800: #424242;
 $bar-height: 64px;
-$html-background-color: #FFF;
+$html-background-color: #EEE;
 
 html{
   font-size: 16px;
@@ -25,16 +30,18 @@ html{
 @import './prizes/prizeCard';
 
 .app-wrapper{
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: $html-background-color;
-  }
-  ::-webkit-scrollbar-thumb {
-    border: 2px solid $html-background-color;
-    border-radius: 4px;
-    background-color: $primary-color;
+  @media screen and (min-width: 769px){
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: $html-background-color;
+    }
+    ::-webkit-scrollbar-thumb {
+      border: 2px solid $html-background-color;
+      border-radius: 4px;
+      background-color: $grey500;
+    }
   }
 }
 

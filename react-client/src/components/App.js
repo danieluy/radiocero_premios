@@ -8,6 +8,8 @@ import Users from './users/Users'
 import Prizes from './prizes/Prizes'
 import QuickNotice from './quick-notice/QuickNotice'
 
+import styles from '../assets/styles'
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Navbar from './navbar/Navbar';
@@ -18,8 +20,8 @@ import events from '../events'
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: '#F58500',
-    accent1Color: '#0070F5'
+    primary1Color: styles.color.primary,
+    accent1Color: styles.color.accent
   }
 });
 

@@ -10,7 +10,10 @@ prizes_router.get('/', (req, res) => {
   Prizes.findAll()
     .then((prizes) => {
       if (prizes)
-        res.status(200).json(prizes.map(prize => prize.getPublicData()));
+        res.status(200).json(prizes
+          .map(prize => prize.getPublicData())
+          .filter(prize => !prize.delete_date)
+        );
       else
         res.status(200).json([]);
     })
@@ -107,6 +110,26 @@ prizes_router.patch('/', checkRoleAdmin, (req, res) => {
         res.status(500).json({ error: "The prize does not exist", details: null });
       }
     })
+});
+
+prizes_router.delete('/:id', checkRoleAdmin, (req, res) => {
+  Prizes.deleteById(req.params.id)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  // .then(WriteResult => {
+  //   if (WriteResult.result.n > 0)
+  //     res.status(200).json({ message: 'The prize has been correctly deleted' })
+  //   else
+  //     res.status(500).json({ error: 'There was a problem removing a document', details: 'WriteResult.result.n <= 0' })
+  // })
+  // .catch(err => {
+  //   console.error(err)
+  //   res.status(500).json({ error: 'There was a problem deleting the prize', details: err.toString() })
+  // })
 });
 
 module.exports = prizes_router

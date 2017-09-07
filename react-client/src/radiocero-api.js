@@ -150,13 +150,26 @@ function addPrize(prize) {
   })
 }
 
-
-
 function updatePrize(prize) {
   return new Promise((resolve, reject) => {
     superagent.patch(apibBaseURL + 'prizes')
       .type('form')
       .send(prize)
+      .end((err, res) => {
+        if (err && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
+
+function deletePrize(prize) {
+  console.log('deletePrize(prize)', prize)
+  return new Promise((resolve, reject) => {
+    superagent.delete(apibBaseURL + 'prizes/' + prize.id)
       .end((err, res) => {
         if (err && res.unauthorized)
           reject('Unauthorized')
@@ -179,5 +192,6 @@ export {
   addUser,
   getPrizes,
   addPrize,
-  updatePrize
+  updatePrize,
+  deletePrize
 }

@@ -8,7 +8,7 @@ export default {
     return null
   },
   color: {
-    primary: '#F58500',
-    accent: '#0070F5'
+    primary: '#FF9800',
+    accent: '#00BCD4'
   }
 }

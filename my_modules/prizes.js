@@ -33,13 +33,14 @@ const Prize = function (prize_info) {
   this.due_date = prize_info.due_date;
   this.note = prize_info.note;
   this.total_handed = prize_info.total_handed || 0;
+  this.delete_date = prize_info.delete_date || null;
 
   this.callToken = Math.random();
 
 }
 Prize.prototype.save = function () {
   if (this.id)
-    throw "ERROR: This prize has already been saved, try using the update method";
+    throw new Error("ERROR: This prize has already been saved, try using the update method");
   return new Promise((resolve, reject) => {
     db.insert('prizes', {
       'type': this.type,
@@ -51,7 +52,8 @@ Prize.prototype.save = function () {
       'update_date': null,
       'due_date': this.due_date,
       'note': this.note,
-      'total_handed': this.total_handed
+      'total_handed': this.total_handed,
+      'delete_date': this.delete_date
     })
       .then((WriteResult) => {
         this.id = WriteResult.ops[0]._id;
@@ -64,7 +66,7 @@ Prize.prototype.save = function () {
 }
 Prize.prototype.update = function () {
   if (!this.id)
-    throw "ERROR: A prize can only be edited after it has been saved";
+    throw new Error("ERROR: A prize can only be edited after it has been saved");
   return new Promise((resolve, reject) => {
     db.update('prizes', { id: this.id }, {
       'type': this.type,
@@ -75,7 +77,8 @@ Prize.prototype.update = function () {
       'update_date': Date.now(),
       'due_date': this.due_date,
       'note': this.note,
-      'total_handed': this.total_handed
+      'total_handed': this.total_handed,
+      'delete_date': this.delete_date
     })
       .then((WriteResult) => {
         return resolve(WriteResult);
@@ -95,6 +98,10 @@ Prize.prototype.edit = function (values) {
   this.due_date = values.due_date;
   this.note = values.note;
   this.total_handed = values.total_handed || 0;
+  return this.update();
+}
+Prize.prototype.delete = function () {
+  this.delete_date = Date.now();
   return this.update();
 }
 Prize.prototype.stockIncrease = function (val) {
@@ -141,7 +148,8 @@ Prize.prototype.getPublicData = function () {
     update_date: this.update_date,
     due_date: this.due_date,
     note: this.note,
-    total_handed: this.total_handed
+    total_handed: this.total_handed,
+    delete_date: this.delete_date
   }
 }
 Prize.prototype.checkInputData = function (prize_info) {
@@ -160,7 +168,7 @@ Prize.prototype.checkInputData = function (prize_info) {
   if (prize_info.stock && (isNaN(prize_info.stock) || prize_info.stock < 0))
     throw new Error('The stock value must be an integer >= 0');
 
-  if(prize_info.total_handed && (isNaN(parseInt(prize_info.total_handed)) || prize_info.stock < 0))
+  if (prize_info.total_handed && (isNaN(parseInt(prize_info.total_handed)) || prize_info.stock < 0))
     throw new Error('The total_handed value must be an integer >= 0')
 
   if (prize_info.due_date && new Date(prize_info.due_date).getTime() === NaN)
@@ -178,6 +186,11 @@ Prize.prototype.checkInputData = function (prize_info) {
   else if (prize_info.set_date)
     prize_info.set_date = new Date(prize_info.set_date).getTime();
 
+  if (prize_info.delete_date && new Date(prize_info.delete_date).getTime() === NaN)
+    throw new Error('Invalid date format for delete_date. Required format "yyyy/MM/dd"');
+  else if (prize_info.delete_date)
+    prize_info.delete_date = new Date(prize_info.delete_date).getTime();
+
 }
 
 
@@ -186,7 +199,7 @@ Prize.prototype.checkInputData = function (prize_info) {
 
 const findById = (id) => {
   if (!id)
-    throw "The parameter id must be provided";
+    throw new Error("The parameter id must be provided");
   return new Promise((resolve, reject) => {
     db.findById('prizes', id)
       .then((result) => {
@@ -227,7 +240,8 @@ const findAll = () => {
               update_date: result.update_date,
               due_date: result.due_date,
               note: result.note,
-              total_handed: result.total_handed
+              total_handed: result.total_handed,
+              delete_date: result.delete_date
             });
           }));
         }
@@ -239,8 +253,16 @@ const findAll = () => {
       });
   });
 }
-module.exports = {
-  Prize: Prize,
-  findById: findById,
-  findAll: findAll
+
+const deleteById = (prizeId) => {
+  return new Promise((resolve, reject) => {
+    findById(prizeId)
+      .then(prize => {
+        if (prize)
+          resolve(prize.delete())
+        else
+          reject('Prize not found')
+      })
+  })
 }
+module.exports = { Prize, findById, findAll, deleteById }

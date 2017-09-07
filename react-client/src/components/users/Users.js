@@ -157,6 +157,7 @@ class Users extends PureComponent {
 
         <FloatingActionButton
           style={{ position: 'fixed', bottom: '10px', right: '10px' }}
+          secondary={true}
           onClick={this.openAddUser.bind(this)}
         >
           <ContentAdd />

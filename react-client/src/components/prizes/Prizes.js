@@ -7,8 +7,11 @@ import { removeVowelAccent } from 'ds-mini-utils'
 import moment from 'moment';
 import _ from 'lodash'
 
+import styles from '../../assets/styles'
+
 import AddPrizeForm from './AddPrizeForm'
 import EditPrizeForm from './EditPrizeForm'
+import DeletePrizeForm from './DeletePrizeForm'
 import PrizeCard from './PrizeCard'
 import PrizesToolbar from './PrizesToolbar'
 
@@ -103,12 +106,18 @@ class Prizes extends PureComponent {
       prizeToEdit: prize
     })
   }
+  openDeletePrize(prize){
+    this.setState({
+      prizeToDelete: prize
+    })
+  }
   openAddPrize() {
     this.setState({
       addPrizeOpen: true
     })
   }
   openPrizeCard(prize) {
+    console.log('openPrizeCard', prize)
     this.setState({
       prizeToDisplay: prize
     })
@@ -152,8 +161,7 @@ class Prizes extends PureComponent {
                         </IconButton>
                       }>
                         <MenuItem onClick={this.openEditPrize.bind(this, prize)}>Editar</MenuItem>
-                        {/* <MenuItem onClick={this.openEditPassword.bind(this, user)}>Contraseña </MenuItem> */}
-                        {/* <MenuItem onClick={this.openDeleteUser.bind(this, user)}>Borrar</MenuItem> */}
+                        <MenuItem onClick={this.openDeletePrize.bind(this, prize)}>Borrar</MenuItem>
                       </IconMenu>
                     }
                   />
@@ -179,6 +187,12 @@ class Prizes extends PureComponent {
           onActionCanceled={this.resetModals.bind(this)}
         />
 
+        <DeletePrizeForm
+          prize={this.state.prizeToDelete}
+          onActionSuccess={this.updatePrizes.bind(this)}
+          onActionCanceled={this.resetModals.bind(this)}
+        />
+
         <PrizeCard
           prize={this.state.prizeToDisplay}
           open={!!this.state.prizeToDisplay}
@@ -188,6 +202,7 @@ class Prizes extends PureComponent {
 
         <FloatingActionButton
           style={{ position: 'fixed', bottom: '10px', right: '10px', zIndex: '10' }}
+          secondary={true}
           onClick={this.openAddPrize.bind(this)}
         >
           <ContentAdd />

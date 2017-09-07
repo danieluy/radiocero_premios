@@ -194,12 +194,4 @@ const update = (collection, query, update) => {
   });
 }
 
-module.exports = {
-  insert,
-  remove,
-  update,
-  find,
-  findOne,
-  findById,
-  exists
-}
+module.exports = { insert, remove, update, find, findOne, findById, exists }
