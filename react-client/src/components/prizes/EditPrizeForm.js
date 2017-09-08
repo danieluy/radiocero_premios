@@ -8,6 +8,7 @@ import styles from '../../assets/styles'
 import CustomDatePicker from '../custom-date-picker/CustomDatePicker'
 
 import moment from 'moment';
+import _ from 'lodash'
 
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
@@ -61,49 +62,49 @@ class EditPrizeForm extends Component {
     }
   }
   updatePrizeDescrption(e) {
-    const prizeToEdit = this.state.prizeToEdit
+    const prizeToEdit = _.cloneDeep(this.state.prizeToEdit)
     prizeToEdit.description = e.target.value
     prizeToEdit.descriptionMessage = null
     this.setState({ prizeToEdit })
   }
   updatePrizeType(searchText) {
-    const prizeToEdit = this.state.prizeToEdit
+    const prizeToEdit = _.cloneDeep(this.state.prizeToEdit)
     prizeToEdit.type = searchText
     prizeToEdit.typeMessage = null
     this.setState({ prizeToEdit })
   }
   updatePrizeSponsor(searchText) {
-    const prizeToEdit = this.state.prizeToEdit
+    const prizeToEdit = _.cloneDeep(this.state.prizeToEdit)
     prizeToEdit.sponsor = searchText
     prizeToEdit.sponsorMessage = null
     this.setState({ prizeToEdit })
   }
   updatePrizePeriodic(evt, checked) {
-    const prizeToEdit = this.state.prizeToEdit
+    const prizeToEdit = _.cloneDeep(this.state.prizeToEdit)
     prizeToEdit.periodic = checked
     prizeToEdit.periodicMessage = null
     this.setState({ prizeToEdit })
   }
   updatePrizeStock(e) {
-    const prizeToEdit = this.state.prizeToEdit
+    const prizeToEdit = _.cloneDeep(this.state.prizeToEdit)
     prizeToEdit.stock = parseInt(e.target.value)
     prizeToEdit.stockMessage = null
     this.setState({ prizeToEdit })
   }
   updateNewPrize(field, value) {
-    const prizeToEdit = this.state.prizeToEdit
+    const prizeToEdit = _.cloneDeep(this.state.prizeToEdit)
     prizeToEdit[field] = value
     prizeToEdit[`${field}Message`] = null
     this.setState({ prizeToEdit })
   }
   updatePrizeDueDate(date) {
-    const prizeToEdit = this.state.prizeToEdit
+    const prizeToEdit = _.cloneDeep(this.state.prizeToEdit)
     prizeToEdit.due_date = date
     prizeToEdit.due_dateMessage = null
     this.setState({ prizeToEdit })
   }
   updatePrizeNote(e) {
-    const prizeToEdit = this.state.prizeToEdit
+    const prizeToEdit = _.cloneDeep(this.state.prizeToEdit)
     prizeToEdit.note = e.target.value
     prizeToEdit.noteMessage = null
     this.setState({ prizeToEdit })
@@ -113,7 +114,7 @@ class EditPrizeForm extends Component {
       this.editPrize()
   }
   editPrize() {
-    const prizeToEdit = this.state.prizeToEdit
+    const prizeToEdit = _.cloneDeep(this.state.prizeToEdit)
     if (!prizeToEdit.description || prizeToEdit.description === '')
       prizeToEdit.descriptionMessage = 'Este campo es obligatorio'
     if (!prizeToEdit.type || prizeToEdit.type === '')
@@ -286,9 +287,9 @@ class EditPrizeForm extends Component {
           label="Cancelar"
           style={{ marginLeft: '5px' }}
         />
-        <pre>
+        {/* <pre>
           {JSON.stringify(this.state.prizeToEdit, null, 2)}
-        </pre>
+        </pre> */}
       </Dialog>
     )
   }

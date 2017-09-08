@@ -114,22 +114,16 @@ prizes_router.patch('/', checkRoleAdmin, (req, res) => {
 
 prizes_router.delete('/:id', checkRoleAdmin, (req, res) => {
   Prizes.deleteById(req.params.id)
-    .then(res => {
-      console.log(res)
+    .then(WriteResult => {
+      if (WriteResult.n > 0)
+        res.status(200).json({ message: 'The prize has been correctly deleted' })
+      else
+        res.status(500).json({ error: 'There was a problem removing a document', details: 'WriteResult.n <= 0' })
     })
     .catch(err => {
-      console.log(err)
+      console.error(err)
+      res.status(500).json({ error: 'There was a problem deleting the prize', details: err.toString() })
     })
-  // .then(WriteResult => {
-  //   if (WriteResult.result.n > 0)
-  //     res.status(200).json({ message: 'The prize has been correctly deleted' })
-  //   else
-  //     res.status(500).json({ error: 'There was a problem removing a document', details: 'WriteResult.result.n <= 0' })
-  // })
-  // .catch(err => {
-  //   console.error(err)
-  //   res.status(500).json({ error: 'There was a problem deleting the prize', details: err.toString() })
-  // })
 });
 
 module.exports = prizes_router

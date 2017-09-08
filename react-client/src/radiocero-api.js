@@ -48,7 +48,7 @@ function getUsers() {
   return new Promise((resolve, reject) => {
     superagent.get(apibBaseURL + 'users')
       .end((err, res) => {
-        if (err && res.unauthorized)
+        if (err && res && res.unauthorized)
           reject('Unauthorized')
         else if (err)
           reject(err)
@@ -64,7 +64,7 @@ function updateUser(user) {
       .type('form')
       .send(user)
       .end((err, res) => {
-        if (err && res.unauthorized)
+        if (err && res && res.unauthorized)
           reject('Unauthorized')
         else if (err)
           reject(err)
@@ -80,7 +80,7 @@ function updateUserPassword(data) {
       .type('form')
       .send(data)
       .end((err, res) => {
-        if (err && res.unauthorized)
+        if (err && res && res.unauthorized)
           reject('Unauthorized')
         else if (err)
           reject(err)
@@ -94,7 +94,7 @@ function deleteUser(user) {
   return new Promise((resolve, reject) => {
     superagent.delete(apibBaseURL + 'users/' + user.id)
       .end((err, res) => {
-        if (err && res.unauthorized)
+        if (err && res && res.unauthorized)
           reject('Unauthorized')
         else if (err)
           reject(err)
@@ -110,7 +110,7 @@ function addUser(user) {
       .type('form')
       .send(user)
       .end((err, res) => {
-        if (err && res.unauthorized)
+        if (err && res && res.unauthorized)
           reject('Unauthorized')
         else if (err)
           reject(err)
@@ -124,7 +124,7 @@ function getPrizes() {
   return new Promise((resolve, reject) => {
     superagent.get(apibBaseURL + 'prizes/')
       .end((err, res) => {
-        if (err && res.unauthorized)
+        if (err && res && res.unauthorized)
           reject('Unauthorized')
         else if (err)
           reject(err)
@@ -140,7 +140,7 @@ function addPrize(prize) {
       .type('form')
       .send(prize)
       .end((err, res) => {
-        if (err && res.unauthorized)
+        if (err && res && res.unauthorized)
           reject('Unauthorized')
         else if (err)
           reject(err)
@@ -156,7 +156,7 @@ function updatePrize(prize) {
       .type('form')
       .send(prize)
       .end((err, res) => {
-        if (err && res.unauthorized)
+        if (err && res && res.unauthorized)
           reject('Unauthorized')
         else if (err)
           reject(err)
@@ -167,11 +167,24 @@ function updatePrize(prize) {
 }
 
 function deletePrize(prize) {
-  console.log('deletePrize(prize)', prize)
   return new Promise((resolve, reject) => {
     superagent.delete(apibBaseURL + 'prizes/' + prize.id)
       .end((err, res) => {
-        if (err && res.unauthorized)
+        if (err && res && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
+
+function getWinners() {
+  return new Promise((resolve, reject) => {
+    superagent.get(apibBaseURL + 'winners/')
+      .end((err, res) => {
+        if (err && res && res.unauthorized)
           reject('Unauthorized')
         else if (err)
           reject(err)
@@ -193,5 +206,6 @@ export {
   getPrizes,
   addPrize,
   updatePrize,
-  deletePrize
+  deletePrize,
+  getWinners
 }

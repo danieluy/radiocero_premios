@@ -2,8 +2,9 @@ import React, { PureComponent } from 'react';
 
 import { getPrizes } from '../../radiocero-api'
 import events from '../../events'
-import { removeVowelAccent } from 'ds-mini-utils'
+import { checkEnabled } from '../../local-utils'
 
+import { removeVowelAccent } from 'ds-mini-utils'
 import moment from 'moment';
 import _ from 'lodash'
 
@@ -73,16 +74,9 @@ class Prizes extends PureComponent {
       })
     if (this.state.filters.enabledOnly)
       prizesToDisplay = prizesToDisplay.filter(prize => {
-        return this.checkEnabled(prize)
+        return checkEnabled(prize)
       })
     this.setState({ prizesToDisplay })
-  }
-  checkEnabled(prize) {
-    if (!!prize.due_date && prize.due_date < moment().valueOf())
-      return false
-    if (prize.stock !== null && prize.stock === 0)
-      return false
-    return true
   }
   filterEnabledOnly() {
     const filters = _.cloneDeep(this.state.filters)
@@ -106,7 +100,7 @@ class Prizes extends PureComponent {
       prizeToEdit: prize
     })
   }
-  openDeletePrize(prize){
+  openDeletePrize(prize) {
     this.setState({
       prizeToDelete: prize
     })
@@ -117,7 +111,6 @@ class Prizes extends PureComponent {
     })
   }
   openPrizeCard(prize) {
-    console.log('openPrizeCard', prize)
     this.setState({
       prizeToDisplay: prize
     })
@@ -197,7 +190,6 @@ class Prizes extends PureComponent {
           prize={this.state.prizeToDisplay}
           open={!!this.state.prizeToDisplay}
           onClose={() => { this.setState({ prizeToDisplay: null }) }}
-          checkEnabled={this.checkEnabled}
         />
 
         <FloatingActionButton

@@ -8,8 +8,9 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
-  20170907 | B | On prize delete, dialog doesn't close neither prizes list update
-  20170907 | P | Delete functionality ready
+  20170908 | P | Started Winners section
+  20170908 | P | Prizes CRUD ready
+  20170907 | P | Delete Prize functionality ready
   20170907 | P | Improved color usage throughout the app
   20170906 | P | Added permission description to check with client
   20170906 | P | Added EditPrizeForm

@@ -4,6 +4,8 @@ import styles from '../../assets/styles'
 
 import { PrizesIcon } from '../../assets/icons'
 
+import { checkEnabled } from '../../local-utils'
+
 import moment from 'moment';
 import Chart from 'chart.js';
 
@@ -11,12 +13,15 @@ import Dialog from 'material-ui/Dialog';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 import Checkbox from 'material-ui/Checkbox';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+
 
 class PrizeCard extends PureComponent {
   render() {
     if (this.props.open) {
       const prize = this.props.prize
-      const enabled = this.props.checkEnabled(this.props.prize)
+      const enabled = checkEnabled(this.props.prize)
       return (
         <Dialog
           modal={false}
@@ -66,18 +71,16 @@ class PrizeCard extends PureComponent {
             <div>
               <strong>Premio periódico:</strong>
               <span style={{ display: 'inline-block', verticalAlign: 'middle', marginLeft: '15px' }}>
-                <Checkbox
-                  checked={prize.periodic}
-                />
+                <Checkbox checked={prize.periodic} />
               </span>
             </div>
 
           </CardText>
 
-          {/* <CardActions>
-              <FlatButton label="Action1" />
-              <FlatButton label="Action2" />
-            </CardActions> */}
+          <CardActions>
+            <RaisedButton label="Otorgar este premio" primary={true} disabled={true} />
+            <FlatButton label="Cancelar" onClick={this.props.onClose} />
+          </CardActions>
         </Dialog>
       )
     }

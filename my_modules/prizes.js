@@ -8,13 +8,13 @@ prize_info = {
   sponsor :srting,
   description :srting,
   periodic :boolean
-  [, stock :integer]
+  [, stock :number]
   [, id :srting]
-  [, set_date :integer]
-  [, update_date :integer]
-  [, due_date :integer]
+  [, set_date :number]
+  [, update_date :number]
+  [, due_date :number]
   [, note :srting]
-  [, total_handed :integer]
+  [, total_handed :number]
 }
 */
 

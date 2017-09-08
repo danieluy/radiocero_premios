@@ -7,6 +7,9 @@ import styles from '../../assets/styles'
 
 import CustomDatePicker from '../custom-date-picker/CustomDatePicker'
 
+import moment from 'moment';
+import _ from 'lodash'
+
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
@@ -41,49 +44,49 @@ class AddPrizeForm extends Component {
     }
   }
   updatePrizeDescrption(e) {
-    const newPrize = this.state.newPrize
+    const newPrize = _.cloneDeep(this.state.newPrize)
     newPrize.description = e.target.value
     newPrize.descriptionMessage = null
     this.setState({ newPrize })
   }
   updatePrizeType(searchText) {
-    const newPrize = this.state.newPrize
+    const newPrize = _.cloneDeep(this.state.newPrize)
     newPrize.type = searchText
     newPrize.typeMessage = null
     this.setState({ newPrize })
   }
   updatePrizeSponsor(searchText) {
-    const newPrize = this.state.newPrize
+    const newPrize = _.cloneDeep(this.state.newPrize)
     newPrize.sponsor = searchText
     newPrize.sponsorMessage = null
     this.setState({ newPrize })
   }
   updatePrizePeriodic(evt, checked) {
-    const newPrize = this.state.newPrize
+    const newPrize = _.cloneDeep(this.state.newPrize)
     newPrize.periodic = checked
     newPrize.periodicMessage = null
     this.setState({ newPrize })
   }
   updatePrizeStock(e) {
-    const newPrize = this.state.newPrize
+    const newPrize = _.cloneDeep(this.state.newPrize)
     newPrize.stock = parseInt(e.target.value)
     newPrize.stockMessage = null
     this.setState({ newPrize })
   }
   updateNewPrize(field, value) {
-    const newPrize = this.state.newPrize
+    const newPrize = _.cloneDeep(this.state.newPrize)
     newPrize[field] = value
     newPrize[`${field}Message`] = null
     this.setState({ newPrize })
   }
   updatePrizeDueDate(date) {
-    const newPrize = this.state.newPrize
+    const newPrize = _.cloneDeep(this.state.newPrize)
     newPrize.due_date = date
     newPrize.due_dateMessage = null
     this.setState({ newPrize })
   }
   updatePrizeNote(e) {
-    const newPrize = this.state.newPrize
+    const newPrize = _.cloneDeep(this.state.newPrize)
     newPrize.note = e.target.value
     newPrize.noteMessage = null
     this.setState({ newPrize })
@@ -93,7 +96,7 @@ class AddPrizeForm extends Component {
       this.addPrize()
   }
   addPrize() {
-    const newPrize = this.state.newPrize
+    const newPrize = _.cloneDeep(this.state.newPrize)
     if (!newPrize.description || newPrize.description === '')
       newPrize.descriptionMessage = 'Este campo es obligatorio'
     if (!newPrize.type || newPrize.type === '')
@@ -129,6 +132,7 @@ class AddPrizeForm extends Component {
       delete newPrize.periodicMessage
       delete newPrize.due_dateMessage
       delete newPrize.noteMessage
+      newPrize.due_date = newPrize.due_date ? moment(newPrize.due_date).format('YYYY/MM/DD') : null
       addPrize(newPrize)
         .then(res => {
           this.props.onActionSuccess()

@@ -13,6 +13,7 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/MenuItem';
+import { Tabs, Tab } from 'material-ui/Tabs';
 
 class Navbar extends Component {
   constructor() {

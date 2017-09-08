@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom'
 import Home from './home/Home'
 import Users from './users/Users'
 import Prizes from './prizes/Prizes'
+import Winners from './winners/Winners'
 import QuickNotice from './quick-notice/QuickNotice'
 
 import styles from '../assets/styles'
@@ -94,6 +95,7 @@ class App extends Component {
               <Route exact path='/v2' render={() => <Home onQuickNotice={this.onQuickNotice.bind(this)} />} />
               <Route exact path='/v2/users' render={() => <Users onQuickNotice={this.onQuickNotice.bind(this)} />} />
               <Route exact path='/v2/prizes' render={() => <Prizes onQuickNotice={this.onQuickNotice.bind(this)} />} />
+              <Route exact path='/v2/winners' render={() => <Winners onQuickNotice={this.onQuickNotice.bind(this)} />} />
             </Switch>
           </div>
         </div>
