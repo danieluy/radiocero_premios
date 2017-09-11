@@ -8,6 +8,7 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
+  20170911 | P | Working on WinnersCard
   20170908 | P | Started Winners section
   20170908 | P | Prizes CRUD ready
   20170907 | P | Delete Prize functionality ready
