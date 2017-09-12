@@ -7,6 +7,7 @@ import { checkEnabled, formatCI } from '../../local-utils'
 import { removeVowelAccent } from 'ds-mini-utils'
 import moment from 'moment';
 import _ from 'lodash'
+import clipboard from 'clipboard'
 
 import styles from '../../assets/styles'
 
@@ -77,6 +78,7 @@ class Winners extends PureComponent {
         return checkEnabled(winner)
       })
     this.setState({ winnersToDisplay })
+
     // this.setState({
     //   winnersToDisplay: [
     //     {

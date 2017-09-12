@@ -1,5 +1,14 @@
 .winner-card-contact-link{
-  a{
-    margin-right: 15px;
+
+  .winner-card-action{
+
+    .winner-card-action-icon{
+      margin-right: 15px;
+    }
+
   }
+}
+.winner-card-action-link{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 
 import styles from '../../assets/styles'
 
@@ -37,38 +37,33 @@ class WinnerCard extends Component {
           />
           <CardText>
             <div className="winner-card-contact-link">
-              <a
-                href={winner.mail ? `mailto:${winner.mail}` : '#'}
-                style={winner.mail ? { cursor: 'pointer' } : { cursor: 'default', pointerEvents: 'none' }}
+              <WinnerCardAction
+                link={winner.mail}
+                protocol={'mailto:'}
+                actionName="Enviar Email"
+                target="_self"
+                copyText="Copiar Email"
               >
-                <EmailIcon
-                  width="30px"
-                  height="30px"
-                  fill={winner.mail ? styles.color.primary : styles.color.grey300}
-                />
-              </a>
-              <a
-                href={winner.phone ? `tel:${winner.phone}` : '#'}
-                style={winner.phone ? { cursor: 'pointer' } : { cursor: 'default', pointerEvents: 'none' }}
+                <EmailIcon width="30px" height="30px" />
+              </WinnerCardAction>
+              <WinnerCardAction
+                link={winner.phone}
+                protocol={'tel:'}
+                actionName="Llamar"
+                target="_self"
+                copyText="Copiar Teléfono"
               >
-                <PhoneIcon
-                  width="30px"
-                  height="30px"
-                  fill={winner.phone ? styles.color.primary : styles.color.grey300}
-                />
-              </a>
-              <a
-                href={winner.facebook ? `${winner.facebook}` : '#'}
-                style={winner.facebook ? { cursor: 'pointer' } : { cursor: 'default', pointerEvents: 'none' }}
-                target={winner.facebook ? "_blank" : null}
+                <PhoneIcon width="30px" height="30px" />
+              </WinnerCardAction>
+              <WinnerCardAction
+                link={winner.facebook}
+                protocol={null}
+                actionName="Abrir Link"
+                target="_balnk"
+                copyText="Copiar Link"
               >
-                <FacebookIcon
-                  width="30px"
-                  height="30px"
-                  fill={winner.facebook ? styles.color.primary : styles.color.grey300}
-                  style={{ padding: "3px" }}
-                />
-              </a>
+                <FacebookIcon width="24px" height="30px" />
+              </WinnerCardAction>
             </div>
 
             {/* <p>
@@ -118,3 +113,69 @@ export default WinnerCard;
 
 
 
+
+
+
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+
+class WinnerCardAction extends PureComponent {
+  constructor() {
+    super()
+    this.state = {
+      open: false,
+      anchorEl: null
+    }
+    this.toggleOpen = this.toggleOpen.bind(this)
+  }
+  toggleOpen(evt) {
+    if (typeof evt.preventDefault === 'function')
+      evt.preventDefault();
+    this.setState({
+      open: !this.state.open,
+      anchorEl: evt.currentTarget
+    })
+  }
+  render() {
+    const childrenWithProps = React.cloneElement(
+      this.props.children,
+      {
+        onClick: this.toggleOpen,
+        style: this.props.link ? { cursor: 'pointer' } : { cursor: 'default', pointerEvents: 'none' },
+        fill: this.props.link ? styles.color.primary : styles.color.grey300,
+        className: "winner-card-action-icon"
+      }
+    )
+    return (
+      <span className="winner-card-action">
+        {childrenWithProps}
+        {this.props.link ?
+          <Popover
+            open={this.state.open}
+            anchorEl={this.state.anchorEl}
+            anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+            targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+            onRequestClose={this.toggleOpen}
+            canAutoPosition={true}
+          >
+            <Menu>
+              <MenuItem>
+                <a
+                  href={`${this.props.protocol ? this.props.protocol : ''}${this.props.link}`}
+                  style={{ cursor: 'pointer' }}
+                  target={this.props.target}
+                  className="winner-card-action-link"
+                >
+                  {this.props.actionName}
+                </a>
+              </MenuItem>
+              <MenuItem primaryText={this.props.copyText} />
+            </Menu>
+          </Popover>
+          : null
+        }
+      </span>
+    )
+  }
+}

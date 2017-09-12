@@ -57,7 +57,8 @@ app.use('/api', api_router);
 ////////////////////////////////////////////////////////////////////////////////
 const start_server = () => {
 	server.listen(srv_params.port, () => {
-		console.log('Listening on: ' + srv_params.url());
+		console.log('Radiocero Premios: ' + srv_params.url());
+		console.log('Radiocero v2:      ' + srv_params.url() + '/v2');
 		console.log('Press Ctrl-C to terminate');
 	});
 }
