@@ -134,6 +134,25 @@ function getPrizes() {
   })
 }
 
+function getPrizeById(id) {
+  return new Promise((resolve, reject) => {
+    superagent.get(apibBaseURL + 'prizes/' + id)
+      .end((err, res) => {
+        if (err && res && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
+
+function getPrizesGroup(ids) {
+  // ids:[String]
+  return Promise.all(ids.map(id => getPrizeById(id)))
+}
+
 function addPrize(prize) {
   return new Promise((resolve, reject) => {
     superagent.post(apibBaseURL + 'prizes/')
@@ -204,6 +223,7 @@ export {
   deleteUser,
   addUser,
   getPrizes,
+  getPrizesGroup,
   addPrize,
   updatePrize,
   deletePrize,

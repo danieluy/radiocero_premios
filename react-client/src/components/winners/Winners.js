@@ -7,7 +7,6 @@ import { checkEnabled, formatCI } from '../../local-utils'
 import { removeVowelAccent } from 'ds-mini-utils'
 import moment from 'moment';
 import _ from 'lodash'
-import clipboard from 'clipboard'
 
 import styles from '../../assets/styles'
 
@@ -209,6 +208,7 @@ class Winners extends PureComponent {
           winner={this.state.winnerToDisplay}
           open={!!this.state.winnerToDisplay}
           onClose={() => { this.setState({ winnerToDisplay: null }) }}
+          onQuickNotice={this.props.onQuickNotice}
         />
 
         <FloatingActionButton

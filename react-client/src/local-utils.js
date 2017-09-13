@@ -3,6 +3,8 @@
 import moment from 'moment'
 
 function checkEnabled(prize) {
+  if (!prize)
+    throw new Error('Missing argument (prize: Object)')
   if (!!prize.due_date && prize.due_date < moment().valueOf())
     return false
   if (prize.stock !== null && prize.stock === 0)
@@ -11,6 +13,8 @@ function checkEnabled(prize) {
 }
 
 function formatCI(unformatted) {
+  if (!unformatted)
+    throw new Error('Missing argument (unformatted: String)')
   let ci = unformatted.split('');
   if (ci.length === 6)
     return `${ci[0]}${ci[1]}.${ci[2]}${ci[3]}${ci[4]}-${ci[5]}`;
@@ -23,4 +27,11 @@ function formatCI(unformatted) {
   return unformatted;
 }
 
-export { checkEnabled, formatCI }
+function getFullGender(gender) {
+  if (!gender) return 'No ingresado'
+  if(gender === 'F') return 'Femenino'
+  if(gender === 'M') return 'Masculino'
+  return 'Otro'
+}
+
+export { checkEnabled, formatCI, getFullGender }

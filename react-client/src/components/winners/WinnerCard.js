@@ -1,10 +1,15 @@
 import React, { Component, PureComponent } from 'react';
 
+import { getPrizesGroup } from '../../radiocero-api'
+
 import styles from '../../assets/styles'
 
 import { WinnersIcon, FacebookIcon, PhoneIcon, EmailIcon } from '../../assets/icons'
 
-import { formatCI } from '../../local-utils'
+import { formatCI, getFullGender } from '../../local-utils'
+
+import Clipboard from 'clipboard'
+import moment from 'moment';
 
 import Dialog from 'material-ui/Dialog';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
@@ -14,9 +19,9 @@ import FlatButton from 'material-ui/FlatButton';
 
 class WinnerCard extends Component {
   render() {
+    console.log(this.props.winner)
     if (this.props.open) {
       const winner = this.props.winner
-      console.log('WinnerCard', winner)
       return (
         <Dialog
           modal={false}
@@ -26,7 +31,7 @@ class WinnerCard extends Component {
           autoScrollBodyContent={true}
         >
           <CardHeader
-            title='Detalles de ganador'
+            title={winner.gender && winner.gender === 'F' ? 'Detalles de la ganadora' : 'Detalles del ganador'}
             //subtitle={'No habilitado'}
             avatar={<WinnersIcon fill={styles.color.primary} height="35px" width="35px" />}
           />
@@ -36,6 +41,13 @@ class WinnerCard extends Component {
             subtitle={formatCI(winner.ci)}
           />
           <CardText>
+            <p><strong>Sexo:</strong> {getFullGender(winner.gender)}</p>
+            <br />
+            <p>
+              <strong>Creado:</strong> {moment(winner.set_date).locale('es').format("DD/MM/YYYY")}
+              <strong> Última edición:</strong> {winner.update_date ? moment(winner.update_date).locale('es').format("DD/MM/YYYY") : 'No editado'}
+            </p>
+            <br />
             <div className="winner-card-contact-link">
               <WinnerCardAction
                 link={winner.mail}
@@ -43,6 +55,7 @@ class WinnerCard extends Component {
                 actionName="Enviar Email"
                 target="_self"
                 copyText="Copiar Email"
+                onQuickNotice={this.props.onQuickNotice}
               >
                 <EmailIcon width="30px" height="30px" />
               </WinnerCardAction>
@@ -52,6 +65,7 @@ class WinnerCard extends Component {
                 actionName="Llamar"
                 target="_self"
                 copyText="Copiar Teléfono"
+                onQuickNotice={this.props.onQuickNotice}
               >
                 <PhoneIcon width="30px" height="30px" />
               </WinnerCardAction>
@@ -61,10 +75,14 @@ class WinnerCard extends Component {
                 actionName="Abrir Link"
                 target="_balnk"
                 copyText="Copiar Link"
+                onQuickNotice={this.props.onQuickNotice}
               >
                 <FacebookIcon width="24px" height="30px" />
               </WinnerCardAction>
             </div>
+            <WinnerPrizes
+              prizes={winner.prizes}
+            />
 
             {/* <p>
               <strong>Creado:</strong> {moment(winner.set_date).locale('es').format("DD/MM/YYYY")}
@@ -112,7 +130,23 @@ class WinnerCard extends Component {
 export default WinnerCard;
 
 
-
+class WinnerPrizes extends PureComponent {
+  constructor(){
+    super()
+    
+  }
+  componentDidMount() {
+    getPrizesGroup(this.props.prizes.map(prize => prize.id))
+      .then(res => { console.log(res) })
+  }
+  render() {
+    return (
+      <div>
+        <pre>{JSON.stringify(this.props.prizes, null, 2)}</pre>
+      </div>
+    )
+  }
+}
 
 
 
@@ -124,24 +158,47 @@ class WinnerCardAction extends PureComponent {
   constructor() {
     super()
     this.state = {
-      open: false,
+      openPopover: false,
       anchorEl: null
     }
-    this.toggleOpen = this.toggleOpen.bind(this)
+    this.handleOpen = this.handleOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+    this.setClipboard = this.setClipboard.bind(this)
   }
-  toggleOpen(evt) {
+  handleOpen(evt) {
     if (typeof evt.preventDefault === 'function')
       evt.preventDefault();
     this.setState({
-      open: !this.state.open,
+      openPopover: true,
       anchorEl: evt.currentTarget
     })
+  }
+  handleClose() {
+    this.setState({
+      openPopover: false,
+      anchorEl: null
+    })
+  }
+  setClipboard(node) {
+    if (node) {
+      const clipboard = new Clipboard(node)
+      clipboard.on('success', (e) => {
+        console.log('Copied text:', e.text)
+        e.clearSelection()
+        this.handleClose()
+        this.props.onQuickNotice(`Texto copiado`)
+      })
+      clipboard.on('error', (e) => {
+        this.handleClose()
+        this.props.onQuickNotice('Error copiando texto')
+      })
+    }
   }
   render() {
     const childrenWithProps = React.cloneElement(
       this.props.children,
       {
-        onClick: this.toggleOpen,
+        onClick: this.handleOpen,
         style: this.props.link ? { cursor: 'pointer' } : { cursor: 'default', pointerEvents: 'none' },
         fill: this.props.link ? styles.color.primary : styles.color.grey300,
         className: "winner-card-action-icon"
@@ -152,11 +209,11 @@ class WinnerCardAction extends PureComponent {
         {childrenWithProps}
         {this.props.link ?
           <Popover
-            open={this.state.open}
+            open={this.state.openPopover}
             anchorEl={this.state.anchorEl}
             anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
             targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-            onRequestClose={this.toggleOpen}
+            onRequestClose={this.handleClose}
             canAutoPosition={true}
           >
             <Menu>
@@ -170,7 +227,9 @@ class WinnerCardAction extends PureComponent {
                   {this.props.actionName}
                 </a>
               </MenuItem>
-              <MenuItem primaryText={this.props.copyText} />
+              <MenuItem style={{ pointerActions: 'none' }}>
+                <span ref={this.setClipboard} data-clipboard-text={this.props.link}>{this.props.copyText}</span>
+              </MenuItem>
             </Menu>
           </Popover>
           : null

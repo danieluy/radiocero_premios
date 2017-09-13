@@ -23,6 +23,16 @@ prizes_router.get('/', (req, res) => {
     })
 });
 
+prizes_router.get('/:id', (req, res) => {
+  Prizes.findById(req.params.id)
+    .then(prize => {
+      res.status(200).json(prize)
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'There was a problem fetching the prize', details: err.toString() })
+    })
+});
+
 prizes_router.post('/', (req, res) => {
   console.log(req.body)
   let p = new Prize({
@@ -125,5 +135,7 @@ prizes_router.delete('/:id', checkRoleAdmin, (req, res) => {
       res.status(500).json({ error: 'There was a problem deleting the prize', details: err.toString() })
     })
 });
+
+
 
 module.exports = prizes_router
