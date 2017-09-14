@@ -29,6 +29,7 @@ html{
 @import './prizes/prizesToolbar';
 @import './prizes/prizeCard';
 @import './winners/winnerCard';
+@import './winners/_winnerPrizes';
 
 .app-wrapper{
   @media screen and (min-width: 769px){

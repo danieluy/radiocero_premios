@@ -1,0 +1,23 @@
+.winner-prize-list{
+
+  .winner-prize-list-header{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .winner-prize-list-header-title{
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+
+    span{
+      display: inline-block;
+      font-size: 1.2rem;
+      margin-left: 15px;
+      line-height: 60px;
+    }
+  }
+}

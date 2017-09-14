@@ -8,7 +8,9 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
-  20170912 | P | Working on implementing clipboard
+  20170914 | P | Working on diplaing prizes on WinnerPrizes
+  20170914 | P | Added WinnerPrizes list
+  20170913 | P | Added copy functionality to contat actions on WinnersCard
   20170912 | P | Added npm dependency clipboard
   20170912 | P | Added WinnersCard's contact actions as popover
   20170908 | P | Started Winners section
