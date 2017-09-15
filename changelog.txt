@@ -8,7 +8,7 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
-  20170914 | P | Working on diplaing prizes on WinnerPrizes
+  20170915 | P | Added display Prize functionality on WinnerPrizes re-using PrizeCard component
   20170914 | P | Added WinnerPrizes list
   20170913 | P | Added copy functionality to contat actions on WinnersCard
   20170912 | P | Added npm dependency clipboard

@@ -2,13 +2,19 @@ import React, { PureComponent } from 'react'
 
 import { getPrizesGroup } from '../../radiocero-api'
 
-import { PrizesIcon } from '../../assets/icons'
+import { PrizesIcon, CheckIcon } from '../../assets/icons'
 
 import styles from '../../assets/styles'
 
 import moment from 'moment';
 
+import PrizeCard from '../prizes/PrizeCard'
+
 import Checkbox from 'material-ui/Checkbox';
+import CircularProgress from 'material-ui/CircularProgress';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import { List, ListItem } from 'material-ui/List';
 
 class WinnerPrizes extends PureComponent {
   constructor() {
@@ -16,13 +22,17 @@ class WinnerPrizes extends PureComponent {
     this.state = {
       prizes: null,
       prizesToShow: null,
-      showAll: false
+      showAll: false,
+      prizesLoadReady: false,
+      prizeToDisplay: null
     }
     this.toggleShowall = this.toggleShowall.bind(this)
     this.filterPrizesToShow = this.filterPrizesToShow.bind(this)
     this.renderPrizes = this.renderPrizes.bind(this)
+    this.setPrizesLoadReady = this.setPrizesLoadReady.bind(this)
   }
   componentWillMount() {
+    this.setPrizesLoadReady(true)
     getPrizesGroup(this.props.prizes.map(prize => prize.id))
       .then(fullPrizes => {
         this.setState({
@@ -30,16 +40,19 @@ class WinnerPrizes extends PureComponent {
         }, this.filterPrizesToShow)
       })
   }
+  setPrizesLoadReady(prizesLoadReady) {
+    this.setState({ prizesLoadReady })
+  }
   filterPrizesToShow() {
     if (!this.state.showAll) {
       this.setState({
         prizesToShow: this.state.prizes.filter(prize => !prize.handed)
-      })
+      }, this.setPrizesLoadReady.bind(null, false))
     }
     else {
       this.setState({
         prizesToShow: this.state.prizes
-      })
+      }, this.setPrizesLoadReady.bind(null, false))
     }
   }
   matchAndMergePrizesInfo(prizes, status) {
@@ -64,9 +77,30 @@ class WinnerPrizes extends PureComponent {
     if (this.state.prizesToShow && this.state.prizesToShow.length) {
       return this.state.prizesToShow.map((prize, i) => {
         return (
-          <div key={i} className="winner-prize-item">
-            <pre key={i}>{JSON.stringify(prize, null, 2)}</pre>
-          </div>
+          <ListItem
+            key={i}
+            className="winner-prize-item"
+            primaryText={prize.description}
+            secondaryTextLines={1}
+            secondaryText={`Otorgado: ${prize.granted}`}
+            onClick={() => {
+              this.setState({ prizeToDisplay: prize })
+            }}
+            rightIconButton={
+              <IconMenu
+                iconButtonElement={
+                  <IconButton
+                    touch={true}
+                    tooltip="Marcar como entregado"
+                    tooltipPosition="bottom-left"
+                    onClick={() => { console.log('Icon clicked') }}
+                  >
+                    <CheckIcon width="30px" height="30px" fill={styles.color.grey500} />
+                  </IconButton>
+                }
+              />
+            }
+          />
         )
       })
     }
@@ -88,7 +122,18 @@ class WinnerPrizes extends PureComponent {
             labelPosition="left"
           />
         </div>
-        {this.renderPrizes()}
+        {this.state.prizesLoadReady
+          ?
+          <CircularProgress />
+          :
+          <List>{this.renderPrizes()}</List>
+        }
+
+        <PrizeCard
+          prize={this.state.prizeToDisplay}
+          open={!!this.state.prizeToDisplay}
+          onClose={() => { this.setState({ prizeToDisplay: null }) }}
+        />
       </div>
     )
   }

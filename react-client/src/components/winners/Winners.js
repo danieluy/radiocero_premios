@@ -63,44 +63,44 @@ class Winners extends PureComponent {
       })
   }
   renderWinners() {
-    let winnersToDisplay = _.cloneDeep(this.state.winners)
-    if (this.state.filters.query)
-      winnersToDisplay = winnersToDisplay.filter(winner => {
-        const regex = new RegExp(removeVowelAccent(this.state.filters.query), 'ig')
-        if (removeVowelAccent(winner.type).match(regex)) return true
-        if (removeVowelAccent(winner.sponsor).match(regex)) return true
-        if (removeVowelAccent(winner.description).match(regex)) return true
-        if (winner.note && removeVowelAccent(winner.note).match(regex)) return true
-      })
-    if (this.state.filters.enabledOnly)
-      winnersToDisplay = winnersToDisplay.filter(winner => {
-        return checkEnabled(winner)
-      })
-    this.setState({ winnersToDisplay })
+    // let winnersToDisplay = _.cloneDeep(this.state.winners)
+    // if (this.state.filters.query)
+    //   winnersToDisplay = winnersToDisplay.filter(winner => {
+    //     const regex = new RegExp(removeVowelAccent(this.state.filters.query), 'ig')
+    //     if (removeVowelAccent(winner.type).match(regex)) return true
+    //     if (removeVowelAccent(winner.sponsor).match(regex)) return true
+    //     if (removeVowelAccent(winner.description).match(regex)) return true
+    //     if (winner.note && removeVowelAccent(winner.note).match(regex)) return true
+    //   })
+    // if (this.state.filters.enabledOnly)
+    //   winnersToDisplay = winnersToDisplay.filter(winner => {
+    //     return checkEnabled(winner)
+    //   })
+    // this.setState({ winnersToDisplay })
 
-    // this.setState({
-    //   winnersToDisplay: [
-    //     {
-    //       ci: "47492858",
-    //       facebook: "https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwjmvJ-RnZ3WAhWJBJEKHXwtAFIYABAAGgJjZQ&ohost=www.google.com.uy&cid=CAESEeD2I6EGwZ_SKARPmjPij6oH&sig=AOD64_2SXkYyvAuw_Pp_zV0MOGf6BF6PPg&q=&ved=0ahUKEwiF6JqRnZ3WAhVCgpAKHfceCd4Q0QwIIw&adurl=",
-    //       gender: "M",
-    //       id: "588f44a1714b8b04fd30bd71",
-    //       lastname: "Picerno",
-    //       mail: "mathipicerno@hotmail.com",
-    //       name: "Mathías",
-    //       phone: "099099099",
-    //       prizes: [
-    //         {
-    //           granted: 1485784225976,
-    //           handed: 1487681962813,
-    //           id: "588f3136714b8b04fd30bd6e"
-    //         }
-    //       ],
-    //       set_date: 1485784225941,
-    //       update_date: 1487681962813
-    //     }
-    //   ]
-    // })
+    this.setState({
+      winnersToDisplay: [
+        {
+          ci: "47492858",
+          facebook: "https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwjmvJ-RnZ3WAhWJBJEKHXwtAFIYABAAGgJjZQ&ohost=www.google.com.uy&cid=CAESEeD2I6EGwZ_SKARPmjPij6oH&sig=AOD64_2SXkYyvAuw_Pp_zV0MOGf6BF6PPg&q=&ved=0ahUKEwiF6JqRnZ3WAhVCgpAKHfceCd4Q0QwIIw&adurl=",
+          gender: "M",
+          id: "588f44a1714b8b04fd30bd71",
+          lastname: "Picerno",
+          mail: "mathipicerno@hotmail.com",
+          name: "Mathías",
+          phone: "099099099",
+          prizes: [
+            {
+              granted: 1485784225976,
+              handed: 1487681962813,
+              id: "588f3136714b8b04fd30bd6e"
+            }
+          ],
+          set_date: 1485784225941,
+          update_date: 1487681962813
+        }
+      ]
+    })
   }
   filterEnabledOnly() {
     const filters = _.cloneDeep(this.state.filters)
