@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import { getPrizesGroup } from '../../radiocero-api'
+import { getPrizesGroup, handoverPrize } from '../../radiocero-api'
 
 import { PrizesIcon, CheckIcon } from '../../assets/icons'
 
@@ -15,6 +15,8 @@ import CircularProgress from 'material-ui/CircularProgress';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import { List, ListItem } from 'material-ui/List';
+import MenuItem from 'material-ui/MenuItem';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 class WinnerPrizes extends PureComponent {
   constructor() {
@@ -30,13 +32,15 @@ class WinnerPrizes extends PureComponent {
     this.filterPrizesToShow = this.filterPrizesToShow.bind(this)
     this.renderPrizes = this.renderPrizes.bind(this)
     this.setPrizesLoadReady = this.setPrizesLoadReady.bind(this)
+    this.handoverPrize = this.handoverPrize.bind(this)
+    this.cancelHandoverPrize = this.cancelHandoverPrize.bind(this)
   }
   componentWillMount() {
     this.setPrizesLoadReady(true)
-    getPrizesGroup(this.props.prizes.map(prize => prize.id))
+    getPrizesGroup(this.props.winner.prizes.map(prize => prize.id))
       .then(fullPrizes => {
         this.setState({
-          prizes: this.matchAndMergePrizesInfo(fullPrizes, this.props.prizes).sort((a, b) => a.granted > b.granted)
+          prizes: this.matchAndMergePrizesInfo(fullPrizes, this.props.winner.prizes).sort((a, b) => a.granted > b.granted)
         }, this.filterPrizesToShow)
       })
   }
@@ -73,6 +77,22 @@ class WinnerPrizes extends PureComponent {
       showAll: !this.state.showAll
     }, this.filterPrizesToShow)
   }
+  handoverPrize(prizeId) {
+    handoverPrize(this.props.winner.ci, prizeId)
+      .then(result => {
+        console.log(result)
+        this.props.onActionSuccess()
+        this.props.onActionCanceled()
+        this.props.onQuickNotice('Premio entregado')
+      })
+      .catch(err => {
+        console.error(err)
+        this.props.onQuickNotice('ERROR al entregar premio')
+      })
+  }
+  cancelHandoverPrize(prizeId) {
+    console.log(prizeId)
+  }
   renderPrizes() {
     if (this.state.prizesToShow && this.state.prizesToShow.length) {
       return this.state.prizesToShow.map((prize, i) => {
@@ -82,29 +102,38 @@ class WinnerPrizes extends PureComponent {
             className="winner-prize-item"
             primaryText={prize.description}
             secondaryTextLines={1}
-            secondaryText={`Otorgado: ${prize.granted}`}
+            secondaryText={
+              <span>
+                <strong>Otorgado: </strong>
+                {moment(prize.granted).format('DD/MM/YYYY')}
+                <strong> Entregado: </strong>
+                {prize.handed ? moment(prize.handed).format('DD/MM/YYYY') : 'Pendiente'}
+              </span>
+            }
             onClick={() => {
               this.setState({ prizeToDisplay: prize })
             }}
-            rightIconButton={
-              <IconMenu
-                iconButtonElement={
-                  <IconButton
-                    touch={true}
-                    tooltip="Marcar como entregado"
-                    tooltipPosition="bottom-left"
-                    onClick={() => { console.log('Icon clicked') }}
-                  >
-                    <CheckIcon width="30px" height="30px" fill={styles.color.grey500} />
-                  </IconButton>
-                }
-              />
+            leftIcon={<PrizesIcon fill={styles.color.grey500} />}
+            rightIconButton={!prize.handed ?
+              <IconMenu iconButtonElement={
+                <IconButton
+                  touch={true}
+                  tooltip="Acciones"
+                  tooltipPosition="bottom-left"
+                >
+                  <MoreVertIcon color={styles.color.grey500} />
+                </IconButton>
+              }>
+                <MenuItem onClick={this.handoverPrize.bind(null, prize.id)}>Entregar</MenuItem>
+                <MenuItem onClick={this.cancelHandoverPrize.bind(null, prize.id)}>Cancelar</MenuItem>
+              </IconMenu>
+              : null
             }
           />
         )
       })
     }
-    return 'Todos los premios han sido enrtegados'
+    return <strong>Todos los premios han sido entregados</strong>
   }
   render() {
     return (

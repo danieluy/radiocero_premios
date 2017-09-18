@@ -8,6 +8,8 @@
   00000000 | T | cancelHandOverPrize() on backend
   00000000 | T | improve the error handling
 v2.1.0
+  20170918 | P | Working on cancel handover Prize functionality
+  20170918 | P | Added handover Prize functionality
   20170915 | P | Added display Prize functionality on WinnerPrizes re-using PrizeCard component
   20170914 | P | Added WinnerPrizes list
   20170913 | P | Added copy functionality to contat actions on WinnersCard

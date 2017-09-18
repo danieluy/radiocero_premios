@@ -21,7 +21,6 @@ import FlatButton from 'material-ui/FlatButton';
 
 class WinnerCard extends Component {
   render() {
-    console.log(this.props.winner)
     if (this.props.open) {
       const winner = this.props.winner
       return (
@@ -51,7 +50,10 @@ class WinnerCard extends Component {
             </p>
             <br />
             <WinnerPrizes
-              prizes={winner.prizes}
+              winner={winner}
+              onActionSuccess={this.props.onActionSuccess}
+              onActionCanceled={this.props.onActionCanceled}
+              onQuickNotice={this.props.onQuickNotice}
             />
             <br />
             <div className="winner-card-contact-link">

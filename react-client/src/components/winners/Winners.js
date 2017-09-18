@@ -116,7 +116,8 @@ class Winners extends PureComponent {
     this.setState({
       winnerToEdit: null,
       winnerToDelete: null,
-      addWinnerOpen: false
+      addWinnerOpen: false,
+      winnerToDisplay: null
     })
   }
   openEditWinner(winner) {
@@ -168,7 +169,7 @@ class Winners extends PureComponent {
                           tooltip="Opciones"
                           tooltipPosition="bottom-left"
                         >
-                          <MoreVertIcon color={'#888'} />
+                          <MoreVertIcon color={styles.color.grey500} />
                         </IconButton>
                       }>
                         <MenuItem onClick={this.openEditWinner.bind(this, winner)}>Editar</MenuItem>
@@ -209,6 +210,8 @@ class Winners extends PureComponent {
           open={!!this.state.winnerToDisplay}
           onClose={() => { this.setState({ winnerToDisplay: null }) }}
           onQuickNotice={this.props.onQuickNotice}
+          onActionSuccess={this.updateWinners.bind(this)}
+          onActionCanceled={this.resetModals.bind(this)}
         />
 
         <FloatingActionButton

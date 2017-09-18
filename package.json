@@ -25,7 +25,8 @@
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "ip": "^1.1.4",
-    "mongodb": "^2.1.4"
+    "mongodb": "^2.1.4",
+    "react-tap-event-plugin": "^2.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0"
