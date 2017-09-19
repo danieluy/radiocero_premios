@@ -231,6 +231,24 @@ function handoverPrize(winner_ci, prize_id) {
   })
 }
 
+function cancelHandoverPrize(winner_ci, prize_id) {
+  if (!winner_ci || !prize_id)
+    throw new Error('Winner CI and Prize ID must be provided')
+  return new Promise((resolve, reject) => {
+    superagent.post(apibBaseURL + 'winners/cancelHandprize/')
+      .type('form')
+      .send({ winner_ci, prize_id })
+      .end((err, res) => {
+        if (err && res && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+}
+
 export {
   login,
   logout,
@@ -246,5 +264,6 @@ export {
   updatePrize,
   deletePrize,
   getWinners,
-  handoverPrize
+  handoverPrize,
+  cancelHandoverPrize
 }

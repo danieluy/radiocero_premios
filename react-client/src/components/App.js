@@ -90,7 +90,7 @@ class App extends Component {
             toggle={this.toggleDrawer.bind(this)}
           />
 
-          <div className="app-routes" style={{ height: `${this.state.window.height - 64}px` }}>
+          <div className="app-routes" id="app-routes" style={{ height: `${this.state.window.height - 64}px` }}>
             <Switch>
               <Route exact path='/v2' render={() => <Home onQuickNotice={this.onQuickNotice.bind(this)} />} />
               <Route exact path='/v2/users' render={() => <Users onQuickNotice={this.onQuickNotice.bind(this)} />} />

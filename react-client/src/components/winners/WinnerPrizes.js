@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import { getPrizesGroup, handoverPrize } from '../../radiocero-api'
+import { getPrizesGroup, handoverPrize, cancelHandoverPrize } from '../../radiocero-api'
 
 import { PrizesIcon, CheckIcon } from '../../assets/icons'
 
@@ -80,10 +80,9 @@ class WinnerPrizes extends PureComponent {
   handoverPrize(prizeId) {
     handoverPrize(this.props.winner.ci, prizeId)
       .then(result => {
-        console.log(result)
-        this.props.onActionSuccess()
-        this.props.onActionCanceled()
         this.props.onQuickNotice('Premio entregado')
+        this.props.onActionCanceled()
+        this.props.onActionSuccess()
       })
       .catch(err => {
         console.error(err)
@@ -91,7 +90,16 @@ class WinnerPrizes extends PureComponent {
       })
   }
   cancelHandoverPrize(prizeId) {
-    console.log(prizeId)
+    cancelHandoverPrize(this.props.winner.ci, prizeId)
+      .then(result => {
+        this.props.onQuickNotice('Premio cancelado')
+        this.props.onActionCanceled()
+        this.props.onActionSuccess()
+      })
+      .catch(err => {
+        console.error(err)
+        this.props.onQuickNotice('ERROR al cancelar premio')
+      })
   }
   renderPrizes() {
     if (this.state.prizesToShow && this.state.prizesToShow.length) {
@@ -125,7 +133,7 @@ class WinnerPrizes extends PureComponent {
                 </IconButton>
               }>
                 <MenuItem onClick={this.handoverPrize.bind(null, prize.id)}>Entregar</MenuItem>
-                <MenuItem onClick={this.cancelHandoverPrize.bind(null, prize.id)}>Cancelar</MenuItem>
+                <MenuItem onClick={this.cancelHandoverPrize.bind(null, prize.id)}>Devolver</MenuItem>
               </IconMenu>
               : null
             }

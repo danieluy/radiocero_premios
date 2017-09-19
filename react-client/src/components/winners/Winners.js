@@ -8,6 +8,8 @@ import { removeVowelAccent } from 'ds-mini-utils'
 import moment from 'moment';
 import _ from 'lodash'
 
+import VirtualList from 'react-virtual-list';
+
 import styles from '../../assets/styles'
 
 import AddWinnerForm from './AddWinnerForm'
@@ -30,6 +32,7 @@ import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
+
 class Winners extends PureComponent {
   constructor() {
     super()
@@ -49,6 +52,7 @@ class Winners extends PureComponent {
   componentDidMount() {
     this.updateWinners()
     events.on('login', this.updateWinners.bind(this))
+    WinnersVirtualList = VirtualList({ container: document.getElementById('app-routes') })(WinnersList);
   }
   updateWinners() {
     getWinners()
@@ -149,40 +153,30 @@ class Winners extends PureComponent {
           onEnabledOnlyChange={this.filterEnabledOnly.bind(this)}
           filtersState={this.state.filters}
         />
-        <List>
-          <Subheader>Ganadores</Subheader>
-          <Paper zDepth={1}>
-            {this.state.winnersToDisplay.map((winner, i) => {
-              return (
-                <div key={i}>
-                  <ListItem
-                    className="winners-item"
-                    leftAvatar={<WinnersIcon width="30px" fill={styles.color.grey500} />}
-                    primaryText={`${winner.name} ${winner.lastname}`}
-                    secondaryTextLines={1}
-                    onClick={this.openWinnerCard.bind(this, winner)}
-                    secondaryText={formatCI(winner.ci)}
-                    rightIconButton={
-                      <IconMenu iconButtonElement={
-                        <IconButton
-                          touch={true}
-                          tooltip="Opciones"
-                          tooltipPosition="bottom-left"
-                        >
-                          <MoreVertIcon color={styles.color.grey500} />
-                        </IconButton>
-                      }>
-                        <MenuItem onClick={this.openEditWinner.bind(this, winner)}>Editar</MenuItem>
-                        <MenuItem onClick={this.openDeleteWinner.bind(this, winner)}>Borrar</MenuItem>
-                      </IconMenu>
-                    }
-                  />
-                  <Divider />
-                </div>
-              )
-            })}
-          </Paper>
-        </List>
+
+        <Subheader>
+          Ganadores
+          <small style={{ float: 'right', marginRight: 16 }}>
+            Actualizado: {moment().format('DD/MM/YYYY - HH:mm')}
+          </small>
+          <small style={{ float: 'right', marginRight: 16 }}>
+            Total mostrado: {this.state.winnersToDisplay.length}
+          </small>
+        </Subheader>
+        <Paper zDepth={1}>
+          {WinnersVirtualList ?
+            <WinnersVirtualList
+              items={this.state.winnersToDisplay}
+              itemHeight={72}
+              actions={{
+                openWinnerCard: this.openWinnerCard.bind(this),
+                openEditWinner: this.openEditWinner.bind(this),
+                openDeleteWinner: this.openDeleteWinner.bind(this)
+              }}
+            />
+            : null
+          }
+        </Paper>
 
         <AddWinnerForm
           open={this.state.addWinnerOpen}
@@ -227,3 +221,40 @@ class Winners extends PureComponent {
 }
 
 export default Winners;
+
+
+const WinnersList = ({ virtual, itemHeight, actions }) => (
+  <List style={virtual.style}>
+    {virtual.items.map((winner, i) => (
+      <div key={i} style={{ height: itemHeight }}>
+        <ListItem
+          key={i}
+          style={{ height: itemHeight }}
+          className="winners-item"
+          leftAvatar={<WinnersIcon width="30px" fill={styles.color.grey500} />}
+          primaryText={`${winner.name} ${winner.lastname}`}
+          secondaryTextLines={1}
+          onClick={actions.openWinnerCard.bind(null, winner)}
+          secondaryText={formatCI(winner.ci)}
+          rightIconButton={
+            <IconMenu iconButtonElement={
+              <IconButton
+                touch={true}
+                tooltip="Opciones"
+                tooltipPosition="bottom-left"
+              >
+                <MoreVertIcon color={styles.color.grey500} />
+              </IconButton>
+            }>
+              <MenuItem onClick={actions.openEditWinner.bind(null, winner)}>Editar</MenuItem>
+              <MenuItem onClick={actions.openDeleteWinner.bind(null, winner)}>Borrar</MenuItem>
+            </IconMenu>
+          }
+        />
+        <Divider />
+      </div>
+    ))}
+  </List>
+);
+
+let WinnersVirtualList

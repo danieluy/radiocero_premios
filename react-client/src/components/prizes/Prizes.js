@@ -124,9 +124,17 @@ class Prizes extends PureComponent {
           onEnabledOnlyChange={this.filterEnabledOnly.bind(this)}
           filtersState={this.state.filters}
         />
-        <List>
-          <Subheader>Premios</Subheader>
-          <Paper zDepth={1}>
+        <Subheader>
+          Premios
+          <small style={{ float: 'right', marginRight: 16 }}>
+            Actualizado: {moment().format('DD/MM/YYYY - HH:mm')}
+          </small>
+          <small style={{ float: 'right', marginRight: 16 }}>
+            Total mostrado: {this.state.prizesToDisplay.length}
+          </small>
+        </Subheader>
+        <Paper zDepth={1}>
+          <List>
             {this.state.prizesToDisplay.map((prize, i) => {
               return (
                 <div key={i}>
@@ -162,8 +170,8 @@ class Prizes extends PureComponent {
                 </div>
               )
             })}
-          </Paper>
-        </List>
+          </List>
+        </Paper>
 
         <AddPrizeForm
           open={this.state.addPrizeOpen}
