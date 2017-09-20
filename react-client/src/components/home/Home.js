@@ -3,6 +3,8 @@ import React, { Component, PureComponent } from 'react';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import Subheader from 'material-ui/Subheader';
 
+import styles from '../../assets/styles'
+
 class Home extends Component {
   render() {
     return (
@@ -57,7 +59,7 @@ class PermissionsDescription extends PureComponent {
     return (
       <div>
         <Subheader>Descripcíon de Permisos</Subheader>
-        <p style={{ padding: '0 16px', color: "#888" }}>
+        <p style={{ padding: '0 16px', color: styles.color.grey500 }}>
           <small>Acceso a los principales tipos de datos por tipo de usuario</small>
         </p>
         <Table>

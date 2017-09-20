@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import DatePicker from 'material-ui/DatePicker';
 
+import styles from '../../assets/styles'
+
 import { CalendarIcon } from '../../assets/icons'
 
 import moment from 'moment';
@@ -26,7 +28,7 @@ class CustomDatePicker extends Component {
             height: '72px'
           }}
         >
-          <CalendarIcon width="30px" height="30px" fill="#888" />
+          <CalendarIcon width="30px" height="30px" fill={styles.color.grey500} />
           <span style={{ marginLeft: '10px' }}>
             {this.props.label}
             <strong style={{ marginLeft: '15px' }}>

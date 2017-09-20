@@ -8,6 +8,8 @@ import { removeVowelAccent } from 'ds-mini-utils'
 import moment from 'moment';
 import _ from 'lodash'
 
+import VirtualList from 'react-virtual-list';
+
 import styles from '../../assets/styles'
 
 import AddPrizeForm from './AddPrizeForm'
@@ -49,6 +51,7 @@ class Prizes extends PureComponent {
   componentDidMount() {
     this.updatePrizes()
     events.on('login', this.updatePrizes.bind(this))
+    PrizesVirtualList = VirtualList({ container: document.getElementById('app-routes') })(PrizesList);
   }
   updatePrizes() {
     getPrizes()
@@ -134,43 +137,18 @@ class Prizes extends PureComponent {
           </small>
         </Subheader>
         <Paper zDepth={1}>
-          <List>
-            {this.state.prizesToDisplay.map((prize, i) => {
-              return (
-                <div key={i}>
-                  <ListItem
-                    className="prizes-item"
-                    leftAvatar={<PrizesIcon width="30px" fill="#888" />}
-                    primaryText={prize.description}
-                    secondaryTextLines={2}
-                    onClick={this.openPrizeCard.bind(this, prize)}
-                    secondaryText={
-                      <p>
-                        <span>{prize.sponsor}</span>
-                        <br />
-                        {prize.due_date ? moment(prize.due_date).locale('es').format("DD/MM/YYYY") : 'Sin vencimiento'}
-                      </p>
-                    }
-                    rightIconButton={
-                      <IconMenu iconButtonElement={
-                        <IconButton
-                          touch={true}
-                          tooltip="Opciones"
-                          tooltipPosition="bottom-left"
-                        >
-                          <MoreVertIcon color={'#888'} />
-                        </IconButton>
-                      }>
-                        <MenuItem onClick={this.openEditPrize.bind(this, prize)}>Editar</MenuItem>
-                        <MenuItem onClick={this.openDeletePrize.bind(this, prize)}>Borrar</MenuItem>
-                      </IconMenu>
-                    }
-                  />
-                  <Divider />
-                </div>
-              )
-            })}
-          </List>
+          {PrizesVirtualList ?
+            <PrizesVirtualList
+              items={this.state.prizesToDisplay}
+              itemHeight={88}
+              actions={{
+                openPrizeCard: this.openPrizeCard.bind(this),
+                openEditPrize: this.openEditPrize.bind(this),
+                openDeletePrize: this.openDeletePrize.bind(this)
+              }}
+            />
+            : null
+          }
         </Paper>
 
         <AddPrizeForm
@@ -198,6 +176,8 @@ class Prizes extends PureComponent {
           prize={this.state.prizeToDisplay}
           open={!!this.state.prizeToDisplay}
           onClose={() => { this.setState({ prizeToDisplay: null }) }}
+          onActionSuccess={this.updatePrizes.bind(this)}
+          onActionCanceled={this.resetModals.bind(this)}
         />
 
         <FloatingActionButton
@@ -212,4 +192,45 @@ class Prizes extends PureComponent {
   }
 }
 
-export default Prizes;
+export default Prizes
+
+
+const PrizesList = ({ virtual, itemHeight, actions }) => (
+  <List style={virtual.style}>
+    {virtual.items.map((prize, i) => (
+      <div key={i} style={{ height: itemHeight }}>
+        <ListItem
+          className="prizes-item"
+          leftAvatar={<PrizesIcon width="30px" fill={styles.color.grey500} />}
+          primaryText={prize.description}
+          secondaryTextLines={2}
+          onClick={actions.openPrizeCard.bind(this, prize)}
+          secondaryText={
+            <p>
+              <span>{prize.sponsor}</span>
+              <br />
+              {prize.due_date ? moment(prize.due_date).locale('es').format("DD/MM/YYYY") : 'Sin vencimiento'}
+            </p>
+          }
+          rightIconButton={
+            <IconMenu iconButtonElement={
+              <IconButton
+                touch={true}
+                tooltip="Opciones"
+                tooltipPosition="bottom-left"
+              >
+                <MoreVertIcon color={styles.color.grey500} />
+              </IconButton>
+            }>
+              <MenuItem onClick={actions.openEditPrize.bind(null, prize)}>Editar</MenuItem>
+              <MenuItem onClick={actions.openDeletePrize.bind(null, prize)}>Borrar</MenuItem>
+            </IconMenu>
+          }
+        />
+        <Divider />
+      </div>
+    ))}
+  </List>
+);
+
+let PrizesVirtualList

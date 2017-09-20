@@ -175,7 +175,7 @@ class AddUserForm extends Component {
         <br />
         <Checkbox
           checkedIcon={<Visibility />}
-          uncheckedIcon={<VisibilityOff style={{ fill: '#888' }} />}
+          uncheckedIcon={<VisibilityOff style={{ fill: styles.color.grey500 }} />}
           label="Mostrar Contraseñas"
           checked={this.state.showPasswords}
           onCheck={(this.toggleHidePasswords.bind(this))}

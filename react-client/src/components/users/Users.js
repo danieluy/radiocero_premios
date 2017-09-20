@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react';
 import { getUsers } from '../../radiocero-api'
 import events from '../../events'
 
+import styles from '../../assets/styles'
+
 import EditUserForm from './EditUserForm'
 import DeleteUserForm from './DeleteUserForm'
 import EditPasswordForm from './EditPasswordForm'
@@ -101,7 +103,7 @@ class Users extends PureComponent {
                             href={`mailto:${user.email}?subject=Radiocero%20Premios`}
                             target="_blank"
                             className="users-item-link"
-                            >
+                          >
                             {user.email}
                           </a>
                           : null
@@ -115,7 +117,7 @@ class Users extends PureComponent {
                           tooltip="Opciones"
                           tooltipPosition="bottom-left"
                         >
-                          <MoreVertIcon color={'#888'} />
+                          <MoreVertIcon color={styles.color.grey500} />
                         </IconButton>
                       }>
                         <MenuItem onClick={this.openEditUser.bind(this, user)}>Editar</MenuItem>

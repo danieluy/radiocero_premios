@@ -17,7 +17,20 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
 
+import GrantPrizeForm from './GrantPrizeForm'
+
+
 class PrizeCard extends PureComponent {
+  constructor() {
+    super()
+    this.state = {
+      prizeToGrant: null
+    }
+    this.resetModals = this.resetModals.bind(this)
+  }
+  resetModals() {
+    this.setState({ prizeToGrant: null })
+  }
   render() {
     if (this.props.open) {
       const prize = this.props.prize
@@ -78,9 +91,30 @@ class PrizeCard extends PureComponent {
           </CardText>
 
           <CardActions>
-            <RaisedButton label="Otorgar este premio" primary={true} disabled={true} />
-            <FlatButton label="Cancelar" onClick={this.props.onClose} />
+            <RaisedButton
+              label="Otorgar este premio"
+              primary={true}
+              onClick={() => { this.setState({ prizeToGrant: prize }) }}
+            />
+            <FlatButton
+              label="Cancelar"
+              onClick={this.props.onClose}
+            />
           </CardActions>
+
+          {this.state.prizeToGrant ?
+            <GrantPrizeForm
+              open={!!this.state.prizeToGrant}
+              onActionSuccess={() => {
+                this.props.onActionSuccess()
+                this.resetModals()
+              }}
+              onActionCanceled={this.resetModals}
+              prizeId={this.state.prizeToGrant.id}
+            />
+            : null
+          }
+
         </Dialog>
       )
     }
