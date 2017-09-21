@@ -2,6 +2,7 @@
 #ToDos
   00000000 | T | redo the whole grant prize api
 v2.1.0
+  20170921 | P | Implemented upfront CI verification on GrantPrizeForm
   20170920 | P | Added GrantPrizeForm component, working on it's functionality
   20170920 | P | Implemented react-virtual-list on Prizes component
   20170919 | P | Added minimal stats to Winners and Prizes list SubHeaders

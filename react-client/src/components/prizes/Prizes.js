@@ -178,6 +178,7 @@ class Prizes extends PureComponent {
           onClose={() => { this.setState({ prizeToDisplay: null }) }}
           onActionSuccess={this.updatePrizes.bind(this)}
           onActionCanceled={this.resetModals.bind(this)}
+          onQuickNotice={this.props.onQuickNotice}
         />
 
         <FloatingActionButton

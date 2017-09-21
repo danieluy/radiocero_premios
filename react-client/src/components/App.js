@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.scss'
-import _ from 'lodash'
+
+import { debounce as _debounce } from 'lodash'
 
 import { Switch, Route } from 'react-router-dom'
 import Home from './home/Home'
@@ -40,7 +41,7 @@ class App extends Component {
     }
   }
   componentWillMount() {
-    window.addEventListener('resize', _.debounce(this.updateWindowDimensions.bind(this), 100))
+    window.addEventListener('resize', _debounce(this.updateWindowDimensions.bind(this), 100))
   }
   componentDidMount() {
     events.on('exception', (err) => {

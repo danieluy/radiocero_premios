@@ -1,6 +1,6 @@
 const superagent = require('superagent');
 
-const apibBaseURL = '/api/'
+const APIBaseURL = '/api/'
 
 function login(userName, password) {
   if (!userName || !password)
@@ -46,7 +46,7 @@ function logged() {
 
 function getUsers() {
   return new Promise((resolve, reject) => {
-    superagent.get(apibBaseURL + 'users')
+    superagent.get(APIBaseURL + 'users')
       .end((err, res) => {
         if (err && res && res.unauthorized)
           reject('Unauthorized')
@@ -60,7 +60,7 @@ function getUsers() {
 
 function updateUser(user) {
   return new Promise((resolve, reject) => {
-    superagent.patch(apibBaseURL + 'users')
+    superagent.patch(APIBaseURL + 'users')
       .type('form')
       .send(user)
       .end((err, res) => {
@@ -76,7 +76,7 @@ function updateUser(user) {
 
 function updateUserPassword(data) {
   return new Promise((resolve, reject) => {
-    superagent.patch(apibBaseURL + 'users/password')
+    superagent.patch(APIBaseURL + 'users/password')
       .type('form')
       .send(data)
       .end((err, res) => {
@@ -92,7 +92,7 @@ function updateUserPassword(data) {
 
 function deleteUser(user) {
   return new Promise((resolve, reject) => {
-    superagent.delete(apibBaseURL + 'users/' + user.id)
+    superagent.delete(APIBaseURL + 'users/' + user.id)
       .end((err, res) => {
         if (err && res && res.unauthorized)
           reject('Unauthorized')
@@ -106,7 +106,7 @@ function deleteUser(user) {
 
 function addUser(user) {
   return new Promise((resolve, reject) => {
-    superagent.post(apibBaseURL + 'users/')
+    superagent.post(APIBaseURL + 'users/')
       .type('form')
       .send(user)
       .end((err, res) => {
@@ -122,7 +122,7 @@ function addUser(user) {
 
 function getPrizes() {
   return new Promise((resolve, reject) => {
-    superagent.get(apibBaseURL + 'prizes/')
+    superagent.get(APIBaseURL + 'prizes/')
       .end((err, res) => {
         if (err && res && res.unauthorized)
           reject('Unauthorized')
@@ -136,7 +136,7 @@ function getPrizes() {
 
 function getPrizeById(id) {
   return new Promise((resolve, reject) => {
-    superagent.get(apibBaseURL + 'prizes/' + id)
+    superagent.get(APIBaseURL + 'prizes/' + id)
       .end((err, res) => {
         if (err && res && res.unauthorized)
           reject('Unauthorized')
@@ -155,7 +155,7 @@ function getPrizesGroup(ids) {
 
 function addPrize(prize) {
   return new Promise((resolve, reject) => {
-    superagent.post(apibBaseURL + 'prizes/')
+    superagent.post(APIBaseURL + 'prizes/')
       .type('form')
       .send(prize)
       .end((err, res) => {
@@ -171,7 +171,7 @@ function addPrize(prize) {
 
 function updatePrize(prize) {
   return new Promise((resolve, reject) => {
-    superagent.patch(apibBaseURL + 'prizes')
+    superagent.patch(APIBaseURL + 'prizes')
       .type('form')
       .send(prize)
       .end((err, res) => {
@@ -187,7 +187,7 @@ function updatePrize(prize) {
 
 function deletePrize(prize) {
   return new Promise((resolve, reject) => {
-    superagent.delete(apibBaseURL + 'prizes/' + prize.id)
+    superagent.delete(APIBaseURL + 'prizes/' + prize.id)
       .end((err, res) => {
         if (err && res && res.unauthorized)
           reject('Unauthorized')
@@ -201,7 +201,7 @@ function deletePrize(prize) {
 
 function getWinners() {
   return new Promise((resolve, reject) => {
-    superagent.get(apibBaseURL + 'winners/')
+    superagent.get(APIBaseURL + 'winners/')
       .end((err, res) => {
         if (err && res && res.unauthorized)
           reject('Unauthorized')
@@ -217,7 +217,7 @@ function handoverPrize(winner_ci, prize_id) {
   if (!winner_ci || !prize_id)
     throw new Error('Winner CI and Prize ID must be provided')
   return new Promise((resolve, reject) => {
-    superagent.post(apibBaseURL + 'winners/handprize/')
+    superagent.post(APIBaseURL + 'winners/handprize/')
       .type('form')
       .send({ winner_ci, prize_id })
       .end((err, res) => {
@@ -235,7 +235,7 @@ function cancelHandoverPrize(winner_ci, prize_id) {
   if (!winner_ci || !prize_id)
     throw new Error('Winner CI and Prize ID must be provided')
   return new Promise((resolve, reject) => {
-    superagent.post(apibBaseURL + 'winners/cancelHandprize/')
+    superagent.post(APIBaseURL + 'winners/cancelHandprize/')
       .type('form')
       .send({ winner_ci, prize_id })
       .end((err, res) => {
@@ -253,7 +253,7 @@ function grantPrize(prizeId) {
   // if (!winner_ci || !prize_id)
   //   throw new Error('Winner CI and Prize ID must be provided')
   // return new Promise((resolve, reject) => {
-  //   superagent.post(apibBaseURL + 'winners/cancelHandprize/')
+  //   superagent.post(APIBaseURL + 'winners/cancelHandprize/')
   //     .type('form')
   //     .send({ winner_ci, prize_id })
   //     .end((err, res) => {
@@ -266,6 +266,24 @@ function grantPrize(prizeId) {
   //     });
   // })
   return Promise.resolve(null)
+}
+
+function checkWinner(ci) {
+  if (!ci)
+    throw new Error('Winner CI must be provided')
+  return new Promise((resolve, reject) => {
+    superagent.post(APIBaseURL + 'winners/checkwinner/')
+      .type('form')
+      .send({ ci })
+      .end((err, res) => {
+        if (err && res && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
 }
 
 export {
@@ -285,5 +303,6 @@ export {
   getWinners,
   handoverPrize,
   cancelHandoverPrize,
-  grantPrize
+  grantPrize,
+  checkWinner
 }

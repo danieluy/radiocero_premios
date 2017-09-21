@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import _ from 'lodash'
+import { debounce as _debounce } from 'lodash'
 
 import styles from '../../assets/styles'
 
@@ -12,7 +12,7 @@ import Checkbox from 'material-ui/Checkbox';
 class PrizesToolbar extends Component {
   constructor(props) {
     super(props);
-    this.debounced = _.debounce(props.onSearch, (props.debounce || 500))
+    this.debounced = _debounce(props.onSearch, (props.debounce || 500))
   }
   handleInput(e) {
     this.debounced(e.target.value)

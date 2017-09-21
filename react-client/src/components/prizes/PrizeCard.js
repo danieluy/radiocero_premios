@@ -111,6 +111,7 @@ class PrizeCard extends PureComponent {
               }}
               onActionCanceled={this.resetModals}
               prizeId={this.state.prizeToGrant.id}
+              onQuickNotice={this.props.onQuickNotice}
             />
             : null
           }
