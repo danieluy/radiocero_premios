@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import styles from '../../assets/styles'
 
@@ -9,18 +10,31 @@ import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
+
 
 class GrantPrizeForm extends Component {
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
+      prizeId: props.prizeId,
       winner: {
         ci: null,
         ciMessage: null,
         name: null,
         nameMessage: null,
         lastname: null,
-        lastnameMessage: null
+        lastnameMessage: null,
+        facebook: null,
+        facebookMessage: null,
+        gender: null,
+        genderMessage: null,
+        phone: null,
+        phoneMessage: null,
+        mail: null,
+        mailMessage: null
       },
       checkingWinner: false
     }
@@ -28,8 +42,8 @@ class GrantPrizeForm extends Component {
   handleClose() {
     this.props.onActionCanceled()
   }
-  grantPrize(prizeId) {
-    grantPrize(prizeId)
+  grantPrize() {
+    grantPrize(this.state.prizeId)
       .then(() => {
         console.log('Pseudo-Granted', prizeId)
         this.props.onActionSuccess()
@@ -49,7 +63,6 @@ class GrantPrizeForm extends Component {
       checkWinner(ci)
         .then(result => {
           this.setState({ checkingWinner: false })
-          console.log(result)
           if (result.allowed && !result.winner) {
             winner.ci = ci
             winner.ciMessage = null
@@ -69,7 +82,11 @@ class GrantPrizeForm extends Component {
             this.setState({ winner })
           }
         })
-        .catch(err => { console.error(err) })
+        .catch(err => {
+          this.setState({ checkingWinner: false })
+          this.props.onQuickNotice('ERROR verificando C.I.')
+          console.error(err)
+        })
     }
   }
   updateWinnerName(evt) {
@@ -84,8 +101,40 @@ class GrantPrizeForm extends Component {
     winner.lastnameMessage = null
     this.setState({ winner })
   }
+  updateWinnerGender(e, index, value) {
+    const winner = Object.assign({}, this.state.winner)
+    winner.gender = value
+    winner.genderMessage = null
+    this.setState({ winner })
+  }
+  updateWinnerFacebook(evt) {
+    const winner = Object.assign({}, this.state.winner)
+    winner.facebook = evt.target.value
+    winner.facebookMessage = null
+    this.setState({ winner })
+  }
+  updateWinnerPhone(evt) {
+    const winner = Object.assign({}, this.state.winner)
+    winner.phone = evt.target.value
+    winner.phoneMessage = null
+    this.setState({ winner })
+  }
+  updateWinnerMail(evt) {
+    const winner = Object.assign({}, this.state.winner)
+    winner.mail = evt.target.value
+    winner.mailMessage = null
+    this.setState({ winner })
+  }
   handleKeyPress(evt) {
-    console.log(evt.target.value)
+    if (evt.key === 'Enter')
+      this.grantPrize()
+  }
+  grantPrize() {
+    grantPrize(this.state.prizeId)
+      .then(() => {
+        console.log('Pseudo-Granted', prizeId)
+        this.props.onActionSuccess()
+      })
   }
   render() {
     return (
@@ -128,8 +177,48 @@ class GrantPrizeForm extends Component {
           fullWidth={true}
         />
         <br />
-
-
+        <SelectField
+          floatingLabelText="Sexo"
+          value={this.state.winner.gender}
+          onChange={this.updateWinnerGender.bind(this)}
+          errorText={this.state.winner.genderMessage}
+          fullWidth={true}
+        >
+          <MenuItem value={'F'} primaryText="Femenino" />
+          <MenuItem value={'M'} primaryText="Masculino" />
+          <MenuItem value={'O'} primaryText="Otro" />
+        </SelectField>
+        <br />
+        <TextField
+          hintText="Perfil de Facebook"
+          errorText={this.state.winner.facebookMessage}
+          floatingLabelText="Facebook"
+          value={this.state.winner.facebook || ''}
+          onChange={this.updateWinnerFacebook.bind(this)}
+          onKeyPress={this.handleKeyPress.bind(this)}
+          fullWidth={true}
+        />
+        <br />
+        <TextField
+          hintText="099 111 222"
+          errorText={this.state.winner.phoneMessage}
+          floatingLabelText="Teléfono"
+          value={this.state.winner.phone || ''}
+          onChange={this.updateWinnerPhone.bind(this)}
+          onKeyPress={this.handleKeyPress.bind(this)}
+          fullWidth={true}
+        />
+        <br />
+        <TextField
+          hintText="usuario@dominio.com.uy"
+          errorText={this.state.winner.mailMessage}
+          floatingLabelText="Email"
+          value={this.state.winner.mail || ''}
+          onChange={this.updateWinnerMail.bind(this)}
+          onKeyPress={this.handleKeyPress.bind(this)}
+          fullWidth={true}
+        />
+        <br />
         <br />
         <br />
         <RaisedButton
@@ -146,3 +235,11 @@ class GrantPrizeForm extends Component {
 }
 
 export default GrantPrizeForm;
+
+GrantPrizeForm.PropTypes = {
+  prizeId: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired,
+  onActionSuccess: PropTypes.func.isRequired,
+  onActionCanceled: PropTypes.func.isRequired,
+  onQuickNotice: PropTypes.func.isRequired
+}
