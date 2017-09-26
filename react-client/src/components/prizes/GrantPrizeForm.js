@@ -55,7 +55,7 @@ class GrantPrizeForm extends Component {
     const isValid = validateCi(ci)
     if (!isValid) {
       winner.ci = ci
-      winner.ciMessage = 'Cédula inválida'
+      winner.ciMessage = 'Cédula incompleta o inválida'
       this.setState({ winner })
     }
     else {
@@ -103,7 +103,7 @@ class GrantPrizeForm extends Component {
   }
   updateWinnerGender(e, index, value) {
     const winner = Object.assign({}, this.state.winner)
-    winner.gender = value
+    winner.gender = (value && value !== '') ? value : null
     winner.genderMessage = null
     this.setState({ winner })
   }
@@ -121,7 +121,7 @@ class GrantPrizeForm extends Component {
   }
   updateWinnerMail(evt) {
     const winner = Object.assign({}, this.state.winner)
-    winner.mail = evt.target.value
+    winner.mail = (evt.target.value && evt.target.value !== '') ? evt.target.value : null
     winner.mailMessage = null
     this.setState({ winner })
   }
@@ -130,12 +130,39 @@ class GrantPrizeForm extends Component {
       this.grantPrize()
   }
   grantPrize() {
-    grantPrize(this.state.prizeId)
-      .then(() => {
-        console.log('Pseudo-Granted', prizeId)
-        this.props.onActionSuccess()
-      })
+    const winner = Object.assign({}, this.state.winner)
+    if (!winner.ci || winner.ci === '')
+      winner.ciMessage = 'Este campo es obligatorio'
+    if (!winner.name || winner.name === '')
+      winner.nameMessage = 'Este campo es obligatorio'
+    if (!winner.lastname || winner.lastname === '')
+      winner.lastnameMessage = 'Este campo es obligatorio'
+    if (winner.mail && !winner.mail.match(/\S+@\S+\.\S+/))
+      winner.mailMessage = 'Este campo solo acepta un email'
+    if (winner.gender && ['F', 'M', 'O'].indexOf(winner.gender) < 0)
+      winner.genderMessage = 'Seleccione "Femenino", "Masculino" u "Otro"'
+    if (winner.ciMessage || winner.nameMessage || winner.nameMessage || winner.lastnameMessage || winner.mailMessage)
+      this.setState({ winner })
+    else {
+      delete winner.ciMessage
+      delete winner.nameMessage
+      delete winner.lastnameMessage
+      delete winner.facebookMessage
+      delete winner.genderMessage
+      delete winner.phoneMessage
+      delete winner.mailMessage
+      grantPrize(this.state.prizeId, winner)
+        .then(result => {
+          console.log(result)
+          this.props.onActionSuccess()
+        })
+        .catch(err => {
+          console.error(err)
+          this.props.onQuickNotice('ERROR Otorgando Premio')
+        })
+    }
   }
+
   render() {
     return (
       <Dialog

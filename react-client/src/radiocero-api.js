@@ -249,25 +249,6 @@ function cancelHandoverPrize(winner_ci, prize_id) {
   })
 }
 
-function grantPrize(prizeId) {
-  // if (!winner_ci || !prize_id)
-  //   throw new Error('Winner CI and Prize ID must be provided')
-  // return new Promise((resolve, reject) => {
-  //   superagent.post(APIBaseURL + 'winners/cancelHandprize/')
-  //     .type('form')
-  //     .send({ winner_ci, prize_id })
-  //     .end((err, res) => {
-  //       if (err && res && res.unauthorized)
-  //         reject('Unauthorized')
-  //       else if (err)
-  //         reject(err)
-  //       else
-  //         resolve(res.body)
-  //     });
-  // })
-  return Promise.resolve(null)
-}
-
 function checkWinner(ci) {
   if (!ci)
     throw new Error('Winner CI must be provided')
@@ -284,6 +265,25 @@ function checkWinner(ci) {
           resolve(res.body)
       });
   })
+}
+
+function grantPrize(prizeId, winner) {
+  if (!prizeId || !winner)
+    throw new Error('Winner info and Prize ID must be provided')
+  return new Promise((resolve, reject) => {
+    superagent.post(APIBaseURL + 'winners/handoverprize/')
+      .type('form')
+      .send({ prize_id: prizeId, ...winner })
+      .end((err, res) => {
+        if (err && res && res.unauthorized)
+          reject('Unauthorized')
+        else if (err)
+          reject(err)
+        else
+          resolve(res.body)
+      });
+  })
+  return Promise.resolve(null)
 }
 
 export {

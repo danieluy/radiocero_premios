@@ -191,4 +191,9 @@ winners_router.post('/checkwinner', (req, res) => { //  NEED TO GUARANTEE THAT T
     })
 })
 
+winners_router.post('/handoverprize', (req, res) => {
+  console.log(req.body)
+  res.status(200).json({ message: "The prize was correctly handed over", data: req.body })
+})
+
 module.exports = winners_router

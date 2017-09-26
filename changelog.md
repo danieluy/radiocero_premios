@@ -3,8 +3,11 @@
 ### ToDo
  - Redo the whole grant prize api
 ### v2.1.0
-* 20170922 | R | Changelog updated to comply with Markdown format
+* 20170926 | P | Solved POST /handoverprize frontend
+* 20170926 | P | Added babel spread operator loader
+* 20170926 | P | Added source maps to Webpack config
 * 20170922 | P | Added remaining fields of GrantPrizeForm
+* 20170922 | R | Changelog updated to comply with Markdown format
 * 20170921 | P | Implemented upfront CI verification on GrantPrizeForm
 * 20170920 | P | Added GrantPrizeForm component, working on it's functionality
 * 20170920 | P | Implemented react-virtual-list on Prizes component

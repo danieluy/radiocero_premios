@@ -49,7 +49,7 @@ class AddUserForm extends Component {
   }
   updateEmail(e) {
     const newUser = this.state.user
-    newUser.email = e.target.value
+    newUser.email = (e.target.value && e.target.value !== '') ? e.target.value : null
     newUser.emailMessage = null
     this.setState({ newUser })
   }
@@ -75,7 +75,7 @@ class AddUserForm extends Component {
       newUser.userNameMessage = 'Este campo es obligatorio'
     if (!newUser.role)
       newUser.roleMessage = 'Seleccione los permisos de Usuario'
-    if (newUser.email && newUser.userName !== '' && !newUser.email.match(/\S+@\S+\.\S+/))
+    if (newUser.email && !newUser.email.match(/\S+@\S+\.\S+/))
       newUser.emailMessage = 'Este campo solo acepta un email'
     if (!newUser.password || newUser.password === '')
       newUser.passwordMessage = 'Este campo es obligatorio'
