@@ -191,7 +191,17 @@ winners_router.post('/checkwinner', (req, res) => { //  NEED TO GUARANTEE THAT T
     })
 })
 
-winners_router.post('/handoverprize', (req, res) => {
+winners_router.post('/grantprize', (req, res) => {
+  // {
+  //   prize_id: '588fb0d9262ff30d757a4510',
+  //   ci: '1234561',
+  //   name: 'asd',
+  //   lastname: 'asd',
+  //   facebook: 'https://www.facebook.com',
+  //   gender: 'M',
+  //   phone: '099 111 222',
+  //   mail: 'daniel@ho.com.uy'
+  // }
   console.log(req.body)
   res.status(200).json({ message: "The prize was correctly handed over", data: req.body })
 })

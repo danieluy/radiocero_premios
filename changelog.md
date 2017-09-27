@@ -1,9 +1,12 @@
 # Radiocero Premios
 ## Changelog
 ### ToDo
+ - Solve DsForm dependency
  - Redo the whole grant prize api
+### v2.2.0
+* 20170927 | P | Added DsForm dependency (work in progress)
 ### v2.1.0
-* 20170926 | P | Solved POST /handoverprize frontend
+* 20170926 | P | Solved POST /grantprize frontend
 * 20170926 | P | Added babel spread operator loader
 * 20170926 | P | Added source maps to Webpack config
 * 20170922 | P | Added remaining fields of GrantPrizeForm

@@ -16,6 +16,7 @@ import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
+import DsForm, { InputText } from '../ds-form/DsForm'
 
 import GrantPrizeForm from './GrantPrizeForm'
 
@@ -115,7 +116,9 @@ class PrizeCard extends PureComponent {
             />
             : null
           }
-
+          <DsForm>
+            <InputText />
+          </DsForm>
         </Dialog>
       )
     }

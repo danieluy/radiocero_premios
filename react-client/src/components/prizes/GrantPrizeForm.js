@@ -21,20 +21,20 @@ class GrantPrizeForm extends Component {
     this.state = {
       prizeId: props.prizeId,
       winner: {
-        ci: null,
-        ciMessage: null,
-        name: null,
-        nameMessage: null,
-        lastname: null,
-        lastnameMessage: null,
-        facebook: null,
-        facebookMessage: null,
-        gender: null,
-        genderMessage: null,
-        phone: null,
-        phoneMessage: null,
-        mail: null,
-        mailMessage: null
+        // ci: null,
+        // ciMessage: null,
+        // name: null,
+        // nameMessage: null,
+        // lastname: null,
+        // lastnameMessage: null,
+        // facebook: null,
+        // facebookMessage: null,
+        // gender: null,
+        // genderMessage: null,
+        // phone: null,
+        // phoneMessage: null,
+        // mail: null,
+        // mailMessage: null
       },
       checkingWinner: false
     }
@@ -65,13 +65,13 @@ class GrantPrizeForm extends Component {
           this.setState({ checkingWinner: false })
           if (result.allowed && !result.winner) {
             winner.ci = ci
-            winner.ciMessage = null
+            winner.ciMessage = undefined
             this.props.onQuickNotice('Participante habilitado')
             this.setState({ winner })
           }
           else if (result.allowed) {
             winner.ci = ci
-            winner.ciMessage = null
+            winner.ciMessage = undefined
             this.props.onQuickNotice('Habilitado, ha ganado hace más de 3 meses')
             this.setState({ winner })
           }
@@ -91,38 +91,38 @@ class GrantPrizeForm extends Component {
   }
   updateWinnerName(evt) {
     const winner = Object.assign({}, this.state.winner)
-    winner.name = evt.target.value
-    winner.nameMessage = null
+    winner.name = (evt.target.value && evt.target.value !== '') ? evt.target.value : undefined
+    winner.nameMessage = undefined
     this.setState({ winner })
   }
   updateWinnerLastname(evt) {
     const winner = Object.assign({}, this.state.winner)
-    winner.lastname = evt.target.value
-    winner.lastnameMessage = null
+    winner.lastname = (evt.target.value && evt.target.value !== '') ? evt.target.value : undefined
+    winner.lastnameMessage = undefined
     this.setState({ winner })
   }
   updateWinnerGender(e, index, value) {
     const winner = Object.assign({}, this.state.winner)
-    winner.gender = (value && value !== '') ? value : null
-    winner.genderMessage = null
+    winner.gender = (value && value !== '') ? value : undefined
+    winner.genderMessage = undefined
     this.setState({ winner })
   }
   updateWinnerFacebook(evt) {
     const winner = Object.assign({}, this.state.winner)
-    winner.facebook = evt.target.value
-    winner.facebookMessage = null
+    winner.facebook = (evt.target.value && evt.target.value !== '') ? evt.target.value : undefined
+    winner.facebookMessage = undefined
     this.setState({ winner })
   }
   updateWinnerPhone(evt) {
     const winner = Object.assign({}, this.state.winner)
-    winner.phone = evt.target.value
-    winner.phoneMessage = null
+    winner.phone = (evt.target.value && evt.target.value !== '') ? evt.target.value : undefined
+    winner.phoneMessage = undefined
     this.setState({ winner })
   }
   updateWinnerMail(evt) {
     const winner = Object.assign({}, this.state.winner)
-    winner.mail = (evt.target.value && evt.target.value !== '') ? evt.target.value : null
-    winner.mailMessage = null
+    winner.mail = (evt.target.value && evt.target.value !== '') ? evt.target.value : undefined
+    winner.mailMessage = undefined
     this.setState({ winner })
   }
   handleKeyPress(evt) {
@@ -144,13 +144,6 @@ class GrantPrizeForm extends Component {
     if (winner.ciMessage || winner.nameMessage || winner.nameMessage || winner.lastnameMessage || winner.mailMessage)
       this.setState({ winner })
     else {
-      delete winner.ciMessage
-      delete winner.nameMessage
-      delete winner.lastnameMessage
-      delete winner.facebookMessage
-      delete winner.genderMessage
-      delete winner.phoneMessage
-      delete winner.mailMessage
       grantPrize(this.state.prizeId, winner)
         .then(result => {
           console.log(result)

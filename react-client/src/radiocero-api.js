@@ -271,7 +271,7 @@ function grantPrize(prizeId, winner) {
   if (!prizeId || !winner)
     throw new Error('Winner info and Prize ID must be provided')
   return new Promise((resolve, reject) => {
-    superagent.post(APIBaseURL + 'winners/handoverprize/')
+    superagent.post(APIBaseURL + 'winners/grantprize/')
       .type('form')
       .send({ prize_id: prizeId, ...winner })
       .end((err, res) => {
@@ -283,7 +283,6 @@ function grantPrize(prizeId, winner) {
           resolve(res.body)
       });
   })
-  return Promise.resolve(null)
 }
 
 export {
